@@ -1,0 +1,9 @@
+{% if user.is_authenticated %}
+
+    {% include 'profiles/nav/profile_nav.html' %}
+
+{% else %}
+
+  {% include 'pervasive/nav/header_nav.html' %}
+
+{% endif %}

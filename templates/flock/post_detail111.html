@@ -1,0 +1,122 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+  {% block content %}
+  {% load humanize %}
+  {% load i18n %}
+  <body class="profile-page sidebar-collapse">
+    {% include 'navbar.html' %}
+
+  <div class="main main-raised">
+    <div class="profile-content">
+    <br><br><br>
+    <br><br><br>
+<div class="">
+  <div class="row">
+    <div class="col-md-6 ml-auto mr-auto">
+      <div class="profile-tabs">
+        <form method='POST' id="imageContainer" action='' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <small class="card-img-top raised">
+          <img id="blah" src="" class="card-img-top raised" style=""/>
+        </small>
+
+        <br><br>
+        <label for="uploadFile">
+          <div id="image" class="btn img btn-sm btn-round raised btn-primary"><i class="fa fa-camera"></i></div>
+        </label>
+        <input type="file" accept="image/*,video/*;capture=camcorder" onchange="readURL(this);" name="{ form.post_image }" id="uploadFile"  style="display:none" />
+
+        <input type="text" name="{ form.title }" class="form-control">
+        <button type="submit" name="submit" class="btn btn-sm btn-round raised btn-primary pull-right">post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<br><br>
+</div>
+
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+
+            <div class="profile-tabs">
+
+
+              {% for post in instance %}
+
+                    {% if post.user.profile.profile_image %}
+                    <div class="photo">
+                      <a href="{% url 'profiles:view_profile_with_pk' post.user.pk %}">
+                      <img class="pull-left" src="{{ post.user.profile.profile_image.url }}" alt="..." class="avatar img-raised img-fluid" style="border-radius: 50%; padding: 5px;width :50px;">
+                      </a>
+                    </div>
+
+                    {% else %}
+
+                      <a href="{% url 'profiles:view_profile_with_pk' post.user.pk %}">
+
+                        <img  src="/media/media/images/defaults/placeholder.jpg" class="avatar img-raised" style="border-radius: 50% ;width :50px;">
+                      </a>
+
+                      {% endif %}
+
+
+
+                     <div class="dropdown nav-item pull-right" >
+	                     <div href="" class="dropdown nav-link" data-toggle="dropdown" aria-expanded="false">
+	                         <i class="fa fa-fw fa-ellipsis-v"></i>
+	                         <div class="dropdown-menu dropdown">
+	                           <a href="/account/profile" class="dropdown-item">Chat</a>
+	                           <a href="/account/profile/edit"  class="dropdown-item">Flock</a>
+	                           <a href="/account/change-password" class="dropdown-item">unflock</a>
+
+	                           <div class="dropdown-divider"></div>
+	                           <a href="/account/profile/proffesional" class="dropdown-item">More</a>
+	                           <a href="/account/profile/pervasive" class="dropdown-item">Block</a>
+	                           <a href="/account/profile/pervasive" class="dropdown-item">Report</a>
+	                         </div>
+	                     <div class="ripple-container"></div>
+	                   </div>
+                   </div>
+
+                   <div class="pull-right" > <a href="{% url 'profiles:view_profile_with_pk' post.user.pk %}">{{ post.user.username|upper }}</a> &nbsp;
+
+                    </div>
+
+
+
+                      <small >{% if post.post_image %}
+                      <img src="{{ post.post_image.url }}" class="card-img-top">
+                      {% elif post.post_video %}
+                        <video src="{{ post.post_video.url }}"  controls poster="" class="card-img-top">
+
+                        </video>
+                      {% endif %}
+
+                    </small>
+                    <p class="">{{  post.title }}</p>
+                      <div class="pull-left"><a href='{{ post.get_api_like_url }}' class='like-btn btn-link ' data-href='{{ post.get_api_like_url }}' data-likes='{{ post.likes.count }}'  href='{{ post.get_like_url }}' rel="tooltip" data-original-title="like and flock this status">{{  post.likes.count  }} <i class="fa fa-heart"></i></a></div>
+                      {% if comments %}
+
+                          <div class="pull-right"> {{ comments.post.text }}</div>
+
+                      {% endif %}
+                    <div class="pull-right"> {{ post.timestamp|naturaltime }}</div>
+                    <br><hr>
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  {% include 'modals.html' %}
+  {% include 'footer.html' %}
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

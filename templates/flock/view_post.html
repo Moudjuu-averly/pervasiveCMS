@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+<body class="signup-page sidebar-collapse">
+
+  {% include 'navbar.html' %}
+
+
+      <div class="container" >
+
+
+        <main class="profile-page profile-content" >
+          <section class="section-profile-cover" >
+
+          </section>
+
+          <section class="section section-skew" >
+            <div class="container">
+              <div class="card card-profile shadow mt--300">
+                <div class="px-4">
+
+                  <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                      <div class="card-profile-image">
+                        {% if posts.user.userprofile.profile_image %}
+                          <a href="#">
+                            <img src="{{ posts.suser.userprofile.profile_image.url }}" class="rounded-circle">
+                          </a>
+                        {% else %}
+                          <a href="javascript:void(0);" class=" img-raised btn-round">
+                            <img src="/media/media/images/defaults/placeholder.jpg" class=" img-raised" style="border-radius: 50%; padding: 5px" />
+                          </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                      <div class="card-profile-actions py-4 mt-lg-0">
+                        <a href="#" class="btn btn-sm btn-info mr-4">Flock</a>
+                        <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 order-lg-1">
+                      <div class="card-profile-stats d-flex justify-content-center">
+                        <div>
+                          <span class="heading">22</span>
+                          <a href="/flock/post">
+                            <span class="description">Posts</span>
+                          </a>
+
+                        </div>
+                        <div>
+                          <span class="heading">10</span>
+                          <a href="/flock/view_post">
+                            <span class="description">Photos</span>
+                          </a>
+                        </div>
+                        <div>
+                          <span class="heading">89</span>
+                          <a href="/flock/view_post">
+                            <span class="description">Flocks</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center mt-5">
+
+                    <h3>{{ posts.user.username.capitalize }}
+
+
+                      <div class="boxs">
+                        {% for post in posts %}
+                          <a href="#">
+                            <div class="box">
+                              <div class="img-area">
+                                {% if post.post_image %}
+                                    <img class="media-object" src="{{ post.post_image.url }}" alt="status" >
+                                    {% elif post.post_video %}
+                                    <div class="html5-video-container col-md ml-auto">
+                                      <video name='media-object'  controls  autobuffer class="html5-video-container col-md ml-auto">
+                                        <source src="{{ post.post_video.url }}" type="video/mp4"></source>
+                                      </video>
+                                    </div>
+                                    {% else %}
+
+                                    {% endif %}
+
+                              </div>
+
+
+                              <div class="">
+
+                                 <p class="btn-sm btn-link">{{ post.user.username.capitalize }} | {{ post.timestamp|timesince }} | {{ post.likes.count }} <i class="fa fa-heart"></i></p>
+
+                                <p class=""> {{ post.title }}</p>
+                              </div>
+                            </div>
+
+                          </a>
+                          {% endfor %}
+                    </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+
+
+
+
+
+
+      </div>
+
+        </div>
+
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Basecode-GT Globals
+              </a>
+            </li>
+            <li>
+              <a href="https://presentation.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="fa fa-heart"> favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Baecode-GT Visuals</a> for a better web.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Welcome to the team</h1>
+  </body>
+</html>

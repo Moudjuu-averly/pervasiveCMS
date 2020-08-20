@@ -1,0 +1,121 @@
+{% extends 'pervasive/base.html' %}
+
+{% block body %}
+<body class="">
+  <!-- NAVIGATION MENU-->
+    {% include 'nav_auth.html' %}
+  <!-- END NAVIGATION -->
+
+  <div class="wrapper">
+      <!-- FIXED PLUGIN-->
+        {% include 'pervasive/fixed_plugin.html' %}
+      <!-- END FIXED PLUGIN -->
+
+    <!-- LEFT SIDEBAR-->
+      {% include 'pervasive/left/left_sidebar.html' %}
+    <!-- END LEFT SIDEBAR -->
+
+    <!-- TIMELINE-->
+    {% block main %}
+    <div class="main-panel">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+            <!-- <div class="card card-white"> -->
+              <div class="card-header">
+                <!-- <h5 class="title ">Timeline</h5> -->
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <!-- JOBS ON THE MAIN PAGE -->
+                      <div class="container" >
+                        <div class="content-center">
+                          {% for job in job %}
+                          <div class="card-body">
+                              <div class="text-center card-user author">
+                                <a href="{{ job.job_owner }}">
+                                  <img class="avatar" src="/media/faces/marc.jpg" alt="...">
+                                </a><hr>
+                                <h3><a href="{{ job.job_owner }}">{{ job.user }}</a></h3>
+                              </div>
+                            <h2 class="description title">{{ job.job_tittle }}</h2>
+                            <h5 class="">
+                              <i class="tim-icons icon-square-pin text-primary"></i>
+                              {{ job.country.name }}-{{ job.city }}
+                            </h5>
+                            <h4>Job description</h4>
+                              {{ job.requirements }}
+                              <br><br>
+                            <h4>Requirements</h4>
+                              {{ job.description }}
+                              <br><br>
+                              Salary Scale N$-{{ job.salary_scale }}
+                                <br>
+                              Due date: {{ job.due_date }}
+                          </div>
+                          <div class="card-footer">
+                            <div class="content container">
+                                <div class="social-description ">
+                                <h4 class="card-category"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">2311</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 jobs</span> <a href="{{ job.job_owner }}">@{{ job.user }}</a> 43<a href="#"> sales </a>job </h4>
+                                </div>
+                            </div>
+                            <div class="button-container">
+                              <button class="btn btn-primary btn-sm btn-round" type="button">Apply</button>
+                              <div class="text-right">
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-facebook">
+                                  <i class="fab fa-facebook"></i>
+                                </button>
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-twitter">
+                                  <i class="fab fa-twitter"></i>
+                                </button>
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-google">
+                                  <i class="fab fa-google-plus"></i>
+                                </button>
+                                <div class="card-footer text-right">
+                                  <h4><a href="{{ job.job_owner }}">more jobs @{{ job.user }}</a></h4>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                          {% endfor %}
+                        </div>
+                        <div class="content-center">
+                          <div class="card-description">
+                            <h2 class="description">About Pervasive Jobs</h2>
+                          </div>
+
+                        </div>
+
+                    </div>
+                      <!-- END MAIN PAGE JOBS -->
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- RIGHT SIDEBAR-->
+            {% include 'pervasive/right/right_sidebar.html' %}
+          <!-- END RIGHT SIDEBAR -->
+        </div>
+      </div>
+      <!-- FOOTER SIDEBAR-->
+        {% include 'pervasive/footer/footer.html' %}
+      <!-- END FOOTER -->
+    </div>
+
+
+    {% endblock %}
+    <!-- END TIMELINE -->
+
+  </div>
+
+
+  <!--PERVASIVE FOOTER -->
+  <!-- END FOOTER -->
+</body>
+{% endblock %}

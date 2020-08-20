@@ -1,0 +1,37 @@
+
+<div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Related</h2>
+          <div class="row">
+            {% for profile in related_profiles %}
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  {% if profile.blog_image.url %}
+                  <a href="{% url 'blog:single_blog' slug=blog.slug %}">
+                    <img class="img img-raised" src="{{ blog.blog_image.url }}">
+                  </a>
+                  {% endif %}
+                <div class="colored-shadow" style="background-image: url({{ blog.blog_image }}); opacity: 1;"></div></div>
+                <div class="card-body">
+                  <h6 class="category text-info">{{ profile.get_business_type_display }}</h6>
+                  <h4 class="card-title">
+                    <a href="{% url 'blog:single_blog' slug=blog.slug %}">{{ profile.official_business_name }}</a>
+                  </h4>
+                  <p class="card-description">
+                    {{ profile.content|safe|urlize|capfirst|truncatewords_html:11 }}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+              {% endfor %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

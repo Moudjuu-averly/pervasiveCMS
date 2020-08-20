@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+  {% block body %}
+<body class="signup-page sidebar-collapse">
+
+  {% include 'navbar.html' %}
+
+  <div class="page-header header-filter" filter-color="purple" style="background-image: url('../assets/img/bg7.jpg')">
+
+                <div class="container">
+                  <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                          {% csrf_token %}
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Edit Profile</h4>
+                                    <p class="card-category">Complete your profile</p>
+                              </div>
+                                <div class="card-body">
+                                    <form method="post">
+                                      {% csrf_token %}
+
+                                      {{ form.as_p }}
+                                      <input type="submit" name="" value="update">
+                                    </form>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-profile text-center">
+                              <div class="profile">
+                                <div class="avatar">
+                                  {% if user.userprofile.profile_image %}
+                                    <img class="card-img-top img-fluid w-60" src="{{ user.userprofile.profile_image.url }}" style="width: 200px;height: 200px; border-radius: 50%; padding:5px">
+                                    {% else %}
+                                      <div class="">
+                                        <p>You have no profile picture yet<i class="fa fa-fw fa-user" ></i></p>
+                                    </div>
+                                  {% endif %}
+                                </div>
+                              </div>
+
+                                <div class="card-body ">
+                                    <h6 class="card-category text-gray">{{ user.userprofile.occupation }}</h6>
+                                    <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
+                                    <p class="card-description">
+                                      {{ user.userprofile.about }}
+                                    </p>
+                                    <a href="" class="btn btn-primary btn-round">more<div class="ripple-container"></div></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--rotating card-->
+
+
+                    </div>
+                </div>
+        </div>
+      </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www..com">
+                Basecode-GT Globals
+              </a>
+            </li>
+            <li>
+              <a href="https://presentation..com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="https://blog..com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www..com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="fa fa-heart"> favorite</i> by
+          <a href="https://www..com" target="_blank">Baecode-GT Visuals</a> for a better web.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

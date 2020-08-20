@@ -1,0 +1,158 @@
+<!-- Navbar -->
+<nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg navbar navbar-inverse navbar-expand-lg bg-rose" color-on-scroll="100" id="sectionsNav">
+  <div class="container">
+    <div class="navbar-translate">
+      <a class="navbar-brand" href="/">
+        Basecode GTI </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    
+    <div class="collapse navbar-collapse">
+
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <form class="form-inline ml-auto" action="{% url 'flock:search' %}" method="GET">
+            <div class="form-group has-white bmd-form-group">
+              <input type="text"  name="q" class="form-control" value="{{ request.GET.q }}" placeholder="Search">
+            </div>
+            <button type="submit" name="submit" class="btn btn-white btn-raised btn-sm btn-fab btn-round">
+              <i class="material-icons">search</i>
+            </button>
+          </form>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="#" class="nav-link disabled" data-toggle="dropdown">
+            Teams
+          </a>
+          <div class="dropdown-menu dropdown-with-icons">
+            <a href="../index.html" class="dropdown-item">
+              Trending
+              </a>
+            <a href="" class="dropdown-item">
+              Popular
+            </a>
+            <a href="" class="dropdown-item">
+              Add your team
+            </a>
+          </div>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="#" class="nav-link" data-toggle="dropdown">
+            Videos
+          </a>
+          <div class="dropdown-menu dropdown-with-icons">
+            <!-- <a href="../index.html" class="dropdown-item">
+              Trending
+            </a> -->
+            <a href="{% url 'pervasive:product_n_services' %}" class="dropdown-item">
+              PS
+            </a>
+            <!-- <a href="#" class="dropdown-item">
+              Popular
+            </a> -->
+          </div>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="#" class="nav-link" data-toggle="dropdown">
+            Jobs
+          </a>
+          <div class="dropdown-menu dropdown-with-icons">
+            <a href="{% url 'jobs:view_all_jobs' %}" class="dropdown-item">
+              All
+            </a>
+            <a href="{% url 'jobs:remote_jobs' %}" class="dropdown-item">
+              Remote
+            </a>
+            <!-- <a href="{% url 'jobs:remote_jobs' %}" class="dropdown-item">
+              Teams hiring
+            </a> -->
+            <!-- <a href="#" class="dropdown-item">
+              Others (re-advatised)
+            </a> -->
+          </div>
+        </li>
+        <li class="nav-item">
+
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about:plans' %}" onclick="scrollToDownload()">
+            Pricing
+          </a>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="#" class="nav-link" data-toggle="dropdown">
+            Company
+          </a>
+          <div class="dropdown-menu dropdown-with-icons">
+            <a href="{% url 'blog:view_all_blogs' %}" class="dropdown-item">
+              Blog
+            </a>
+            <a href="{% url 'blog:view_all_news' %}" class="dropdown-item">
+              News
+            </a>
+            <a href="{% url 'about:faqs' %}" class="dropdown-item">
+              About
+            </a>
+            <!-- <a href="#" class="dropdown-item">
+              Case Studies
+            </a>
+            <a href="#" class="dropdown-item">
+              Shops
+            </a> -->
+            <a href="#" class="dropdown-item">
+              Careers (coming soon)
+            </a>
+            <!-- <a href="#" class="dropdown-item">
+              Adverts
+            </a> -->
+            <a href="#" class="dropdown-item">
+              Advitise
+            </a>
+            <a href="#" class="dropdown-item">
+              API's (coming soon)
+            </a>
+            <a href="{% url 'about:faqs' %}" class="dropdown-item">
+              FAQ's
+            </a>
+            <!-- <a href="#" class="dropdown-item">
+              Apps
+            </a> -->
+            <a href="{% url 'about:plans' %}#contact" class="dropdown-item">
+              Help
+            </a>
+          </div>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Like us on Facebook">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li> -->
+        <li class="button-container nav-item iframe-extern">
+            <a href="{% url 'accounts:login' %}" data-original-title="Pervasive Account" class="btn  btn-info btn-sm  btn-round btn-block">
+              Login<i class="material-icons">fingerprint</i>
+            <div class="ripple-container"></div></a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- End Navbar -->

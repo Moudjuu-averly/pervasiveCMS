@@ -1,0 +1,89 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+<!-- EDIT PROFILE PAGE -->
+
+<form class="" action="" method="POST">
+    {% csrf_token  %}
+
+      <div class="card-header text-center">
+        <button type="" onclick="window.history.back();" class="float-left btn btn-primary btn-sm btn-round">back</button>
+      <h3 class="description">Edit {{user}}'s display</h3>
+  </div>
+  <div class="card-body">
+      <div class="row">
+        {{ form.non_field_errors }}
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+              <label for="{{ form.support_tittle.id_for_label }}">Support tittle</label>
+                {{ form.support_tittle.error }}
+                {{ form.support_tittle }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+              <label for="{{ form.support_type.id_for_label }}">Support type </label>
+              {{ form.support_type.error }}
+              {{ form.support_type }}
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row text-center">
+        <h4 class="col-md-12 pr-md-1">Detail us the issue</h4>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="{{ form.content.id_for_label }}"><i>Our support will get back to you soon.</i></label>
+            {{ form.content.error }}
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea rows="4" cols="80" name="content" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="row container" >
+    <h4 class="col-md-12 text-center">
+      <label for="upload-image" class="text-center" style="cursor: pointer;"><i class="tim-icons icon-camera-18">Image(optional)</i> <i class="tim-icons icon-upload"> upload issue picture</i></label>
+    </h4>
+    <div class="">
+      <div class="form-group">
+          <div class="text-center container">
+            <label for="upload-image" class="text-center" style="cursor: pointer;"></label>
+             <br>
+            <input type="file" name="image" id="upload-image" style="display:none;" accept="image/*" onchange="loadFile(event)">
+            <img id="output" width="100%" src="" type="image/*" />
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" name="submit" class="btn btn-fill btn-round btn-sm btn-primary pull-right">Save</button>
+  </div>
+</form>
+<!-- END EDIT PROFILE PAGE -->
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      if (output.src == ''){
+        this.style.display = "none";
+      }
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
+
+<!-- END EDIT PROFILE PAGE -->
+{% endblock %}

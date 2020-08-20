@@ -1,0 +1,97 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="">
+  <div class="content-center">
+    <div class=""> 
+      <br>
+        <form method='POST' id="post-job" action='' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="row">
+          <h4 class="container text-center">Send mail to your subscribers</h4>
+
+          {% if form.errors %}
+          {{ form.non_field_errors }}
+          <!-- Tender Video -->
+          <div class="alert">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+            <ul style="list-style:none;">
+              <li class="alert-danger"> <b> Warning - </b> {{ form.errors }} </li>
+            </ul>
+
+          </div>
+          {% endif %}
+          {{ form.media }}
+          <div class="col-md-12">
+            <small class="card-img-top raised">
+              <img id="blah" src="" class="card-img-top raised" style=""/>
+            </small>
+            <div class="col-md-12">
+              <div class="form-group">
+                  <div class="text-right">
+                    <label for="upload-profile_image" class="" style="cursor: pointer;">
+                        <i class="fa fa-camera btn img btn-sm btn-round raised btn-primary"></i>
+                    </label>
+                    <input type="file" name="post_file" id="upload-profile_image" style="display:none;" accept="image/*" onchange="loadFile(event)">
+                    <img id="output" width="100%" src="" type="image/*" style="width:auto;" />
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class=" container">
+            <div class="row container">
+              <div class="col-md-12 px-md-1">
+                <div class="form-group">
+                  {{ form.tittle.error }}
+                  <label for="{{ form.tittle.id_for_label }}">Heading</label>
+                    {{ form.tittle }}
+                </div>
+              </div>
+
+              <div class="col-md-12 px-md-1">
+                <div class="form-group">
+                  <div class="field-job_type">
+                    <div>
+                      <label class="required" for="{{ form.short_description.id_for_label }}">Short description:</label>
+                          {{ form.short_description.error }}
+                          {{ form.short_description }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 px-md-1">
+                <div class="form-group">
+                  <div class="fieldWrapper text-center">
+                    <label for="{{ form.content.id_for_label }}">Full Description </label>
+                    {{ form.content }}
+                  </div>
+                </div>
+              </div>
+              <button type="submit" name="submit" class="btn btn-sm btn-round raised btn-primary pull-leeft">cancel</button>
+              <button type="submit" name="submit" onclick="demo.showNotification('top','center')" class="btn btn-sm btn-round raised btn-primary pull-right">post</button>
+
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      if (output.src == ''){
+        this.style.display = "none";
+      }
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
+{% endblock %}

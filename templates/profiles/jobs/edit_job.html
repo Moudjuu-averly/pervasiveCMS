@@ -1,0 +1,124 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<div class="card-header">
+  <h5 class="">Update {{ job_tittle|capfirst }}</h5>
+  <h4 class="col-md-6">{{ user|capfirst}} | New</h4>
+</div>
+  <!--  -->
+  <form method='POST' id="post-job" action='' enctype='multipart/form-data'>
+  {% csrf_token %}
+  <div class="row">
+    {% if form.errors %}
+    {{ form.non_field_errors }}
+    <!-- Tender Video -->
+    <div class="alert">
+      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="tim-icons icon-simple-remove"></i>
+      </button>
+      <ul style="list-style:none;">
+        <li class="alert-danger"> <b> Warning - </b> {{ form.errors }} </li>
+      </ul>
+
+    </div>
+    {% endif %}
+    {{ form.media }}
+    <div class="col-md-12">
+      <label for="upload-video" class="" style="cursor: pointer;">
+          <i class="tim-icons icon-upload btn-sm"> upload</i>
+      </label>
+      <i name="job_video-clear" id="clear" class="tim-icons icon-trash-simple btn-sm float-right" style="cursor: pointer;" > clear</i>
+       <br>
+      <input type="file" name="job_video" id="upload-video" onchange="validate_fileupload(this.value);" style="display:none;" accept="video/*" onchange="loadFile(event)">
+      <video id="output" data-play="hover" width="100%" height="auto" src="{{ job.job_video.url }}" type="video/*"
+        preload loop subtitles srclang="en" controls controlsList="nodownload" poster="">
+      </video>
+
+      <div class="col-md-12 ">
+        <div class="form-group">
+            {{ form.job_tittle.error }}
+            <label for="{{ form.job_tittle.id_for_label }}">Job Title</label>
+              {{ form.job_tittle }}
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <div class="datepicker-container" >
+          <label for="{{ form.due_date.id_for_label }}">Due date </label>
+          {{ form.due_date.error }}
+          {{ form.due_date }}
+          <script type="text/javascript">
+            var editor = CKEDITOR.inline( document.getElementById( 'editable' ) );
+          </script>
+        </div>
+
+          <script type="text/javascript">
+              $(function () {
+                  $('#datepicker').datepicker({
+                      daysOfWeekDisabled: [0, 6]
+                  });
+              });
+          </script>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <div class="field-job_type">
+          <div>
+            <label class="required" for="{{ form.job_type.id_for_label }}">Job type:</label>
+                {{ form.job_type }}
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="datepicker-container">
+            <label for="{{ form.min_salary.id_for_label }}">Min salary </label>
+            {{ form.min_salary.error }}
+            {{ form.min_salary }}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="datepicker-container">
+            <label for="{{ form.max_salary.id_for_label }}">Min salary </label>
+            {{ form.max_salary.error }}
+            {{ form.max_salary }}
+          </div>
+        </div>
+      </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <div class="fieldWrapper">
+          <label for="{{ form.content.id_for_label }}">Content </label>
+          {{ form.content.error }}
+          {{ form.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" name="submit" class="btn btn-sm btn-round raised btn-primary pull-right" onclick="demo.showNotification('top','center')">post</button>
+
+    <button type="submit" onclick="demo.showNotification('top','center')" class="btn btn-sm btn-round raised btn-fill btn-primary">cancel</button>
+  </div>
+  </form>
+  <script>
+    var loadFile = function(event) {
+      var reader = new FileReader();
+      reader.onload = function(){
+        var output = document.getElementById('output');
+        if (output.src == ''){
+          this.style.display = "none";
+        }
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+  </script>
+{% endblock %}

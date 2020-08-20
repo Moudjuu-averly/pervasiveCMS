@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6 ml-auto mr-auto">
+    <div class="profile-tabs">
+      {% for post in instance %}
+
+            {% if post.user.userprofile.profile_image %}
+            <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+            <img class="pull-left" src="{{ post.user.userprofile.profile_image.url }}" alt="..." class="avatar img-raised" style="border-radius: 50%; padding: 5px;width :45px;">
+          </a>
+            {% else %}
+            {% endif %}
+            <div class="pull-right"> {{ post.user.username|upper }}</div>
+
+            <h1>
+              <small>{% if post.post_image %}
+              <img src="{{ post.post_image.url }}" class="card-img-top">
+              {% else %}
+              {% endif %}
+            </small>
+            </h1>
+
+
+              <div class="pull-left"><a href='{{ post.get_api_like_url }}' class='like-btn btn-link ' data-href='{{ post.get_api_like_url }}' data-likes='{{ post.likes.count }}'  href='{{ post.get_like_url }}' rel="tooltip" data-original-title="like and flock this status">{{ post.likes.count }}<i class="material-icons">favorite</i></a></div>
+            <div class="pull-right"> {{ post.timestamp|naturaltime }}</div>
+            <br><br>
+      {% endfor %}
+    </div>
+  </div>
+</div>

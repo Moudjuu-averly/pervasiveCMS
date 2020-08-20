@@ -1,0 +1,51 @@
+{% extends 'pervasive/index.html' %}
+
+{% block body %}
+<body class="landing-page sidebar-collapse">
+
+  {% include 'pervasive/nav/header_nav.html' %}
+
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('/media/media/img/bg5.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          {% if blog %}
+          <h3 class="title">{{ blog.blog_tittle|safe|urlize|capfirst }}</h3>
+          <h4>{{ blog.content|safe|urlize|capfirst|truncatewords_html:11 }}</h4>
+          <br>
+          {% endif %}
+        </div>
+
+        <div class="col-md-5 ml-auto">
+          <div class="iframe-container">
+            <iframe height="250" src="https://www.youtube.com/embed/IN6QnLpVEPI" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<div class="main main-raised">
+  <div class="container">
+    <div class="section text-center">
+      {% block content %}
+        <!-- <h2 class="title">Meet the teams</h2> -->
+        <div class="row">
+          {% include 'pervasive/blog/single/blog_data.html' %}
+          <!-- { include 'pervasive/blog/single/blog_info.html' } -->
+          <!-- include 'pervasive/blog/single/blog_comments.html'  -->
+        </div>
+      {% endblock %}
+    </div>
+
+
+  </div>
+
+
+  </div>
+  {% include 'pervasive/blog/related_blogs.html' %}
+
+  {% include 'pervasive/footer/footer.html' %}
+</body>
+
+{% endblock %}

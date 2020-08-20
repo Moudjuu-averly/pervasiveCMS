@@ -1,0 +1,43 @@
+<div class="card-header text-center">
+  <div class="col-sm-6 ">
+    <h5 class="card-category" id="announce">Announce</h5>
+    <h2 class="card-title">All {{ user }} announcements</h2>
+  </div>
+</div>
+<div id="myCarousel" class="container carousel slide slider" data-ride="carousel">
+    <!-- <ol class="carousel-indicators">
+         {% for announce in announce%}
+            <li data-target="#myCarousel" data-slide-to="{{announce.id}}" class="{% if forloop.first%}active{%endif%}"></li>
+        {%endfor%}
+    </ol> -->
+    <div class="carousel-inner container col-lg-8 auto" role="listbox" >
+        {% for announce in announce|slice:":11" %}
+          {% if forloop.first %}
+            <div class="active carousel-item">
+          {% else %}
+            <div class="carousel-item">
+          {% endif %}
+            <div class="">
+              <div class="card card-chart">
+                <div class="card-header">
+                  <h4 class="card-title title d-inline"><i class="tim-icons icon-badge text-primary"></i><a href="{% url 'announce:view_announce' announce.pk %}">{{announce.announce_tittle}}</a></h4>
+                    <h5 class="card-category"><i class="tim-icons icon-tag"></i><span class="">{{ announce }} </span>
+                    <h5 class="card-category"><span class="">{{ announce }}, {{ announce }} <a href="{% url 'announce:view_all_announce'%}">all</a></span>
+                </div>
+                <div class="">
+                  <div class="content container">
+                      <div class="social-description ">
+                        <h4 class="card-category"><i class="tim-icons icon-credit-card"></i> <span class="">{{ announce }}</span> </h4>
+                        <h4 class="text-muted"><i class="tim-icons icon-watch-time"></i> <span class="">{{ announce.created|timesince }}</span> </h4>
+                        <h4 class="card-category"><i class="tim-icons icon-tap-02 text-primary"></i><span class="">2311</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 announce</span> <a href="{{ announce.announce.user }}">@{{ announce.user }}</a></h4>
+                      </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        {% endfor %}
+        </div>
+  </div>

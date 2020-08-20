@@ -1,0 +1,41 @@
+{% extends 'pervasive/index.html' %}
+
+
+{% block main %}
+<div class="main-panel">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+        <!-- <div class="card card-white"> -->
+          <div class="card-header">
+            <!-- <h5 class="title ">Timeline</h5> -->
+          </div>
+          <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- JOBS ON THE MAIN PAGE -->
+                    {% include 'pervasive/jobs/jobs.html' %}
+                  <!-- END MAIN PAGE JOBS -->
+                </div>
+              </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-fill btn-sm btn-round btn-primary">load more</button>
+          </div>
+        </div>
+        <!-- Jobs -->
+          {% include 'pervasive/jobs/jobs.html' %}
+        <!-- END Jobs -->
+      </div>
+      <!-- RIGHT SIDEBAR-->
+        {% include 'pervasive/right/right_sidebar.html' %}
+      <!-- END RIGHT SIDEBAR -->
+    </div>
+  </div>
+  <!-- FOOTER SIDEBAR-->
+    {% include 'pervasive/footer/footer.html' %}
+  <!-- END FOOTER -->
+</div>
+
+{% endblock %}

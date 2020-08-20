@@ -1,0 +1,4 @@
+
+{% if blog %}
+{{ blog.content|safe|urlize|capfirst }}
+{% endif %}

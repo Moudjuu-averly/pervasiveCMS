@@ -1,0 +1,52 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+<!-- EDIT PROFILE PAGE -->
+
+
+  <div class="card-header text-center">
+    <button  onclick="window.history.back();" class="float-left btn btn-primary btn-sm btn-round">back</button>
+  <h3 class="description">click a category to update</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <label for="upload-about-video" class="" style="cursor: pointer;">
+            <a href="{% url 'accounts:edit_profile_image' %}"><h5 class="description">Change profile Image</h5></a>
+        </label>
+         <br>
+         <a href="{% url 'accounts:edit_profile_image' %}">
+           {% if request.user.profile.profile_image %}
+           <img class="img" src="{{ user.profile.profile_image.url }}" alt="..." >
+           {% else %}
+           <img class="img" src="/media/img/faces/kendall.jpg" alt="..."  style="border-radius:50%;">
+           {% endif %}
+         </a>
+      </div>
+      <div class="col-md-6 text-center">
+        <label for="upload-about-video" class="" style="cursor: pointer;">
+            <a href="{% url 'accounts:edit_cover_image' %}"><h5 class="description">Change Cover Image</h5></a>
+        </label>
+         <br>
+         <br>
+         <a href="{% url 'accounts:edit_cover_image' %}">
+           {% if request.user.profile.cover_image %}
+           <img class="img" src="{{ user.profile.cover_image.url }}" alt="...">
+           {% else %}
+           <img class="img" src="/media/img/faces/kendall.jpg" alt="...">
+           {% endif %}
+         </a>
+      </div>
+    </div>
+    <hr>
+    <div class="card-header text-center">
+    <h4 class="description">Videos</h4>
+    </div>
+
+  </div>
+
+
+{% endblock %}

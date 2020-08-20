@@ -1,0 +1,36 @@
+<!-- BOTTOM PAGINATION -->
+<ul class="pagination pagination-primary text-center">
+  <li class="page-item">
+    {% if flocks.has_previous %}
+    <a href="?page=1">first</a>
+    <a href="?page={{ flocks.previous_page_number }}" class="btn btn-icon btn-round" aria-label="Next">
+      <i class="tim-icons icon-minimal-left" aria-hidden="true"></i>
+    </a>
+    {% endif %}
+  </li>
+  <li class="page-item active">
+      <a class="page-link btn btn-icon btn-round" href="#link">{{ flock.number }}</a>
+      <i class="tim-icons" aria-hidden="true"></i>
+  </li>
+  <li class="page-item btn btn-icon btn-round">
+      <a class="page-link btn btn-icon btn-round" href="#link">2</a>
+  </li>
+  <li class="page-item">
+      <a class="page-link btn btn-icon btn-round" href="#link">3</a>
+  </li>
+  <li class="page-item">
+    {% if flock.has_next %}
+          <a href="?page={{ flock.next_page_number }}" class="btn btn-icon btn-round" aria-label="Next">
+            <i class="tim-icons icon-minimal-right" aria-hidden="true"></i>
+          </a>
+          <a href="?page={{ flocks.paginator.num_pages }}">last</a>
+    {% endif %}
+  </li>
+</ul>
+
+<span class="current text-center container">
+<div class="text-muted">
+  Page {{ flock.number }} of {{ flocks.paginator.num_pages }}
+</div>
+</span>
+<!-- END BOTTOM PAGINATION -->

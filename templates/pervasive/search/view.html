@@ -1,0 +1,138 @@
+{% extends 'pervasive/home/home.html' %}
+
+{% load i18n %}
+{% load class_name %}
+{% load humanize %} 
+
+{% block content %}
+
+<div class='row title-row my-5'>
+    <div class='col-12 py-0'>
+        <h3 class='my-0 py-0'>{{ object_list|length }} search results for <b>{{ query }}</b></h3>
+    </div>
+</div>
+
+{% include 'pervasive/search/tabs/nav.html' %}
+
+{% for object in object_list %}
+    {% with object|class_name as klass %}
+      {% if klass == 'Post' %}
+      <div class="tab-pane active show" id="blogpost" >
+        <div class="blogs-3">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 ml-auto mr-auto">
+                <div class="card card-plain card-blog">
+                  <div class="row">
+                    {% if object.post_image %}
+                    <div class="col-md-4">
+                      <div class="card-header card-header-image">
+                        <img class="img img-raised" src="{{ object.post_image.url }}">
+                      <div class="colored-shadow" style="background-image: url({{ object.post_image.url }}); opacity: 1;"></div></div>
+                    </div>
+                    {% endif %}
+                    <div class="col-md-8">
+                      <h6 class="card-category text-info">None</h6>
+                      <h3 class="card-title">
+                        <a href="#pablo">{{ object.title }}</a>
+                      </h3>
+                      <p class="card-description">
+                         …
+                        <a href="#pablo"> Read More </a>
+                      </p>
+                      <p class="author">
+                        by
+                        <a href="#pablo">
+                          <b>Mike Butcher</b>
+                        </a>,{{ object.created|timesince }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% elif klass == 'PostJob' %}
+           <div class='row'>
+             <div class='col-12'>
+                Jobs: <a href='{{ object.get_absolute_url }}'>{{ object.job_tittle }}</a>
+              </div>
+            </div>
+            <div class="tab-pane active show" id="blogpost" >
+              <div class="blogs-3">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-10 ml-auto mr-auto">
+                      <div class="card card-plain card-blog">
+                        <div class="row">
+                          {% if object.post_image %}
+                          <div class="col-md-4">
+                            <div class="card-header card-header-image">
+                              <img class="img img-raised" src="{{ object.post_image.url }}">
+                            <div class="colored-shadow" style="background-image: url({{ object.post_image.url }}); opacity: 1;"></div></div>
+                          </div>
+                          {% endif %}
+                          <div class="col-md-8">
+                            <h6 class="card-category text-info">{{ object.job_type }}</h6>
+                            <h3 class="card-title">
+                              <a href="#pablo">{{ object.job_tittle }}</a>
+                            </h3>
+                            <p class="card-description">
+                               {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}…
+                              <a href="#pablo"> Read More </a>
+                            </p>
+                            <p class="author">
+                              by
+                              <a href="#pablo">
+                                <b>{{ object.user.profile.official_business_name }}</b>
+                              </a>,{{ object.created|timesince }}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      {% elif klass == 'Profile' %}
+           <div class='row'>
+                <div class='col-12'>
+
+                   Profiles: <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">{{ object.official_business_name }}</a>
+                </div>
+            </div>
+      {% else %}
+
+           <div class='row'>
+             <div class='col-12 col-lg-8 offset-lg-4'>
+                <a href='{{ object.get_absolute_url }}'>{{ object }} | {{ object|class_name }}</a>
+            </div>
+           </div>
+        {% endif %}
+
+    {% endwith %}
+
+{% empty %}
+<div class='row'>
+    <div class='col-12 col-md-6 mx-auto my-5 py-5'>
+    <form method='GET' class='' action='.'>
+
+        <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
+            <span class="input-group-addon cfe-nav" style='color:#000'>
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+        </div>
+
+    </form>
+
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

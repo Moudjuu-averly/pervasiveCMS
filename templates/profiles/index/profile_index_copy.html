@@ -1,0 +1,62 @@
+{% extends 'profiles/base/base.html' %}
+
+{% block body %}
+<body class="" color="white">
+  <!-- NAVIGATION MENU-->
+    {% include 'nav_auth.html' %}
+  <!-- END NAVIGATION -->
+  <div class="wrapper">
+      <!-- FIXED PLUGIN-->
+        {% include 'profiles/fixed/fixed_plugin.html' %}
+      <!-- END FIXED PLUGIN -->
+
+    <!-- LEFT SIDEBAR shoul include leftside auth -->
+      {% include 'profiles/left/profile_left_sidebar.html' %}
+    <!-- END LEFT SIDEBAR -->
+
+    <!-- TIMELINE-->
+    {% block main %}
+    <div class="main-panel">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+            <!-- <div class="card card-white"> -->
+
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      {% block content %}
+                      <!-- ALL JOBS PAGE -->
+
+                      <!-- END PROFILE PAGE -->
+                      {% endblock %}
+                    </div>
+                  </div>
+              </div>
+            <!-- EDIT PROFILE PAGE -->
+
+            <!-- END PROFILE PAGE -->
+
+          <!-- RIGHT SIDEBAR-->
+
+          <!-- END RIGHT SIDEBAR -->
+
+      </div>
+      </div>{% include 'profiles/right/profile_right_sidebar.html' %}
+      <!-- FOOTER SIDEBAR-->
+      {% include 'profiles/footer/footer.html' %}
+      <!-- END FOOTER -->
+    </div>
+
+
+    {% endblock %}
+    <!-- END TIMELINE -->
+
+  </div>
+
+
+  <!--PERVASIVE FOOTER -->
+  <!-- END FOOTER -->
+</body>
+{% endblock %}

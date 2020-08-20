@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+  {% load humanize %}
+<body class="signup-page sidebar-collapse">
+
+  {% include 'navbar.html' %}
+
+  <div class="main main-raised" filter-color="purple">
+    <div class="section section-basic">
+      <div class="row">
+          <div class="col-md-7 ml-auto">
+            {% if user.userprofile.flock_cover %}
+            <div class="page-header header-filter" data-parallax="true" style="background-image: url({{ user.userprofile.flock_cover.url }});"></div>
+            {% else %}
+            <div class="page-header header-filter" data-parallax="true" style="background-image: url('/media/media/images/defaults/bg6.jpg'); transform: translate3d(0px, 0px, 0px); color:#fff;"></div>
+            {% endif %}
+                {% load i18n %}
+
+                <{% load i18n %}
+
+<h1>{% trans 'Hello' %}</h1>
+<p>{% trans 'Welcome to my site.' %}</p>
+
+<form action="/settings/" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for lang in LANGUAGES %}
+            <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                {{ lang.1 }} ({{ lang.0 }})
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Go" />
+</form>
+
+              </div>
+          </div>
+
+
+{% include 'settings/modals.html' %}
+
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Basecode-GT Globals
+              </a>
+            </li>
+            <li>
+              <a href="https://presentation.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="fa fa-heart"> favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Baecode-GT Visuals</a> for a better web.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

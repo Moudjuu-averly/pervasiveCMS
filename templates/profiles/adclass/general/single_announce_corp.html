@@ -1,0 +1,46 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<div class="card-body">
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- ALL adclass client VIEW -->
+      <span class="current text-center">
+        <h4 class=" text text-muted"> {{ announce.announce_tittle }} | {{ announce.created|timesince }} ago</h4>
+      </span>
+      <div class="dropdown float-right">
+        <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown" aria-expanded="false">
+          <i class="tim-icons icon-settings-gear-63"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-122px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+          <a class="dropdown-item" href="{% url 'adclass:add_announce' %}">New</a>
+          <!-- <a class="dropdown-item" href="">Top viewed</a>
+          <a class="dropdown-item" href="#pablo">Most applied</a>
+          <a class="dropdown-item" href="#pablo">Old</a> -->
+        </div>
+      </div>
+      <br>
+        {% include 'profiles/adclass/general/rotate_announce.html' %}
+          <div class="card-description">
+          {% include 'profiles/adclass/general/announce_requests.html' %}
+          {% include 'profiles/adclass/general/share_announce.html' %}
+        </div>
+        <br>
+              <!-- BOTTOM PAGINATION -->
+              <!--  include 'adclass/pagination.html' -->
+            <!-- END BOTTOM PAGINATION -->
+          <!-- END ALL adclass VIEW -->
+
+        <div class="content-center container">
+          <div class="card-description">
+            <br><br>
+            <h4 class="description text-muted">About Pervasive Announcements</h4>
+          </div>
+        </div>
+      <!-- END MAIN PAGE adclass -->
+    </div>
+  </div>
+</div>
+{% endblock %}

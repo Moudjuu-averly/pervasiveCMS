@@ -1,0 +1,203 @@
+<footer class="footer footer-white footer-big">
+  <div class="container">
+      <div class="content">
+          <div class="row">
+              <div class="col-md-3">
+                  <a href="#pablo">
+                      <h5>Pervasive Platinum</h5>
+                  </a>
+                  <p>Probably the best network Kit in the world! We know you've been waiting for it, so don't be shy!</p>
+                  <div class="team">
+                    <div class="card-profile card-plain">
+                      <div class="card-footer justify-content-center">
+                        <a href="#twitter" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i><div class="ripple-container"></div></a>
+                        <a href="#dribbble" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
+                        <a href="#linkedin" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                        <a href="#youtube" class="btn btn-just-icon btn-link btn-youtube"><i class="fa fa-youtube-play"></i><div class="ripple-container"></div></a>
+                        <a href="#instagram" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              <div class="col-md-2">
+                  <h5>About</h5>
+                  <ul class="links-vertical" style="list-style:none;">
+                      <li>
+                          <a href="{% url 'blog:view_all_blogs' %}">
+                              Blog
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#pablo">
+                              About Us
+                          </a>
+                      </li>
+                      <!-- <li>
+                          <a href="#pablo">
+                              API's
+                          </a>
+                      </li> -->
+                      <!-- <li>
+                          <a href="#pablo">
+                              Presentation
+                          </a>
+                      </li> -->
+                      <li>
+                          <a href="{% url 'about:plans' %}#contactusurl">
+                              Contact Us
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="col-md-2">
+                  <h5>Market</h5>
+                  <ul class="links-vertical" style="list-style:none;">
+                      <li>
+                          <a href="{% url 'about:faqs' %}">
+                              Sales FAQ
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#pablo">
+                              How to Register
+                          </a>
+                      </li>
+                      <!-- <li>
+                          <a href="#pablo">
+                              Sell Goods
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#pablo">
+                              Receive Payment
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#pablo">
+                              Transactions Issues
+                          </a>
+                      </li> -->
+                  </ul>
+              </div>
+              <div class="col-md-2">
+                  <h5>Legal</h5>
+                  <ul class="links-vertical" style="list-style:none;">
+                      <!-- <li>
+                          <a href="#pablo">
+                              Transactions FAQ
+                          </a>
+                      </li> -->
+                      <li>
+                          <a href="#pablo">
+                              Terms &amp; Conditions
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#pablo">
+                              Cookies
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#pablo">
+                              Licenses
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="col-md-3">
+                  <h5>Subscribe to our Newsletter</h5>
+                  <p>
+                      Join our newsletter and get news in your inbox every week! We hate spam too, so no worries about this.
+                  </p>
+                  <form class="form form-newsletter" id="basecode-mailing-list" method="POST" action="" data-validate-email-url="{% url 'pervasive:validate_email' %}">
+                    {% csrf_token %}
+                    {{ join_form.non_field_errors }}
+                    <!-- {{ form.email_errors }} -->
+                    {% for field in join_form %}
+                    {% if field.errors %}
+                      <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                          <span aria-hidden=true>&times;</span>
+                        </button>
+                         {{ field.errors }}
+                      </div>
+                    {% endif %}
+
+                      <div class="form-group bmd-form-group">
+                        {{ field }}
+                        <!-- <input type="text" name="username" id="id_username" class="js-validate-username"> -->
+                        <!-- <input class="form-control" type="email" name="email" id="id_email" value="" required=''> -->
+                        <button type="submit" onclick="demo.showNotification('top','left')" class="btn btn-primary btn-sm btn-round btn-just-icon pull-right" name="submit">
+                              <i class="fa fa-envelope-o"></i>
+                          </button>
+                      </div>
+                      {% endfor %}
+                  </form>
+              </div>
+          </div>
+      </div>
+      <hr>
+      <div class="copyright pull-center">
+          Copyright ©
+          <script>
+              document.write(new Date().getFullYear())
+          </script> Basecode Globals Tech Inc | All Rights Reserved.
+      </div>
+  </div>
+</footer>
+<!--   Core JS Files   -->
+{% block javascript %}
+<script>
+  $("#id_email").change(function () {
+    var form = $(this).closest("form");
+    var email = $(this).val();
+
+    $.ajax({
+          url: form.attr("data-validate-email-url"),
+          data: form.serialize(),
+          dataType: 'json',
+          success: function (data) {
+            if (data.is_taken) {
+              alert(data.error_message);
+            }
+          }
+        });
+
+  });
+</script>
+
+
+<script>
+// Submit post on submit
+$('#basecode-mailing-list').on('submit', function(event){
+    event.preventDefault();
+    create_post();
+});
+
+// AJAX for posting
+function create_post() {
+    $.ajax({
+        //url : "{% url 'pervasive:pervasive_view' %}", // the endpoint
+        type : "POST", // http method
+        data : {
+            //blog_id: blog_id,
+            email : $('#id_email').val(),
+
+        }, // data sent with the post request
+
+        // handle a successful response
+        success : function(json) {
+            $('#id_email').val(''); // remove the value from the input
+            $('#basecode-mailing-list').prepend("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + json.result +"</div>");
+        },
+
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+            $('#basecode-mailing-list').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>Oop! Error happend!</div>"); // add the error to the dom
+            //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+    });
+}
+</script>
+{% endblock %}

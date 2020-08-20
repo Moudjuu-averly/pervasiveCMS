@@ -1,0 +1,139 @@
+<div class="tab-pane work active show" id="profile">
+  <div class="row">
+
+    <div class="col-md-4 mr-auto ml-auto stats content-center text-center">
+      {% for profile in profile %}
+      <div class="">
+        <div class="card">
+          <div class="card-header card-header-icon card-header-rose">
+            <div class="card-icon">
+              <!-- point to the job owner's profile -->
+              <a style="color:#ffffff;" href="#">{{ profile.get_business_type_display|capfirst }}</a>
+            </div>
+          </div>
+          <br>
+          {% if profile.about_video %}
+          <a href="#">
+            <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ profile.about_video.url }}" type="video/*"
+              preload controlsList="nodownload" poster="">
+
+              <!-- Adding Flash-free support for modern browers with open-source codecs -->
+              <source type="video/mp4" src="{{ profile.about_video.url }}"></source>
+              <!-- Adding support for under-powered mobile devices -->
+              <source type="video/mp4" src="{{ profile.about_video.url }}" media="only screen and (min-device-width: 568px)"></source>
+
+            </video>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      <h4 class="title">Stats</h4>
+      {% for profile in profile %}
+      <ul class="list-unstyled ">
+        <li>
+          <b>78</b> Clients</li>
+        <li>
+          <b>23</b> Projects</li>
+        <li>
+          <b>331</b> Influencers</li>
+        <li>
+          <b>{{ profile.views }}</b> Views</li>
+      </ul>
+      <hr>
+      <h4 class="title">Hello there!</h4>
+      <p class="description">
+        <a href="#" class="description"><span class="icon icon-success"><i class="material-icons">location_on</i></span>
+          {{ profile.country_origin.name }}
+        </a>
+      </p>
+      <p class="description">
+        <a href="#" class="description"><span class="icon icon-rose"><i class="material-icons">phone</i></span>
+          {{ profile.office_phone }}
+        </a>
+      </p>
+      <p class="description">
+        <a href="#" class="description"><span class="icon icon-primary"><i class="material-icons">email</i></span>
+          {{ profile.info_email }}
+        </a>
+      </p>
+      {% endfor %}
+
+      {% for profile in profile %}
+      <hr>
+      <div class="">
+        <div class="card-profile card-plain">
+          <div class=" justify-content-center">
+            <h4 class="title">Elsewhere</h4>
+            <a href="#twitter" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i><div class="ripple-container"></div></a>
+            <a href="#dribbble" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
+            <a href="#linkedin" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+            <a href="#youtube" class="btn btn-just-icon btn-link btn-youtube"><i class="fa fa-youtube-play"></i><div class="ripple-container"></div></a>
+            <a href="#instagram" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+    </div>
+
+
+    {% for profile in profile %}
+
+      <div class="col-md-8 ml-auto mr-auto ">
+        <h4 class="title text-center">Latest Pr     ojects</h4>
+        <div class="row collections">
+
+          <div class="col-md-6">
+            <div class="card card-background" style="background-image: url(/media/img/examples/studio-1.jpg)">
+              <a href="#pablo"></a>
+              <div class="card-body">
+                <label class="badge badge-warning">Spring 2016</label>
+                <a href="#pablo">
+                  <h2 class="card-title">Stilleto</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card card-background" style="background-image: url(/media/img/examples/studio-2.jpg)">
+              <a href="#pablo"></a>
+              <div class="card-body">
+                <label class="badge badge-info">Spring 2016</label>
+                <a href="#pablo">
+                  <h2 class="card-title">High Heels</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-background" style="background-image: url(/media/img/examples/studio-3.jpg)">
+              <a href="#pablo"></a>
+              <div class="card-body">
+                <label class="badge badge-danger">Summer 2016</label>
+                <a href="#pablo">
+                  <h2 class="card-title">Flats</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-background" style="background-image: url(/media/img/faces/card-profile1-square.jpg)">
+              <a href="#pablo"></a>
+              <div class="card-body">
+                <label class="badge badge-success">Winter 2015</label>
+                <a href="#pablo">
+                  <h2 class="card-title">Men's Sneakers</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+
+  </div>
+</div>

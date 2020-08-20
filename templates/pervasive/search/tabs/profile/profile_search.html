@@ -1,0 +1,49 @@
+
+
+<div class="tab-pane" id="profile_search">
+  <div class="blogs-2" id="blogs-2">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card card-plain card-blog">
+                  <div class="card-header card-header-image">
+                    <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                      <div class="">
+                          {% if object.about_video %}
+                            <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.about_video.url|safe }}" type="video/*"
+                              preload controls controlsList="nodownload" poster="">
+
+                              <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                              <source type="video/*" allow="encrypted-media" src="{{ object.about_video.url|safe }}" class="img img-raised"></source>
+                              <!-- Adding support for under-powered mobile devices -->
+                              <source type="video/*" allow="encrypted-media" src="{{ object.about_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                            </video>
+
+                            {% else %}
+                            <!-- jobs default video/ima -->
+                            {% endif %}
+                      </div>
+                    </a>
+                  <div class="colored-shadow" style="background-image: url(&quot;./assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div></div>
+                  <div class="card-body">
+
+                    <h5 class="">
+                      <a class="text-left" href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">{{ object.official_business_name|capfirst|safe }}  <span class="card-category text-info text-right">{{ object.get_business_type_display }}</span></a>
+                    </h5>
+                    <!-- <p class="card-description">
+                      {{ object.about|safe|urlize|capfirst|truncatewords_html:19 }}.
+                      <a href="#pablo"> Read More </a>
+                    </p> -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

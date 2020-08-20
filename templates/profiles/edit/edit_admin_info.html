@@ -1,0 +1,70 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+  <form class="" action="" method="POST" name="admin_form">
+    {% csrf_token %}
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+    {% endfor %}
+
+     {% if form.non_field_errors %}
+       <div class="alert alert-danger" role="alert">
+         {% for error in form.non_field_errors %}
+           {{ error }}
+         {% endfor %}
+       </div>
+     {% endif %}
+
+    <div class="card-header text-center">
+      <h4>Edit {{ user|capfirst }}'s admin details</h4>
+    </div>
+      <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-12 ">
+              <div class="form-group">
+                <label>Company</label>
+                <input type="text" class="form-control" disabled="" placeholder="e.g {{ 'Facebook'|capfirst }}" value="{{ user.profile.official_business_name|capfirst }} | {{ 'Tip:Can only be changed under display profile settings'|upper }}">
+              </div>
+            </div>
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username" value="{{ user|capfirst }}">
+              </div>
+            </div>
+            <div class="col-md-6 pl-md-1">
+              <div class="form-group">
+                <label for="InputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control"  value="{{ user.email }}" placeholder="mike@email.com">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-md-1">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="first_name" class="form-control" placeholder="Mike" value="{{ user.first_name|capfirst }}">
+              </div>
+            </div>
+            <div class="col-md-6 pl-md-1">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="last_name" class="form-control" placeholder="Andrew Smith" value="{{ user.last_name|capfirst }}">
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"> 
+            <a href="" name="submit" onclick="window.histry.back();" class="btn btn-fill btn-round btn-sm btn-primary pull-left">Back</a>
+            <button type="submit" name="submit" class="btn btn-fill btn-round btn-sm btn-primary pull-right">Save</button>
+          </div>
+
+      </div>
+
+  </form>
+
+<!-- END PROFILE PAGE -->
+{% endblock %}

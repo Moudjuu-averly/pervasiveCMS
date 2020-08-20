@@ -1,0 +1,41 @@
+{% extends "pervasive/home/home.html" %}
+
+{% block content %}
+{% load humanize %}
+<div class='col-sm'>
+{% if object_list %}
+<h5>Your search for: <strong class="badge">{{ query }}</strong></h5>
+{% for post in object_list %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="img-responsive image-raised">
+
+
+        {% if post.post_image %}
+         <img src='{{ post.post_image.url }}' class='img-responsive' />
+        {% endif %}
+
+      <div class="caption post-detail-item">
+        <a href="">
+          <span>{{ post.user.capitalize }}</span>
+          <span>{{ post.timestamp|timesince }}</span>
+        </a>
+        <h3><a href=''>{{ post.title }}</a></h3>
+        <p><a href='{{ post.get_api_like_url }}' class='like-btn btn-link ' data-href='{{ post.get_api_like_url }}' data-likes='{{ post.likes.count }}'  href='{{ post.get_like_url }}' rel="tooltip" data-original-title="like and flock this status">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+        <p><a href="" class="btn btn-primary" role="button">View</a></p>
+      </div>
+
+    </div>
+  </div>
+<hr/>
+</div>
+{% endfor %}
+{% else  %}
+<div class="">
+  <!-- If no results were fount, then we should just display a modal Dialog -->
+  <p>No search results were found for: <strong>{{ query }}</strong>. Please try using different keywords. </p>
+
+</div>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="container">
+  <br>
+  <h5 class="card-category text-right">{% if services %} services {{ services|length }} {% endif %}</h5>
+  <h4 class=" text-left text-muted">All of {{ user|capfirst }}'s deleted services</h4>
+
+  <div class="row">
+    <div class="col-md-12">
+          <br>
+    {% for service in services %}
+      {% if service %}
+      <span class="float-right text-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Edit {{ service.service_tittle|capfirst }}"> <a href="{% url 'services:restore_service' slug=service.slug %}" ><i class=""></i>Empty all services</a> </span>
+      <br>
+      <hr>
+      <h4 class="text-muted card-title d-inline">
+        {{ service.id }}. <a href="#">{{ service.service_tittle|capfirst}}</a> - {{ service.get_service_type_display }}
+        <span class="float-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Delete {{ service.service_tittle|capfirst }}"><a href="#" data-toggle="modal" data-target="#delete-service-permanent-modal">delete <i class="tim-icons icon-trash-simple"></i> permanent</a> </span>
+        <span class="float-right text-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Edit {{ service.service_tittle|capfirst }}"> <a href="{% url 'services:restore_service' slug=service.slug %}" ><i class=""></i>restore this job</a> </span>
+      </h4>
+      <div class="social-description ">
+        <h4 class="card-category text-muted"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">{{ service.views }} Views</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 requests</span> <span class="description">{{ service.created }}</span></h4>
+      </div>
+
+
+      <div class="modal fade modal-mini modal-neutral show" id="delete-service-permanent-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: ;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <div class="modal">
+                        <i class="now-ui-icons users_circle-08"></i>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p style="text-align:center;" class="justify-content-center">
+                      <span class="danger">Are you sure you want to permantly delete this service?, this option can not be reversed.</span>
+                      Did you want to <a href="{% url 'services:restore_service' slug=service.slug %}"><i class="tim-icons icon-trash-simple"></i> restore </a> instead.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm bt-round btn-primary" data-dismiss="modal">Cancel</button>
+                    <span  class="float-right btn btn-link btn-neutral"> <a href="{% url 'services:delete_service' slug=service.pk %}">delete</a> </span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    {% endif %}
+  {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

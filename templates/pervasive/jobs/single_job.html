@@ -1,0 +1,39 @@
+{% extends 'pervasive/index.html' %}
+
+{% block content %}
+<div class="text-center">
+  <!-- <h3 class="title float-right">Jobs @ Basecode</h3> -->
+<div class="row main main-raised">
+
+    {% if job %}
+  <div class="col-md-8 ml-auto mr-auto">
+    <h5 class="title float-left">{{ job.job_tittle }}</h5>
+    <br>
+    <div class="card card-plain card-blog">
+      <div class="card-header card-header-image">
+        {% if job.job_video %}
+        <video class="img img-raised" muted="muted" width="100%" height="auto" src="{{ job.job_video.url }}" type="video/*"
+          preload controls controlsList="nodownload" poster="">
+        </video>
+              <div class="container">
+                  <button class="btn btn-primary btn-sm btn-round float-left" onclick="rotateCard(this)">
+                      read instead
+                  </button>
+                  <button class="btn btn-primary btn-sm btn-round float-right" onclick="rotateCard(this)">
+                    apply now
+                  </button>
+              </div>
+        {% endif %}
+
+    </div>
+  </div>
+
+    {% include 'profiles/jobs/read_full_job_modal.html' %}
+
+{% else %}
+  <h2 style="align:justify;"> There are currently no jobs, please visit at a later time.</h2>
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

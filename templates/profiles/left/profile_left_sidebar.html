@@ -1,0 +1,60 @@
+<div class="sidebar">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+    -->
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="{% url 'flock:HomeView' %}" class="simple-text logo-mini">
+            <h4><i class="tim-icons icon-bank"></i></h4>
+          </a>
+          <a href="{% url 'flock:HomeView' %}" class="simple-text logo-normal">
+            {{ user }}
+          </a>
+
+        </div>
+        <ul class="nav">
+          <li class="active">
+            <a href="{% url 'adclass:AdClassView' %}">
+              <i class="tim-icons icon-palette"></i>
+              <p>Admanager</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'newsletter:send_mails' %}">
+              <i class="tim-icons icon-email-85"></i>
+              <p>Marketing</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'drive:drive_main_view' %}">
+              <i class="tim-icons icon-cloud-upload-94"></i>
+              <p>Pervasive Drive</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'recycle:view_all_deleted' %}">
+              <i class="tim-icons icon-trash-simple"></i>
+              <p>Recycle</p>
+            </a>
+          </li>
+          <!-- <li>
+            <a href="./typography.html">
+              <i class="tim-icons icon-align-center"></i>
+              <p>Analytics</p>
+            </a>
+          </li> -->
+          <li>
+            <a href="{% url 'support:support_view' %}">
+              <i class="tim-icons icon-world"></i>
+              <p>RTL Support</p>
+            </a>
+          </li>
+          <li class="">
+            <a href="{% url 'about:upgrade' %}">
+              <i class="tim-icons icon-spaceship"></i>
+              <p>Upgrade to PRO</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>

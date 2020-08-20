@@ -1,0 +1,73 @@
+{% if tender %}
+
+<div class="card-container manual-flip">
+      <div class="card">
+          <div class="front">
+              {% if tender.tender_video %}
+              <span class="float-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Edit Task"> <a href="{% url 'adclass:update_tender' slug=tender.slug %}" ><i class="tim-icons icon-pencil"></i></a> </span>
+
+              <!--  include 'profiles/tenders/nav/nav.html'  -->
+                <video data-play="hover" muted="muted" width="100%" height="auto" src="{{ tender.tender_video.url }}" type="video/*"
+                  preload loop subtitles srclang="en" controls controlsList="nodownload" poster="">
+                </video>
+                    <div class="container float-left">
+                        <button class="btn btn-primary btn-sm btn-round" onclick="rotateCard(this)">
+                            read instead
+                        </button>
+                        <button class="btn btn-primary btn-sm btn-round float-right" onclick="rotateCard(this)">
+                          apply now
+                        </button>
+                    </div>
+              {% else %}
+              <video data-play="hover" muted="muted" width="100%" height="auto" src="" type="video/*"
+                preload loop subtitles srclang="en" controls controlsList="nodownload" poster=""> no video to show
+              </video>
+              {% endif %}
+          </div> <!-- end front panel -->
+          <div class="back">
+            <h4 class="card-title title d-inline">
+              <span class="float-left btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="back to all tenders"> <a href="#" onclick="window.history.back();">Back to tenders</a> </span>
+              <span class="float-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Edit Task"> <a href="{% url 'adclass:update_tender' slug=tender.slug %}" ><i class="tim-icons icon-pencil"></i></a> </span>
+            </h4>
+              <div class="content container">
+                      <h4 class="text-center">{{ tender.tender_tittle|capfirst }}</h4>
+                      {{ tender.content|safe|urlize|truncatewords_html:21 }}
+                      <a href="#" data-toggle="modal" data-target="#read-full-tender-modal">More</a>
+                      <div class="stats-container">
+                          <div class="stats">
+                            <h6 class="description" style="text-align:black;" >Date</h6>
+                              <p>
+                                  {{ tender.created }}
+                              </p>
+                          </div>
+                          <div class="stats">
+                            <h6 description>Salary</h6>
+                              <p>
+                                  N$-{{ tender.start_price_salary }}
+                              </p>
+                          </div>
+                          <div class="stats">
+                            <h6 description>Due date</h6>
+                              <p>
+                                {{ tender.end_price_date }}
+                              </p>
+                          </div>
+                      </div>
+              </div>
+              <div class="footer">
+                  <button class="btn btn-primary btn-sm btn-round" rel="tooltip" title="" onclick="rotateCard(this)" data-original-title="Back to video">
+                       Back
+                  </button>
+                  <div class="social-links text-center">
+                      <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                      <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                      <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+  {% include 'profiles/adclass/tender/read_full_tender_modal.html' %}
+{% else %}
+<h5> There are currently no tenders, please make use of this<a href="{% url 'adclass:add_tender' %}"> form</a> to add a new tender.</h5>
+{% endif %}

@@ -1,0 +1,44 @@
+<script type="text/javascript">
+
+  var $window = $(window);
+  var $videoWrap = $('.video-wrap');
+  var $video = $('.video');
+  var videoHeight = $video.outerHeight();
+
+  $window.on('scroll',  function() {
+    var windowScrollTop = $window.scrollTop();
+    var videoBottom = videoHeight + $videoWrap.offset().top;
+
+    if (windowScrollTop > videoBottom) {
+      $videoWrap.height(videoHeight);
+      $video.addClass('stuck');
+    } else {
+      $videoWrap.height('auto');
+      $video.removeClass('stuck');
+    }
+  });
+</script>
+<style media="screen" rel="stylesheet" type="text/css">
+
+  @keyframes fade-in-up {
+  0% { opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.video {
+  iframe {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &.stuck {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 260px;
+    height: 145px;
+    transform: translateY(100%);
+    animation: fade-in-up .25s ease forwards;
+  }
+}
+</style>

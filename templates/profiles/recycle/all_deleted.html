@@ -1,0 +1,79 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="container">
+  <h5 class="card-category text-right">{% if total %} Recycle bin items {{ total }} {% endif %}</h5>
+<div class="row">
+  <div class="col-md-12">
+{% if total %}
+  <div class="card-header">
+    <p class="category text-center">Note that every item you delete here can never be recoverd
+    </p>
+  </div>
+  <div class="card-body all-icons">
+    <div class="row">
+      {% for product in products %}
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="#">
+        <div class="font-icon-detail">
+          <span><h3>{{ products|length }}</h3></span>
+          <h5>Products</h5>
+        </div></a>
+      </div>
+      {% endfor %}
+
+      {% for service in services %}
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'recycle:deleted_services' %}">
+        <div class="font-icon-detail">
+          <span><h3>{{ services|length }}</h3></span>
+          <h5>Service</h5>
+        </div></a>
+      </div>
+      {% endfor %}
+
+      {% for job in jobs %}
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="#">
+        <div class="font-icon-detail">
+          <span><h3>{{ jobs|length }}</h3></span>
+          <h5>Jobs</h5>
+        </div></a>
+      </div>
+      {% endfor %}
+
+      {% for tender in tenders %}
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="#">
+        <div class="font-icon-detail">
+          <span><h3>{{ tender|length }}</h3></span>
+          <h5>Tender</h5>
+        </div></a>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+{% else %}
+<br><br>
+<br><br>
+
+  <h3 class="text-center">Empty <i class="tim-icons icon-trash-simple"></i> bin</h3>
+  <h5 class="text-center">Items you have deleted appeares here before deleting them permanently,
+     It seems you haven't deleted anything yet!!!</h5>
+
+  <br><br>
+{% endif %}
+
+<div class="content-center container">
+  <div class="card-description float-right">
+    <h5 class="description">About recycle - <a href="#">How it works</a></h5>
+  </div>
+</div>
+      <!-- END DELETED MAIN PAGE  -->
+  </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,142 @@
+
+
+#container {
+    position:relative; /* make any positioned child elements relative to this */
+
+    background-size: cover;
+    filter:blur(20px);
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+}
+#translucent {
+    position:absolute;
+    top:0; /* Add a top and bottom position so the element */
+    bottombottom:0; /* stretches to the height of the parent */
+    left:0;
+    max-width: 100%;
+    height: auto;
+
+
+}
+#bg {
+    position: relative;
+    width:100%;
+
+    background-size: cover;
+    filter:blur(20px);
+    overflow: hidden;
+    z-index: -1;
+    max-width: 100%;
+    height: auto;
+    top:0; /* Add a top and bottom position so the element */
+    bottombottom:0; /* stretches to the height of the parent */
+    left:0;
+
+
+}
+
+.container {
+
+    position: relative;
+    text-align: center;
+    color: white;
+
+
+}
+
+/* Bottom left text */
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+/* Top left text */
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+
+}
+
+/* Top right text */
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+/* Centered text */
+.centered {
+
+    position: absolute;
+    top: 50;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Stretch out the two pseudo-elements across the entirety of their parent element */
+.mine ::before,
+.mine ::after {
+  content: "";
+  position: absolute;
+  width: 100%; height: 100%;
+  left: 0; top: 0;
+  filter: blur(8px);
+}
+
+.mine ::before {
+  /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/183091/Black_and_white_branch.jpg"); */
+
+  /* Specified separately for older versions of Android/Safari that choke on background-size when used inside the `background` shorthand property. */
+  background-size: cover;
+
+  /* Move underneath the backdrop's content. */
+  z-index: -2;
+
+  filter: blur(8px);
+
+  /* Make it a little bigger to avoid the white bleeding from the edges that the `blur()` filter produces. */
+  transform: scale(1.07);
+}
+
+.mine ::after {
+  z-index: -1;
+  background: rgba(0,0,0, 0.5);
+  /* If filters are unsupported, then this fallback color wash remains to make sure the text stays legible. Test this pen in IE! */
+  /* filter: opacity(0); */
+}
+
+/* * * Now for some styling that's not related to this trick. * * */
+
+
+
+.mine {
+  display: table-cell;
+  padding: 0.5em;
+  position: relative;
+  vertical-align: middle;
+  overflow: hidden;
+  font-size: calc(0.5em + 2vmin);
+  filter: blur(8px);
+}
+
+
+
+small {
+  z-index: 99;
+  display: block;
+  font-size: 70%;
+  margin: 0.75em;
+  opacity: 0.8;
+  color: #fff;
+}

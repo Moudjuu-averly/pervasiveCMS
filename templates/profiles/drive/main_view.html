@@ -1,0 +1,78 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="container">
+  <br>
+  <h5 class="card-category text-right">Total Ads {% if total %}  {{ total|filesizeformat }} {% else %} 0  {% endif %}</h5>
+<div class="row">
+  <div class="col-md-12">
+    <!-- ALL Ads client VIEW -->
+
+<div class="">
+  <div class="card-header text-center">
+    <p class="category">All {{ user|capfirst }}' Ads
+    </p>
+  </div>
+  <div class="card-body all-icons">
+    <div class="row">
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'services:ServiceView' %}">
+        <div class="font-icon-detail">
+          <span><i class="tim-icons icon-components"></i><h3></h3></span>
+          <h4>Services - {% if services %} {{ services|filesizeformat }} {% else %} 0 {% endif %}</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'products:ProductView' %}">
+        <div class="font-icon-detail">
+          <span><i class="tim-icons icon-delivery-fast"></i><h3></h3></span>
+          <h4>Products - {% if products %} {{ products|length }} {% else %} 0 {% endif %}</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'jobs:JobView' %}">
+        <div class="font-icon-detail">
+          <span><i class="tim-icons icon-badge  "></i><h3></h3></span>
+          <h4>Jobs - {% if jobs %} {{ jobs|length }} {% else %} 0 {% endif %}</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'adclass:corp_all_tender_view' %}">
+        <div class="font-icon-detail">
+          <span><i class="tim-icons icon-istanbul"></i><h3></h3></span>
+          <h4>Tenders - {% if tenders %} {{ tenders|length }} {% else %} 0 {% endif %}</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'adclass:corp_all_announce_view' %}">
+        <div class="font-icon-detail">
+          <span><i class="tim-icons icon-notes"></i><h3></h3></span>
+          <h4>Announcements - {% if announce %} {{ announce|length }} {% else %} 0 {% endif %}</h4>
+        </div>
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<hr>
+<div class="content-center container">
+  <div class="card-description float-right">
+    <h5 class="description">About recycle - <a href="#">How it works</a></h5>
+  </div>
+</div>
+      <!-- END MAIN ADS PAGE -->
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

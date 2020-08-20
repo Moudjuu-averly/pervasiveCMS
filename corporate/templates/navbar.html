@@ -1,0 +1,105 @@
+<nav class="navbar navbar-inverse navbar-expand-lg bg-primary fixed-top" role="navigation-demo">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/flock/">Flock<div class="ripple-container"></div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <form class="form-inline ml-auto">
+        <div class="form-group has-white bmd-form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+          <i class="material-icons">search</i>
+        </button>
+      </form>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+
+              <i class="material-icons">explore</i> Pervasive
+                  <div class="ripple-container"></div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="material-icons">favorite</i>
+              Flocking
+            <div class="ripple-container"></div></a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="material-icons">group</i>
+              Flockers
+            <div class="ripple-container"></div></a>
+          </li>
+          <li class="nav-item">
+              <a href="#pablo" class="nav-link"><i class="material-icons">email</i><div class="ripple-container"></div></a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                   <!-- <p>
+                      <span class="d-lg-none d-md-block">notifications</span>
+                  </p> -->
+              <div class="ripple-container"></div></a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="#">You have 5 new flocks</a>
+                  <a class="dropdown-item" href="#">Abc wants to hire you</a>
+                  <a class="dropdown-item" href="#">Alexandra is flocking with Mike</a>
+                  <a class="dropdown-item" href="#">YOu have 10 qualified jobs</a>
+              </div>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              <div class="profile-photo-small">
+                {% if user.userprofile.profile_image %}
+              <img class="card-img-top img-fluid w-60" src="{{ user.userprofile.profile_image.url }}" style="border-radius: 50%; padding: 5px">
+              {% else %}
+                <div class="">
+                	 <p><i class="material-icons" >user</i></p>
+                </div>
+              {% endif %}
+            </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <h6 class="dropdown-header">Edit profile</h6>
+              <a href="/account/profile" class="dropdown-item">
+                <i class="material-icons">account_circle</i>
+                    <div class="ripple-container"></div>
+                Me
+              </a>
+              <a href="/account/profile/edit" class="dropdown-item">
+                <i class="material-icons">edit</i>
+                    <div class="ripple-container"></div>
+                Edit Short Info
+              </a>
+              <a href="/account/profile/pervasive" class="dropdown-item">
+                <i class="material-icons">layers</i>
+                    <div class="ripple-container"></div>
+                Go Pervasive
+              </a>
+              <a href="/account/change-password" class="dropdown-item">Change password</a>
+              <a href="/account/settings" class="dropdown-item">
+                <i class="material-icons">settings</i>
+                    <div class="ripple-container"></div>
+                Settings and other stuff
+              </a>
+              <a href="/account/welcome" class="dropdown-item">logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-->
+  </nav>

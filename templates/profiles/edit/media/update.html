@@ -1,0 +1,81 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+<!-- EDIT PROFILE PAGE -->
+
+<form class="" action="" method="POST">
+    {% csrf_token  %}
+  <div class="card-header text-center">
+    <button type="" onclick="window.history.back();" class="float-left btn btn-primary btn-sm btn-round">back</button>
+  <h3 class="description">Edit {{user}}'s Media</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <h4 class="col-md-12">Images</h4>
+        <div class="form-group">
+
+          {{ form.non_field_errors }}
+          <!-- IMAGES -->
+
+          <!-- VIDEOS -->
+          <div class="col-md-12">
+            <label for="upload-about-video" class="" style="cursor: pointer;">
+                <i class="tim-icons icon-upload btn-sm"> upload</i>
+            </label>
+             <br>
+            <input type="file" name="about_video" id="upload-about-video" style="display:none;" accept="video/*" onchange="loadFile(event)">
+            <video id="" width="45%"  src="{{ form.about_video.url }}" type="video/*"
+              preload controls controlsList="nodownload" poster="">
+            </video>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+              <div class="text-center">
+                <label for="upload-profile_image" class="" style="cursor: pointer;">
+                    <i class="tim-icons icon-upload btn-sm"> upload profile picture</i>
+                </label>
+                 <br>
+                <input type="file" name="profile_image" id="upload-profile_image" style="display:none;" accept="image/*" onchange="loadFile(event)">
+                <img id="output" width="100%" src="{{ form.profile_image.url }}" type="image/*" style="height:250px;" />
+              </div>
+          </div>
+        </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="upload-cover-image" class="" style="cursor: pointer;">
+                  <i class="tim-icons icon-upload btn-sm"> upload cover picture</i>
+              </label>
+               <br>
+              <input type="file" name="cover-image" id="upload-cover-image" style="display:none;" accept="image/*" onchange="loadCover(event)">
+              <img id="output" width="100%"  class="col-md-6 cover-image" src="{{ form.cover_image.url }}" type="image/*"/>
+            </div>
+          </div>
+
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" name="submit" class="btn btn-fill btn-round btn-sm btn-primary pull-right">Save</button>
+  </div>
+</form>
+<!-- END EDIT PROFILE PAGE -->
+
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      if (output.src == ''){
+        this.style.display = "none";
+      }
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
+<!-- END EDIT PROFILE PAGE -->
+{% endblock %}

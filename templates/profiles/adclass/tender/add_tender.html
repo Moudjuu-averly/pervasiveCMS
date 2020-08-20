@@ -1,0 +1,167 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+
+<div class="card-header">
+  <div class="col-sm-6 text-left">
+    <h5 class="card-category">Tenders</h5>
+    <h4 class="card-title">Add new {{ user }} tender here</h4>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="dropdown float-right">
+          <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown" aria-expanded="false">
+            <i class="tim-icons icon-settings-gear-63"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-122px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="{% url 'adclass:add_tender' %}">New</a>
+            <a class="dropdown-item" href="">Top viewed</a>
+            <a class="dropdown-item" href="#pablo">Most applied</a>
+            <a class="dropdown-item" href="#pablo">Old</a>
+            <a class="dropdown-item" href="{% url 'recycle:deleted_tenders' %}">deleted</a>
+          </div>
+        </div>
+        <br>
+            <form class="" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token  %}
+                {% if form.errors %}
+                {{ form.non_field_errors }}
+                <!-- Tender Video -->
+                <div class="alert">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <ul style="list-style:none;">
+                    <li class="alert-danger"> <b> Warning - </b> {{ form.errors }} </li>
+                  </ul>
+
+                </div>
+                {% endif %}
+                {{ form.media }}
+              <div class="card-body">
+                  <div class="row">
+
+                    <div class="col-md-12 pr-md-1">
+                      <label for="upload-video" class="" style="cursor: pointer;">
+                          <i class="tim-icons icon-upload btn-sm"> upload</i>
+                      </label>
+                      <i name="job_video-clear" id="tender_video-clear_id" class="tim-icons icon-trash-simple btn-sm float-right" style="cursor: pointer;"> clear</i>
+                      <input type="file" name="tender_video" id="upload-video" style="display:none;" accept="video/*" onchange="loadFile(event)">
+                      <video id="output" data-play="hover" width="100%" height="auto" src="{{ tender.tender_video.url }}" type="video/*"
+                        preload loop subtitles srclang="en" controls controlsList="nodownload" poster="">
+                      </video>
+                      <!-- Tender tittle -->
+                        <div class="form-group">
+                          <div class="fieldWrapper">
+                            {{ form.tender_tittle.error }}
+                            <label for="{{ form.tender_tittle.id_for_label }}">Tender Name</label>
+                              {{ form.tender_tittle }}
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 px-md-1">
+                      <div class="form-group">
+                        <div class="fieldWrapper">
+                          <label for="{{ form.content.id_for_label }}">Content </label>
+                          {{ form.content.error }}
+                          {{ form.content }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-md-1">
+                      <div class="form-group">
+                        <div class="field-city">
+                          <div>
+                            <label class="required" for="{{ form.city.id_for_label }}">City:</label>
+                                {{ form.city }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-md-1">
+                      <div class="form-group">
+                        <div class="field-address">
+                          <div>
+                            <label class="required" for="{{ form.address.id_for_label }}">address:</label>
+                                {{ form.address }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-md-1">
+                      <div class="form-group">
+                        <div>
+                          <label class="required" for="{{ form.levy_price.id_for_label }}">Levy:</label>
+                            {{ form.levy_price.error }}
+                            {{ form.levy_price }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-md-1">
+                      <div class="form-group">
+                        <div class="datepicker-container">
+                          <label for="{{ form.due_date.id_for_label }}">Due date </label>
+                          {{ form.due_date.error }}
+                          {{ form.due_date }}
+                        </div>
+                          <script type="text/javascript">
+                              $(function () {
+                                  $('#datepicker').datepicker({
+                                      daysOfWeekDisabled: [0, 6]
+                                  });
+                              });
+                          </script>
+                      </div>
+                    </div>
+                    <h4 class="col-md-12 pr-md-1">Contacts</h4>
+                    <div class="col-md-6 pr-md-1">
+                      <div class="form-group">
+                        {{ form.contact_person_name.error }}
+                        <label for="{{ form.contact_person_name.id_for_label }}">Contact Person Office name</label>
+                        {{ form.contact_person_name }}
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-md-1">
+                      <div class="form-group">
+                        {{ form.office_no.error }}
+                        <label for="{{ form.office_no.id_for_label }}">Office number</label>
+                        {{ form.office_no }}
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="float-left btn btn-primary btn-sm btn-raised btn-round" data-dismiss="modal">Cancel</button>
+                  <button type="submit" name="submit" class="btn btn-primary btn-sm btn-raised btn-round" onclick="demo.showNotification('top','center')">Save</button>
+              </div>
+            </form>
+            <!-- END ALL FORM -->
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-fill btn-sm btn-round btn-primary">load more...</button>
+          </div>
+          <div class="content-center">
+            <div class="card-description">
+              <h2 class="description">About Basecode GTI tenders </h2>
+            </div>
+          </div>
+        <!-- END MAIN PAGE TENDERS -->
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      if (output.src == ''){
+        this.style.display = "none";
+      }
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
+{% endblock %}

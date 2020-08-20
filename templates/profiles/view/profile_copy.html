@@ -1,0 +1,405 @@
+{% extends 'profiles/static/base.html' %}
+
+
+  {% block body %}
+
+  <body class="profile-page sidebar-collapse" >
+    <div class="wrapper">
+        <div class="page-header page-header-small" filter-color="orange">
+          {% if user.profile.cover_image %}
+            <div class="page-header-image" data-parallax="true" style="background-image: url('{{ user.profile.cover_image.url }}'); transform: translate3d(0px, 0px, 0px);">
+          {% else %}
+          <div class="page-header-image" data-parallax="true" style="background-image: url('/media/media/images/defaults/bg8.jpg'); transform: translate3d(0px, 0px, 0px);">
+          {% endif %}
+            </div> 
+            <div class="container">
+                <div class="content-center">
+                    <div class="photo-container" style="width:75px;">
+                        {% if user.profile.profile_image %}
+                        <div class="photo">
+                          <img src="{{ user.profile.profile_image.url }}" alt="Circle Image" class="img-raised rounded-circle img-fluid floating">
+                        </div>
+                        {% else %}
+                        <div class="photo">
+                          <img src="/media/media/images/defaults/placeholder.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid floating">
+                        </div>
+                        {% endif %}
+
+                    </div>
+                        <h2 class="title">{{ user }}{{ user.type }}</h2>
+                        <p class="category" style="color:white;">
+                          {{ user.profile.get_business_type_display }}
+                        </p>
+                    <p class="address" style="color:white;">
+                      {{ user.profile.country_origin.name }} | {{ user.profile.location }} - {{ user.profile.address }}
+                    </p>
+                    <div class="content">
+                        <div class="social-description">
+                            <h2>26</h2>
+                            <p><a href="#">Employees</a></p>
+                        </div>
+                        <div class="social-description">
+                            <h2>26</h2>
+                            <p><a href="#">Projects</a></p>
+                        </div>
+                        <div class="social-description">
+                            <h2>48</h2>
+                            <p><a href="#jobs" data-target='jobs'>Jobs</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="button-container">
+                    <a href="#button" class="btn btn-info btn-round btn-sm">Follow</a>
+                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow {{ user }} on Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow {{ user }} on Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Like {{ user }} on Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    {% if request.user.is_authenticated %}
+                    <a href="/dashboard" class="float-right  btn btn-info btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Edit {{ user }}">
+                        <i class="fa fa-dashboard"></i>
+                    </a>
+                    <a href="/flock" class="float-right  btn btn-info btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Edit {{ user }}">
+                        <i class="fa fa-home"></i>
+                    </a>
+                    <a href="/account/profile/pervasive" class="float-right btn btn-info btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Edit {{ user }}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    {% endif %}
+                </div>
+                <h3 class="title">About {{user}}</h3>
+                <h5 class="description">{{ user.profile.about }}.</h5>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <h4 class="title text-center">Portfolio</h4>
+                        <div class="nav-align-center">
+                            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#profile" role="tablist">
+                                        <i class="now-ui-icons design_image"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#home" role="tablist">
+                                        <i class="now-ui-icons location_world"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#messages" role="tablist">
+                                        <i class="now-ui-icons sport_user-run"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content gallery">
+                        <div class="tab-pane active" id="home" role="tabpanel">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="row collections">
+                                    <div class="col-md-6">
+                                        <img src="/media/media/images/defaultsbg1.jpg" alt="" class="img-raised">
+                                        <img src="/media/media/images/defaults/bg3.jpg" alt="" class="img-raised">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="/media/media/images/defaults/bg8.jpg" alt="" class="img-raised">
+                                        <img src="/media/media/images/defaults/bg7.jpg" alt="" class="img-raised">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile" role="tabpanel">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="row collections">
+                                    <div class="col-md-6">
+                                        <img src="/media/media/images/defaults/bg6.jpg" class="img-raised">
+                                        <img src="/media/media/images/defaults/bg11.jpg" alt="" class="img-raised">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="/media/media/images/defaults/bg7.jpg" alt="" class="img-raised">
+                                        <img src="/media/media/images/defaults/bg8.jpg" alt="" class="img-raised">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages" role="tabpanel">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="row collections">
+                                    <div class="col-md-6">
+                                        <img src="/media/media/images/defaults/bg3.jpg" alt="" class="img-raised">
+                                        <img src="/media/media/images/defaults/bg8.jpg" alt="" class="img-raised">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="/media/media/images/defaults/bg7.jpg" alt="" class="img-raised">
+                                        <img src="/media/media/images/defaults/bg6.jpg" class="img-raised">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="wrapper">
+        <div class="page-header page-header-small">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('/media/media/images/defaults/bg6.jpg');">
+            </div>
+            <div class="container">
+                <div class="content-center">
+                    <h1 class="title">This is our great company.</h1>
+                    <div class="text-center">
+                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-about-us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">Who we are?</h2>
+                        <h5 class="description">{{ user.profile.about }}</h5>
+                    </div>
+                </div>
+                <div class="separator separator-primary"></div>
+                <div class="section-story-overview">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="image-container image-left" style="background-image: url('/media/media/images/defaults/login.jpg')">
+                                <!-- First image on the left side -->
+                                <p class="blockquote blockquote-primary">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very slightly"
+                                    <br>
+                                    <br>
+                                    <small>-NOAA</small>
+                                </p>
+                            </div>
+                            <!-- Second image on the left side of the article -->
+                            <div class="image-container" style="background-image: url('/media/media/images/defaults/bg3.jpg')"></div>
+                        </div>
+                        <div class="col-md-5">
+                            <!-- First image on the right side, above the article -->
+                            <div class="image-container image-right" style="background-image: url('/media/media/images/defaults/bg1.jpg')"></div>
+                            <h3>So what does the new record for the lowest level of winter ice actually mean</h3>
+                            <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
+                            </p>
+                            <p>
+                                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise. But over the more than 30 years of satellite records, scientists have observed a clear pattern of decline, decade-by-decade.
+                            </p>
+                            <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-team text-center">
+            <div class="container">
+                <h2 class="title">Here is our team</h2>
+                <div class="team">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="team-player">
+                                <img src="/media/media/images/defaults/eva.jpg" style="width: 200px;" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                                <h4 class="title">Romina Hadid</h4>
+                                <p class="category text-primary">Model</p>
+                                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-instagram"></i></a>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-facebook-square"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="team-player">
+                                <img src="/media/media/images/defaults/eva.jpg" style="width: 200px;" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                                <h4 class="title">Ryan Tompson</h4>
+                                <p class="category text-primary">Designer</p>
+                                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="team-player">
+                                <img src="/media/media/images/defaults/eva.jpg" style="width: 200px;" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                                <h4 class="title">Eva Jenner</h4>
+                                <p class="category text-primary">Fashion</p>
+                                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-google-plus"></i></a>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-youtube-play"></i></a>
+                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--TESTIMONIAL  START-->
+        {% include 'regular/our_work.html' %}
+        <!-- END TESTIMONIAL -->
+
+        <!--JOBS  START-->
+        {% include 'profiles/jobs/profile_jobs_view.html' %}
+        <!-- END JOBS -->
+
+        <!-- Contact details -->
+        <div class="section section-contact-us text-center">
+            <div class="container">
+                <h2 class="title">Want to work with us?</h2>
+                <p class="description">Your project is very important to us.</p>
+                  <div class="contactus-2">
+                  <div id="contactUs2Map" class="map" style="overflow: hidden;"><div style="height: 100%; width: 100%;"></div></div>
+                  <div class="contactus-1 section-image" style="background-image: url('/media/media/images/defaults/city.jpg')">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h2 class="title">Get in Touch</h2>
+                            <h5 class="description">You need more information? Check what other <a href="#">persons are saying</a> about our <a href="#">product.</a> They are very happy with their purchase.</h5>
+                            <div class="info info-horizontal">
+                                <div class="icon icon-primary">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Find us at the office</h4>
+                                    <p> {{ user.profile.address }},
+                                        <br> {{ user.profile.location }},
+                                        <br> {{ user.profile.country_origin.name }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="info info-horizontal">
+                                <div class="icon icon-primary">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Give us a ring</h4>
+                                    <p> Michael Jordan - {{ user.profile.email_address }}
+                                        <br> {{ user.profile.office_phone }}
+                                        <br> Mon - Fri, 8:00-22:00
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Notice: this form should be hiden to logged in users -->
+                        {% if user.is_authenticated %}
+                        <div class="col-md-7 ml-auto">
+                            <div class="card card-contact">
+                                <form id="contact-form" method="POST">
+                                    <div class="card-header card-header-raised card-header-primary text-center">
+                                        <h4 class="card-title">Contact Us</h4>
+                                    </div>
+                                    <div class="card-body">
+                                      <!-- attach contact to this user-->
+                                      {% csrf_token %}
+                                      {{ form.non_field_errors }}
+                                      {% for field in form %}
+                                      {% if form.errors %}
+
+                                        <div class="alert alert-danger alert-dismissable">
+                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                                            <span aria-hidden=true>&times;</span>
+                                          </button>
+                                           {{ field.errors }}
+                                        </div>
+                                      {% endif %}
+                                      {% endfor %}
+                                      <input type="hidden" name="to" value="{{user.pk}}">
+                                      <!-- {{ form.email }}
+                                      {{ form.full_name }}
+                                      {{ form.message }} -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating is-empty bmd-form-group">
+
+                                                    <label class="bmd-label-floating">Full name</label>
+                                                    <input type="text" name="{{ field.full_name }}" class="form-control" placeholder="First name...">
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating is-empty bmd-form-group">
+                                                    <label class="bmd-label-floating">Email address</label>
+                                                    <input type="email" name="{{ field.email }}" class="form-control" placeholder="Email address...">
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                            <label for="exampleMessage1" class="bmd-label-floating">Your Message</label>
+                                            <textarea name="{{ field.message }}" class="form-control" id="exampleMessage1" rows="6" placeholder="Your Message here..."></textarea>
+                                            <span class="material-input"></span>
+                                        </div>
+
+                                        <div class="card " id="checkRadios">
+                                            <div class="form-check">
+                                                  <div class="checkbox">
+                                                      <input id="checkbox1" type="checkbox">
+                                                      <label for="checkbox1">
+                                                          I'm not a robot
+                                                      </label>
+                                                  </div>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-primary btn-round btn-sm btn-just-icon ">Send Message</button>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script type="text/javascript">
+    $().ready(function(){
+        $('[rel="tooltip"]').tooltip();
+
+    });
+
+    function rotateCard(btn){
+        var $card = $(btn).closest('.card-container');
+        console.log($card);
+        if($card.hasClass('hover')){
+            $card.removeClass('hover');
+        } else {
+            $card.addClass('hover');
+        }
+    }
+</script>
+
+  </body>
+{% endblock %}

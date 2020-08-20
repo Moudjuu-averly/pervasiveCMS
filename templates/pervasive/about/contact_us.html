@@ -1,0 +1,145 @@
+<div class="col-md-8 ml-auto mr-auto text-center" id="contact">
+  <h3 class="title"> You should work with us!</h3>
+  <h4>Now you have no excuses, it's time to surprise your clients, your competitors, and why not, the world. You probably won't have a better chance to show off all your potential if it's not by getting a corporate profile for your own agency or organization.</h4>
+</div>
+
+<br><br>
+
+<div class="cd-section" id="contactus">
+      <!--     *********    CONTACT US 1     *********      -->
+      <div class="contactus-1 section-image" style="background-image: url('media/img/examples/city.jpg')">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <h2 class="title">Get in Touch</h2>
+              <h5 class="description">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</h5>
+              <div class="info info-horizontal">
+                <div class="icon icon-primary">
+                  <i class="material-icons">pin_drop</i>
+                </div>
+                <div class="description">
+                  <h4 class="info-title">Find us at the office</h4>
+                  <p> PO Box 360 Windhoek, Namibia,
+                  <p> Bld Mihail Kogalniceanu, nr. 8,
+                    <br> 7652 Bucharest,
+                    <br> Romania
+                  </p>
+                </div>
+              </div>
+              <div class="info info-horizontal">
+                <div class="icon icon-primary">
+                  <i class="material-icons">phone</i>
+                </div>
+                <div class="description">
+                  <h4 class="info-title">Give us a ring</h4>
+                  <p> Michael Jordan
+                    <br> +40 762 321 762
+                    <br> Mon - Fri, 8:00-22:00
+                  </p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-5 ml-auto">
+              <div style="display:none;" class="contactformalert alert alert-success" role="alert">
+
+               <h4 class="alert-heading">Well done!</h4>
+               <p>Your message has been sent. We will get back to you as soon as possible. Thank you!</p>
+               <hr>
+               <p class="mb-0">Our Contact Form</p>
+             </div>
+             <div id="errormessage"></div>
+              <div class="card card-contact">
+                <form id="contact-form" method="post" class="contactForm" role="form">
+                  {% csrf_token %}
+                  <div class="card-header card-header-raised card-header-primary text-center">
+                    <h4 class="card-title">Contact Us</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group label-floating is-empty bmd-form-group">
+                          <label class="bmd-label-floating">Full   name</label>
+                          <input type="text" name="full_name" id="full_name" class="form-control">
+                          <span class="material-input"></span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group label-floating is-empty bmd-form-group">
+                          {{ form.subject }}
+                          <span class="material-input"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group label-floating is-empty bmd-form-group">
+                      <label class="bmd-label-floating">Email address</label>
+                      <input type="email" id="id_email" name="email" class="form-control">
+                      <span class="material-input"></span>
+                    </div>
+                    <div class="form-group label-floating is-empty bmd-form-group">
+                      <label for="exampleMessage1" class="bmd-label-floating">Your Message</label>
+                      <textarea name="message" class="form-control" id="id_message" rows="6"></textarea>
+                      <span class="material-input"></span>
+                    </div>
+                  </div>
+                  <div class="card-footer justify-content-between">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value=""> I'm not a robot
+                        <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--     *********    END CONTACT US 1      *********      -->
+    </div>
+    <script>
+
+            $(".contactForm").on('submit',function(event){
+             event.preventDefault();
+             function getCookie(name){
+               var cookieValue = null;
+               if (document.cookie && document.cookie != '') {
+                   var cookies = document.cookie.split(';');
+                   for (var i = 0; i < cookies.length; i++) {
+                       var cookie = jQuery.trim(cookies[i]);
+                       if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                           cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                           break;
+                       }
+                   }
+               }
+               return cookieValue;
+            }
+            /*Rest of the code will go here*/
+         var full_name = $("#id_full_name").val();
+         var email      = $("#id_email").val();
+         var subject = $("#id_subject").val();
+         var message = $("#id_message").val();
+         if ([full_name,email,subject,message].every(x => x.length>0)){
+         $.ajax({
+                 type : "POST",
+                 url : '{% url "about:plans" %}',
+                 data : {
+                   csrfmiddlewaretoken : getCookie('csrftoken'),
+                   'full_name'     : full_name,
+                   'email'    : email,
+                   'subject'  : subject,
+                   'message'  : message,
+                 },
+                 success : function(){
+                   $(".contactformalert").show();
+                   $(".contactForm").hide();
+                 }
+         })}
+
+          })
+            </script>

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+  {% load humanize %}
+<body class="signup-page sidebar-collapse">
+
+  {% include 'navbar.html' %}
+
+<br><br><br>
+
+  <div class="main main-raised">
+
+      <div class="container">
+        <div class="">
+          <div class="" filter-color="purple">
+            <div class="section">
+              <div class="row">
+                  <div class="col-md ml-auto">
+                      <div class="card card-background" style="background-image:url(''">
+
+
+
+                        <div class=''>
+                        <form method='POST' action='' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        {% include 'flock/camera.html'%}
+
+                        </form>
+                        </div>
+
+
+                              {% for post in instance %}
+
+
+
+
+                              <div class="col-md-6">
+
+                                <div class="card bg-default shadow border-0">
+
+                                  {% if post.post_image %}
+                                  <img src="{{ post.post_image.url }}" class="card-img-top">
+                                  {% else %}
+                                  {% endif %}
+
+                                </div>
+                                <div class=""><a href='{{ post.get_api_like_url }}' class='like-btn btn-link ' data-href='{{ post.get_api_like_url }}' data-likes='{{ post.likes.count }}'  href='{{ post.get_like_url }}' rel="tooltip" data-original-title="like and flock this status">{{ post.likes.count }}<i class="fa fa-heart"></i></a></div>
+                                <div class=""> {{ post.timestamp|naturaltime }}</div>
+
+                              </div>
+
+
+
+                              {% if post.post_image %}
+                              <div class="mine">
+                                <h1>
+                                  You won’t believe these 17 “articles” our editors thought were good enough to publish
+                                  <small>{% if post.post_image %}
+                                  <img src="{{ post.post_image.url }}" class="card-img-top">
+                                  {% else %}
+                                  {% endif %}</small>
+                                </h1>
+
+
+                                <p>Want to get into journalism? Better learn how to search for “relatable meme GIFs,” as you'll see in this hard-hitting exposé…</p>
+                              </div>
+                              {% else %}
+                              {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+                              {% endfor %}
+
+
+                              <!-- END timeline item -->
+                              <!-- timeline item -->
+
+
+
+
+
+                      {% include 'flock/friends_sugessions.html' %}
+
+
+
+          </div>
+        </div>{% include 'footer.html' %}
+      </div>
+    </div>
+
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

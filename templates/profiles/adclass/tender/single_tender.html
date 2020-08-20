@@ -1,0 +1,36 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<div class="card-body">
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- ALL tenders client VIEW -->
+      <span class="current text-center">
+        <h4 class=" text text-muted"> {{ tender.tender_tittle }} | {{ tender.created|timesince }} ago</h4>
+      </span>
+      
+      <br>
+        {% include 'profiles/adclass/tender/rotate_tender.html' %}
+          <div class="card-description">
+          {% include 'profiles/adclass/tender/tender_requests.html' %}
+          {% include 'profiles/adclass/tender/share_tender.html' %}
+        </div>
+        <br>
+              <!-- BOTTOM PAGINATION -->
+              <!--  include 'tenders/pagination.html' -->
+            <!-- END BOTTOM PAGINATION -->
+          <!-- END ALL tenders VIEW -->
+
+        <div class="content-center container">
+          <div class="card-description">
+            <br><br>
+            <h4 class="description text-muted">About Tenders</h4>
+          </div>
+        </div>
+      <!-- END MAIN PAGE tenders -->
+    </div>
+  </div>
+</div>
+{% endblock %}

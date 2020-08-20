@@ -1,0 +1,185 @@
+{% extends 'welcomebase.html' %}
+
+
+  {% block body %}
+<body class="signup-page sidebar-collapse">
+
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/account/welcome">
+          Basecode-GT Global</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <i class="material-icons">apps</i>
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+              <a href="../index.html" class="dropdown-item">
+                <i class="material-icons">Productivity</i>
+              </a>
+              <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
+                <i class="material-icons">Social</i>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+              <i class="material-icons">API's</i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/account/login" onclick="scrollToDownload()">
+              <i class="material-icons">login</i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-header header-filter" filter-color="purple" style="background-image: url( '../assets/img/bg7.jpg') ">
+    <div class="section section-signup page-header" style="background-image: url('./assets/img/city.jpg');">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 ml-auto mr-auto">
+            <div class="card card-signup">
+              <form class="form" method="post" action="">
+                <div class="card-header card-header-primary text-center">
+                  <h4>Sign Up</h4>
+                  <div class="social-line">
+                    <a href="" class="btn btn-link btn-just-icon">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="" class="btn btn-link btn-just-icon">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="" class="btn btn-link btn-just-icon">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="text-divider">Or Be Classical</p>
+                <div class="card-body">
+                    {% csrf_token %}
+
+                <span class="bmd-form-group"><div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                    </span>
+                  </div>
+                  <input type="text" name="username" class="form-control" placeholder="User Name..." required>
+                </div></span>
+                <span class="bmd-form-group"><div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">mail</i>
+                    </span>
+                  </div>
+                  <input type="email" name="email" class="form-control" placeholder="Email..." required>
+                </div>
+              </span>
+                <span class="bmd-form-group"><div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <input type="password" name="password1" class="form-control" placeholder="Password..." required>
+                </div>
+              </span>
+              <span class="bmd-form-group "><div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">lock_outline</i>
+                  </span>
+                </div>
+                <input type="password" name="password2" class="form-control" placeholder="Password confirm" required>
+              </div>
+            </span>
+
+
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                        <a href="/get-started/terms" class="btn-link">I agree to the terms and licences<div class="ripple-container"></div></a>
+                    </label>
+                </div>
+                <div class="card-footer">
+                  <a href="/account/login" class="btn btn-link btn-primary btn-lg">login</a>
+                  <button type="submit" class="btn btn-primary btn-small">Sign up</button>
+                </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Basecode-GT Globals
+              </a>
+            </li>
+            <li>
+              <a href="https://presentation.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="fa fa-heart"> favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Baecode-GT Visuals</a> for a better web.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

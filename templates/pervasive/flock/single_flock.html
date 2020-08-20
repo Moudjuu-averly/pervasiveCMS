@@ -1,0 +1,119 @@
+{% extends 'pervasive/base.html' %}
+
+{% block body %}
+<body class="">
+  <!-- NAVIGATION MENU-->
+    {% include 'nav_auth.html' %}
+  <!-- END NAVIGATION -->
+
+  <div class="wrapper">
+      <!-- FIXED PLUGIN-->
+        {% include 'pervasive/fixed_plugin.html' %}
+      <!-- END FIXED PLUGIN -->
+
+    <!-- LEFT SIDEBAR-->
+      {% include 'pervasive/left/left_sidebar.html' %}
+    <!-- END LEFT SIDEBAR -->
+
+    <!-- TIMELINE-->
+    {% block main %}
+    <div class="main-panel">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+            <!-- <div class="card card-white"> -->
+              <div class="card-header">
+                <!-- <h5 class="title ">Timeline</h5> -->
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                    <div class="">
+                      <!-- JOBS ON THE MAIN PAGE -->
+                      <div class="" >
+                        <div class="content-center">
+                          {% for flock in flock %}
+                          <div class="card-body">
+                              <div class="text-center card-user author">
+                                <a href="{% url 'profiles:view_profile_with_pk' flock.user_id %}">
+                                  <img class="avatar" src="/media/faces/marc.jpg" alt="...">
+                                </a><hr>
+                                <h4><a href="{% url 'profiles:view_profile_with_pk' flock.user_id %}"> {{ flock.user|capfirst }} </a>{{ flock.user.profile.business_type }}</h4>
+                              </div>
+                              <div class="">
+                                <h3 class="description title">{{ flock.title|capfirst }}</h3>
+                                  {% if flock.post_image %}
+                                    <img src="{{ flock.post_image.url }}" alt="">
+                                  {% endif %}
+                              </div>
+                            <h4>Full story</h4>
+                              <div class="card-description">
+                                {{ flock.content|capfirst }}
+                              </div>
+                          </div>
+                          <div class="card-footer">
+                            <div class="content ">
+                                <div class="social-description ">
+                                  <span class="text-right">{{ flock.timestamp|timesince }}</span>
+                                <h4 class="card-category"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">2311</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="">{{ flock.total_flocks }}</span> 12 stories<a href="{% url 'profiles:view_profile_with_pk' flock.user_id %}"> @{{ flock.user }}</a> | 43 <a href="">#{{ flock.category }} </a>news </h4>
+                                </div>
+                            </div>
+                            <div class="button-container">
+                              <button class="btn btn-primary btn-sm btn-round" type="button">flock</button>
+                              <div class="text-right">
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-facebook">
+                                  <i class="fab fa-facebook"></i>
+                                </button>
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-twitter">
+                                  <i class="fab fa-twitter"></i>
+                                </button>
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-google">
+                                  <i class="fab fa-google-plus"></i>
+                                </button>
+                                <div class="card-footer text-right">
+                                  <h4><a href="{% url 'profiles:view_profile_with_pk' flock.user_id %}">more updates @{{ flock.user }}</a></h4>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                          {% endfor %}
+                          <div class="content-center">
+                            <div class="card-description">
+                              <h2 class="description">Interview tips</h2>
+                            </div>
+
+                          </div>
+                        </div>
+
+
+                    </div>
+                      <!-- END MAIN PAGE JOBS -->
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- RIGHT SIDEBAR-->
+            {% include 'pervasive/right/right_sidebar.html' %}
+          <!-- END RIGHT SIDEBAR -->
+        </div>
+      </div>
+      <!-- FOOTER SIDEBAR-->
+        {% include 'pervasive/footer/footer.html' %}
+      <!-- END FOOTER -->
+    </div>
+
+
+    {% endblock %}
+    <!-- END TIMELINE -->
+
+  </div>
+
+
+  <!--PERVASIVE FOOTER -->
+  <!-- END FOOTER -->
+</body>
+{% endblock %}

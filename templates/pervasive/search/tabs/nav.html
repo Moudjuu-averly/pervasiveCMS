@@ -1,0 +1,101 @@
+{% load class_name %}
+<div class="col-md-12 ml-auto ">
+  <ul class="nav nav-pills nav-pills-primary justify-content-center" role="tablist">
+      <li class="nav-item">
+      <a class="nav-link active" href="#all_search" data-toggle="tab" role="tablist" aria-expanded="true">
+        All
+      </a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="#profile_search" data-toggle="tab" role="tablist" aria-expanded="false">
+        Profiles
+      </a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#projects_search" role="tablist" aria-expanded="false">
+        Projects
+        <span class="badge badge-primary"> 4</span>
+      </a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#products_search" role="tablist" aria-expanded="false">
+        PS
+      </a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#blogpost_search" role="tablist" aria-expanded="false">
+        Blog
+      </a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#about_search" role="tablist" aria-expanded="false">
+        About
+      </a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#" role="tablist" aria-expanded="false">
+        <!-- dropdown  -->
+        Other
+      </a>
+      </li>
+  </ul>
+  <div class="tab-content tab-space">
+
+
+    {% include 'pervasive/search/tabs/all/all_search.html' %}
+
+
+    {% for object in object_list %}
+        {% with object|class_name as klass %}
+
+
+        {% if klass == 'Profile' %}
+        {% include 'pervasive/search/tabs/profile/profile_search.html' %}
+
+        {% elif klass == 'Projects' %}
+        {% include 'pervasive/search/tabs/projects/projects_search.html' %}
+
+        {% elif klass == 'Product' %}
+        {% include 'pervasive/search/tabs/ps_search/ps_search.html' %}
+
+        {% elif klass == 'Post' %}
+        {% include 'pervasive/search/tabs/blogpost/blogpost_search.html' %}
+
+        {% include 'pervasive/search/tabs/about/about_search.html' %}
+    {% else %}
+         <!-- <div class='row'>
+           <div class='col-12 col-lg-8 offset-lg-4'>
+              <a href='{{ object.get_absolute_url }}'>{{ object }} | {{ object|class_name }}</a>
+          </div>
+         </div> -->
+      {% endif %}
+
+
+    {% endwith %}
+
+{% empty %}
+<div class='row'>
+    <div class='col-12 col-md-6 mx-auto my-5 py-5'>
+    <form method='GET' class='' action='.'>
+
+        <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
+            <span class="input-group-addon cfe-nav" style='color:#000'>
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+        </div>
+
+    </form>
+
+    </div>
+    <div class='row title-row my-5'>
+        <div class='col-12 py-0'>
+            <h5 class='my-0 py-0'>Try to use specific keywords for better search results</h5>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+  </div>
+</div>

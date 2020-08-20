@@ -1,0 +1,121 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-12">
+    <!-- ALL Ads client VIEW -->
+
+<div class="">
+  <div class="card-header text-center">
+    <button type="" onclick="window.history.back();" class="btn btn-primary btn-sm btn-round float-left">
+       back
+    </button>
+  <h4>
+    Choose a category to update
+  </h4>
+  </div>
+  <div class="card-body all-icons">
+    <div class="row">
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href= "{% url 'accounts:edit_profile' %}">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-single-02"></i></h3></span>
+          <h4>Account</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href= "{% url 'accounts:edit_display' %}">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-bulb-63"></i></h3></span>
+          <h4>Dispay</h4>
+        </div>
+      </a>
+      </div>
+
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'accounts:edit_contacts' %}">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-email-85"></i></h3></span>
+          <h4>Contacts</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'accounts:edit_media' %}">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-camera-18"></i></h3></span>
+          <h4>Media</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="{% url 'accounts:change_password' %}">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-lock-circle"></i></h3></span>
+          <h4>Security</h4>
+        </div>
+      </a>
+      </div>
+
+    </div>
+
+
+    <div class="card-header text-center">
+      <h5>
+        More settings
+        <hr>
+      </h5>
+    </div>
+    <div class="row">
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-settings"></i></h3></span>
+          <h4>General</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-settings-gear-63"></i></h3></span>
+          <h4>Advanced</h4>
+        </div>
+      </a>
+      </div>
+
+      <div class="font-icon-list col-sm-4 col-xs-6 col-xs-6">
+        <a href="">
+        <div class="font-icon-detail">
+          <span><h3><i class="tim-icons icon-world
+
+"></i></h3></span>
+          <h4>SEO Tools</h4>
+        </div>
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<hr>
+<div class="content-center container">
+  <div class="card-description float-right">
+    <h5 class="description">About profiles - <a href="#">How it works</a></h5>
+  </div>
+</div>
+      <!-- END MAIN ADS PAGE -->
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

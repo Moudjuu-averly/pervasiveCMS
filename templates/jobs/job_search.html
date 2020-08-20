@@ -1,0 +1,261 @@
+{% extends 'pervasive/base.html' %}
+
+{% block body %}
+<body class="">
+  <!-- NAVIGATION MENU-->
+    {% include 'nav_auth.html' %}
+  <!-- END NAVIGATION -->
+
+  <div class="wrapper">
+      <!-- FIXED PLUGIN-->
+        {% include 'pervasive/fixed_plugin.html' %}
+      <!-- END FIXED PLUGIN -->
+
+    <!-- LEFT SIDEBAR-->
+      {% include 'pervasive/left/left_sidebar.html' %}
+    <!-- END LEFT SIDEBAR -->
+
+    <!-- TIMELINE-->
+    {% block main %}
+    <div class="main-panel">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="card">
+            <!-- <div class="card card-white"> -->
+              <div class="card-header">
+                <div class="col-sm-6 text-left">
+                  <h5 class="card-category">All jobs</h5>
+                  <h2 class="card-title">Latest Jobs</h2>
+                </div>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <!-- JOBS ON THE MAIN PAGE -->
+                      <div class="container" >
+                        <div class="content-center">
+                          <!-- ALL JOBS VIEW -->
+                          <span class="current text-center container">
+                          <div class="text-muted">
+                            Page {{ jobs.number }} of {{ jobs.paginator.num_pages }}
+                          </div>
+                          </span>
+                          {% for job in jobs %}
+                            {% if job %}
+                              <div class="card card-chart">
+                                <div class="card-header">
+                                  <h3 class="card-title title d-inline"><i class="tim-icons icon-badge text-primary"></i><a href="{% url 'jobs:view_job' job.pk %}">{{job.job_tittle}}</a></h3>
+                                    <h5 class="card-category"><i class="tim-icons icon-tag"></i><span class="badge">{{job}} vacancy </span>
+                                    <h5 class="card-category"><span class="badge">{{ job.country.name }}, {{ job.city }} <a href="{% url 'jobs:view_all_jobs'%}">jobs</a></span>
+                                </div>
+                                <div class="">
+                                  <div class="content container">
+                                      <div class="social-description ">
+                                        <h4 class="card-category"><i class="tim-icons icon-credit-card"></i> <span class="badge">$-{{ job.salary_scale }}</span> </h4>
+                                        <h4 class="text-muted"><i class="tim-icons icon-watch-time"></i> <span class="badge">Due in 6 days</span> </h4>
+                                        <h4 class="card-category"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">2311</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 jobs</span> <a href="{{ job.job_owner }}">@{{ job.user }}</a></h4>
+                                      </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                              <!-- BOTTOM PAGINATION -->
+                              {% include 'jobs/pagination.html' %}
+                            <!-- END BOTTOM PAGINATION -->
+                          <!-- END ALL JOBS VIEW -->
+                        </div>
+                        <div class="content-center">
+                          <div class="card-description">
+                            <h2 class="description">About Pervasive jobs</h2>
+                          </div>
+
+                        </div>
+
+                    </div>
+                      <!-- END MAIN PAGE JOBS -->
+                    </div>
+                  </div>
+              </div>
+              <div class="card-footer text-right">
+                <button type="submit" class="btn btn-fill btn-sm btn-round btn-primary">load more...</button>
+              </div>
+            </div>
+          </div>
+          <!-- RIGHT SIDEBAR-->
+            {% include 'pervasive/right/right_sidebar.html' %}
+          <!-- END RIGHT SIDEBAR -->
+        </div>
+      </div>
+      <!-- FOOTER SIDEBAR-->
+        {% include 'pervasive/footer/footer.html' %}
+      <!-- END FOOTER -->
+    </div>
+
+
+    {% endblock %}
+    <!-- END TIMELINE -->
+
+  </div>
+
+
+  <!--PERVASIVE FOOTER -->
+  <!-- END FOOTER -->
+</body>
+{% endblock %}
+{% extends 'pervasive/base.html' %}
+
+  {% block body %}
+  {% load humanize %}
+  <body class="index-page sidebar-collapse">
+    <!-- NAVIGATION MENU-->
+      {% include 'nav_auth.html' %}
+    <!-- END NAVIGATION -->
+
+      <div class="wrapper">
+        <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image" data-parallax="true" style="background-image: url(media/img/bg6.jpg); transform: translate3d(0px, 0px, 0px);">
+            </div>
+
+            <div class="container" >
+                <div class="content-center brand ">
+                  <form class="" action="jobs/search/" method="get">
+                    <div class="col-sm-6 col-lg-8">
+                      <div class="form-group">
+                          <input type="text" value="" name="q" placeholder="Search Any Job..." class="form-control">
+                      </div>
+                      <button class="btn btn-info btn-round" type="submit" name="submit">Search
+                      </button>
+                    </div>
+                  </form>
+                  <h2 >Latest Jobs</h2>
+
+                  <div class='col-sm'>
+                  {% if object_list %}
+                  <h5>Your search for: <strong class="badge">{{ query }}</strong></h5>
+                  {% for job in object_list %}
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="img-responsive image-raised">
+
+                        <div class="caption post-detail-item">
+                          <a href="{% url 'jobs:view_job' job.pk%}">
+                            <span>{{ job.user.capitalize }}-</span>
+                            <span>{{ job.created|timesince }}</span>
+                          </a>
+                          <h3><a href=''>{{ post.job_title }}</a></h3>
+                          <p><a href="{% url 'jobs:view_job' job.pk%}" class="btn btn-primary" role="button">View</a></p>
+                        </div>
+
+                      </div>
+                    </div>
+                  <hr/>
+                  </div>
+                  {% endfor %}
+                  {% else  %}
+                  <div class="">
+                    <!-- If no results were fount, then we should just display a modal Dialog -->
+                    <p>No search results were found for: <strong>{{ query }}</strong>. Please try using different keywords. </p>
+
+                  </div>
+                  {% endif %}
+                  </div>
+                    <ul class="pagination pagination-primary">
+                        <li class="page-item">
+                            <a class="page-link" href="#link" aria-label="Previous">
+                                <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#link">1</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#link">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#link">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#link" aria-label="Next">
+                                <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+
+                 </div>
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+
+        <div class="main">
+          <!-- HERO IMAGES START -->
+          {% include 'pervasive/hero_images.html' %}
+          <!-- END HERO IMAGES -->
+
+          <!-- OUR PARTNERS -->
+
+          <!-- END PARTNERS -->
+
+
+          <!-- PERVASIVE NETOWRK ABOUT SLIDE VIEWS -->
+            {% include 'pervasive/pervasive_team.html' %}
+          <!-- THE PERVASIVE NETOWRK AMAZING TEAM -->
+
+        </div>
+
+      </div>
+
+      <!-- MODALS PLACEHOLDERS -->
+
+      <!-- END MODALS -->
+
+
+        <!--PERVASIVE FOOTER -->
+        {% include 'pervasive/footer.html' %}
+
+{% endblock %}
+
+
+
+<div class='col-sm'>
+{% if object_list %}
+<h5>Your search for: <strong class="badge">{{ query }}</strong></h5>
+{% for post in object_list %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="img-responsive image-raised">
+
+
+        {% if post.post_image %}
+         <img src='{{ post.post_image.url }}' class='img-responsive' />
+        {% endif %}
+
+      <div class="caption post-detail-item">
+        <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+          <span>{{ post.user.capitalize }}</span>
+          <span>{{ post.timestamp|timesince }}</span>
+        </a>
+        <h3><a href=''>{{ post.title }}</a></h3>
+        <p><a href='{{ post.get_api_like_url }}' class='like-btn btn-link ' data-href='{{ post.get_api_like_url }}' data-likes='{{ post.likes.count }}'  href='{{ post.get_like_url }}' rel="tooltip" data-original-title="like and flock this status">{{ post.likes.count }} <i class="fa fa-heart"></i></a>
+        <p><a href="" class="btn btn-primary" role="button">View</a></p>
+      </div>
+
+    </div>
+  </div>
+<hr/>
+</div>
+{% endfor %}
+{% else  %}
+<div class="">
+  <!-- If no results were fount, then we should just display a modal Dialog -->
+  <p>No search results were found for: <strong>{{ query }}</strong>. Please try using different keywords. </p>
+
+</div>
+{% endif %}
+</div>

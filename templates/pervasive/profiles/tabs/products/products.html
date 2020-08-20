@@ -1,0 +1,88 @@
+
+{% load i18n %}
+{% load product_n_services %}
+{% load humanize %}
+
+
+
+
+
+<div class="tab-pane" id="products" aria-expanded="true">
+
+
+{% for profile in profile %}
+<div class="cd-section" id="blogs">
+  <!--     *********    PROJECTS      *********      -->
+  <div class="blogs-1" id="blogs-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 ml-auto mr-auto">
+        <br>
+        <div class="card card-plain card-blog">
+          {% for profile in profile.user.product_set.all %}
+          <div class="row">
+            <div class="col-md-7">
+              <div class="card-header card-header-image">
+                {% if profile.product_video %}
+                <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ profile.product_video.url|safe }}" type="video/*"
+                  preload controls controlsList="nodownload" poster="" style="">
+
+                  <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                  <source type="video/*" allow="encrypted-media" src="{{ profile.product_video.url|safe }}" class="img img-raised"></source>
+                  <!-- Adding support for under-powered mobile devices -->
+                  <source type="video/*" allow="encrypted-media" src="{{ profile.product_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                </video>
+                {% else %}
+                <a href="#pablito">
+                  <img class="img" src="./assets/img/examples/card-blog4.jpg">
+                </a>
+                {% endif %}
+                {% if profile.project_video %}
+              <div class="colored-shadow" style="background-image: url({{ user.profile.projects_videoe.url }}); opacity: 1;"></div>
+              {% else %}
+              <div class="colored-shadow" style="background-image: url(&quot;./assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div>
+            {% endif %}
+          </div>
+
+          </div>
+            <div class="col-md-5">
+              <!-- project type -->
+              <h5 class="card-title">
+                <a href="#pablo">{{ profile.product_tittle }}</a>
+              </h5>
+              <h6 class="card-category text-info">{{ profile.get_product_type_display }}</h6>
+              <!-- project tittle -->
+
+              <p class="card-description">
+                <!-- project about -->
+                {{ profile.content|safe|urlize|capfirst|truncatewords_html:14 }}
+                <a href="#pablo"> Read More </a>
+              </p>
+              <p class="author">
+                <!-- by -->
+                <a href="#pablo">
+                  <!-- <b>Mike Butcher</b> -->
+                </a> {{ profile.created|naturaltime }}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--     *********    END PROJECTS       *********      -->
+</div>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+</div>

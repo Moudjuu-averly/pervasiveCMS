@@ -1,0 +1,18 @@
+{% extends 'pervasive/home/home.html' %}
+
+{% load i18n %}
+{% load class_name %}
+{% load humanize %}
+
+{% block content %}
+
+<div class='row title-row my-5'>
+    <div class='col-12 py-0'>
+        <h3 class='my-0 py-0'>{{ object_list|length }} search results for <b>{{ query }}</b></h3>
+    </div>
+</div>
+
+{% include 'pervasive/search/tabs/nav.html' %}
+
+
+{% endblock content %}

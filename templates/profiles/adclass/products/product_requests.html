@@ -1,0 +1,15 @@
+<div class="container">
+  <h4 class="description text-muted">Companies requested this product <span class="float-right"><i class="tim-icons icon-minimal-up"></i><i class="tim-icons icon-minimal-down"></i></span></h4>
+
+    {% if product.product_video %}
+      <video width="45%" height="auto" src="{{ product.product_video.url }}" type="video/*"
+        preload loop subtitles srclang="en" controls controlsList="nodownload" poster="">
+      </video>
+        <div class="float-right col-md-6">
+            <p class="text-muted  ">
+              <h5 class="description text-left text-muted">John Smith | Honors - MBA - <span class="btn-default">3HD </span> <span class="btn-primary"> 1Ms </span> <span class="btn-success"> PHD </span></h5>
+                Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’
+            </p>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,369 @@
+
+{% load class_name %}
+
+<div class="tab-pane work active show" id="all_search">
+
+  {% for object in object_list %}
+      {% with object|class_name as klass %}
+        {% if klass == 'Post' %}
+        <div class="tab-pane active show" id="post" >
+          <div class="blogs-3">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                  <div class="card card-plain card-blog">
+                    <div class="row">
+                      {% if object.post_image %}
+                      <div class="col-md-4">
+                        <a href="{% url 'blog:single_blog' slug=object.slug %}">
+                          <div class="card-header card-header-image">
+                            <img class="img img-raised" src="{{ object.post_image.url }}">
+                          <div class="colored-shadow" style="background-image: url({{ object.post_image.url }}); opacity: 1;"></div></div>
+                        </a>
+                      </div>
+                      {% endif %}
+                      <div class="col-md-8">
+                        <h6 class="card-category text-info">{{ object.get_blog_category_display }}</h6>
+                        <h4 class="card-title">
+                          <a href="{% url 'blog:single_blog' slug=object.slug %}">{{ object.title }}</a>
+                        </h4>
+                        <p class="card-description">
+                           …
+                          <a href="{% url 'blog:single_blog' slug=object.slug %}"> Read More </a>
+                        </p>
+                        <p class="author">
+                          <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                            <b>{{ object.user|capfirst }}</b>
+                          </a>,{{ object.created|timesince }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% elif klass == 'BlogPost' %}
+        <div class="tab-pane active show" id="post" >
+          <div class="blogs-3">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                  <div class="card card-plain card-blog">
+                    <div class="row">
+                      {% if object.blog_image %}
+                      <div class="col-md-4">
+                        <a href="{% url 'blog:single_blog' slug=object.slug %}">
+                          <div class="card-header card-header-image">
+                            <img class="img img-raised" src="{{ object.blog_image.url }}">
+                          <div class="colored-shadow" style="background-image: url({{ object.post_image.url }}); opacity: 1;"></div></div>
+                        </a>
+                      </div>
+                      {% endif %}
+                      <div class="col-md-8">
+                        <h6 class="card-category text-info">{{ object.get_blog_category_display }}</h6>
+                        <h4 class="card-title">
+                          <a href="{% url 'blog:single_blog' slug=object.slug %}">{{ object.blog_tittle }}</a>
+                        </h4>
+                        <p class="card-description">
+                           …
+                          <a href="{% url 'blog:single_blog' slug=object.slug %}"> Read More </a>
+                        </p>
+                        <p class="author">
+                          <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                            <b>{{ object.user|capfirst }}</b>
+                          </a>,{{ object.created|timesince }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% elif klass == 'PostJob' %}
+
+         <div class="tab-pane " id="blogpost" >
+           <div class="blogs-3">
+             <div class="container">
+               <div class="row">
+                 <div class="col-md-10 ml-auto mr-auto">
+                   <div class="card card-plain card-blog">
+                     <div class="row">
+
+                       <div class="col-md-4">
+
+                           {% if object.job_video %}
+                           <a href="{% url 'jobs:view_job' pk=object.pk slug=object.slug %}">
+                             <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.job_video.url|safe }}" type="video/*"
+                               preload controlsList="nodownload" poster="">
+
+                               <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                               <source type="video/*" allow="encrypted-media" src="{{ object.job_video.url|safe }}" class="img img-raised"></source>
+                               <!-- Adding support for under-powered mobile devices -->
+                               <source type="video/*" allow="encrypted-media" src="{{ object.job_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                             </video>
+
+                             {% else %}
+                             <!-- jobs default video/ima -->
+
+                             </a>
+                             {% endif %}
+
+                       </div>
+
+                       <div class="col-md-8">
+                         <h6 class="card-category text-info">{{ object.get_job_type_display }}</h6>
+                         <h4 class="card-title">
+                           <a href="{% url 'jobs:view_job' pk=object.pk slug=object.slug %}">{{ object.job_tittle }}</a>
+                         </h4>
+                         <p class="card-description">
+                            {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}
+                           <a href="{% url 'jobs:view_job' pk=object.pk slug=object.slug %}"> Read More </a>
+                         </p>
+                         <p class="author">
+                           <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                             <b>{{ object.user.profile.official_business_name|capfirst }}</b>
+                           </a>,{{ object.created|timesince }}
+                         </p>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+        {% elif klass == 'Profile' %}
+        <div class="tab-pane ">
+          <div class="blogs-3">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                  <div class="card card-plain card-blog">
+                    <div class="row">
+
+                      <div class="col-md-4">
+                        <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                          {% if object.about_video %}
+                            <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.about_video.url|safe }}" type="video/*"
+                              preload controls controlsList="nodownload" poster="">
+
+                              <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                              <source type="video/*" allow="encrypted-media" src="{{ object.about_video.url|safe }}" class="img img-raised"></source>
+                              <!-- Adding support for under-powered mobile devices -->
+                              <source type="video/*" allow="encrypted-media" src="{{ object.about_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                            </video>
+
+                            {% else %}
+                            <!-- jobs default video/ima -->
+                            {% endif %}</a>
+
+                      </div>
+
+                      <div class="col-md-8">
+                        <h6 class="card-category text-info">{{ object.get_job_type_display }}</h6>
+                        <h4 class="card-title">
+                          <a href="#pablo">{{ object.official_business_name }}</a>
+                        </h4>
+                        <p class="card-description">
+                           {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}
+                          <a href="#pablo"> Read More </a>
+                        </p>
+                        <p class="author">
+                          <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                            <b>{{ object.user.profile.official_business_name|capfirst }} </b>
+                          </a>, {{ object.views }} Views
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% elif klass == 'Tender' %}
+             <div class='row'>
+                  <div class='col-12'>
+                    <div class="tab-pane " id="blogpost" >
+                      <div class="blogs-3">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                              <div class="card card-plain card-blog">
+                                <div class="row">
+
+                                  <div class="col-md-4">
+                                    {% if object.tender_video %}
+                                      <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.tender_video.url|safe }}" type="video/*"
+                                        preload controlsList="nodownload" poster="">
+
+                                        <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                                        <source type="video/*" allow="encrypted-media" src="{{ object.tender_video.url|safe }}" class="img img-raised"></source>
+                                        <!-- Adding support for under-powered mobile devices -->
+                                        <source type="video/*" allow="encrypted-media" src="{{ object.tender_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                                      </video>
+
+                                      {% else %}
+                                      <!-- jobs default video/ima -->
+                                      {% endif %}
+                                  </div>
+
+                                  <div class="col-md-8">
+                                    <h6 class="card-category text-info">{{ object.get_job_type_display }}</h6>
+                                    <h4 class="card-title">
+                                      <a href="#pablo">{{ object.tender_tittle }}</a>
+                                    </h4>
+                                    <p class="card-description">
+                                       {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}
+                                      <a href="#pablo"> Read More </a>
+                                    </p>
+                                    <p class="author">
+                                      <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                                        <b>{{ object.user.profile.official_business_name|capfirst }}</b>
+                                      </a>,{{ object.created|timesince }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>                  </div>
+              </div>
+        {% elif klass == 'Service' %}
+             <div class='row'>
+                  <div class='col-12'>
+                    <div class="tab-pane " id="blogpost" >
+                      <div class="blogs-3">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                              <div class="card card-plain card-blog">
+                                <div class="row">
+
+                                  <div class="col-md-4">
+                                    {% if object.service_video %}
+                                      <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.service_video.url|safe }}" type="video/*"
+                                        preload controlsList="nodownload" poster="">
+
+                                        <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                                        <source type="video/*" allow="encrypted-media" src="{{ object.service_video.url|safe }}" class="img img-raised"></source>
+                                        <!-- Adding support for under-powered mobile devices -->
+                                        <source type="video/*" allow="encrypted-media" src="{{ object.service_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                                      </video>
+
+                                      {% else %}
+                                      <!-- jobs default video/ima -->
+                                      {% endif %}
+                                  </div>
+
+                                  <div class="col-md-8">
+                                    <h6 class="card-category text-info">{{ object.get_job_type_display }}</h6>
+                                    <h4 class="card-title">
+                                      <a href="#pablo">{{ object.service_tittle }}</a>
+                                    </h4>
+                                    <p class="card-description">
+                                       {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}
+                                      <a href="#pablo"> Read More </a>
+                                    </p>
+                                    <p class="author">
+                                      <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                                        <b>{{ object.user.profile.official_business_name|capfirst }}</b>
+                                      </a>,{{ object.created|timesince }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>                  </div>
+              </div>
+        {% elif klass == 'Product' %}
+             <div class='row'>
+                  <div class='col-12'>
+                    <div class="tab-pane " id="blogpost" >
+                      <div class="blogs-3">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                              <div class="card card-plain card-blog">
+                                <div class="row">
+
+                                  <div class="col-md-4">
+                                    {% if object.product_video %}
+                                      <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.product_video.url|safe }}" type="video/*"
+                                        preload controlsList="nodownload" poster="">
+
+                                        <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                                        <source type="video/*" allow="encrypted-media" src="{{ object.product_video.url|safe }}" class="img img-raised"></source>
+                                        <!-- Adding support for under-powered mobile devices -->
+                                        <source type="video/*" allow="encrypted-media" src="{{ object.product_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                                      </video>
+
+                                      {% else %}
+                                      <!-- jobs default video/ima -->
+                                      {% endif %}
+                                  </div>
+
+                                  <div class="col-md-8">
+                                    <h6 class="card-category text-info">{{ object.get_job_type_display }}</h6>
+                                    <h4 class="card-title">
+                                      <a href="#pablo">{{ object.product_tittle }}</a>
+                                    </h4>
+                                    <p class="card-description">
+                                       {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}
+                                      <a href="#pablo"> Read More </a>
+                                    </p>
+                                    <p class="author">
+                                      <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                                        <b>{{ object.user.profile.official_business_name|capfirst }}</b>
+                                      </a>,{{ object.created|timesince }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>                  </div>
+              </div>
+        {% else %}
+             <div class='row'>
+               <div class='col-12 col-lg-8 offset-lg-4'>
+                  <a href='{{ object.get_absolute_url }}'>{{ object }} | {{ object|class_name }}</a>
+              </div>
+             </div>
+          {% endif %}
+
+      {% endwith %}
+
+  {% empty %}
+<div class='row'>
+  <div class='col-12 col-md-6 mx-auto my-5 py-5'>
+    <form method='GET' class='' action='.'>
+        <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
+            <span class="input-group-addon cfe-nav" style='color:#000'>
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+        </div>
+    </form>
+  </div>
+</div>
+
+  {% endfor %}
+
+</div>

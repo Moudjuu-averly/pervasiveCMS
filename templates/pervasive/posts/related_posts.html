@@ -1,0 +1,37 @@
+
+<div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="title text-center">Similar Stories</h2>
+          <div class="row">
+            {% for post in related_posts %}
+            <div class="col-md-4">
+              <div class="card card-blog">
+                <div class="card-header card-header-image">
+                  {% if post.image.url %}
+                  <a href="{% url 'post:single_post' slug=post.slug %}">
+                    <img class="img img-raised" src="{{ post.image.url }}">
+                  </a>
+                  {% endif %}
+                <div class="colored-shadow" style="background-image: url({{ post.image }}); opacity: 1;"></div></div>
+                <div class="card-body">
+                  <h6 class="category text-info">{{ post.category }}</h6>
+                  <h4 class="card-title">
+                    <a href="{% url 'blog:single_blog' slug=blog.slug %}">{{ post.title }}</a>
+                  </h4>
+                  <p class="card-description">
+                    {{ post.content|safe|urlize|capfirst|truncatewords_html:11 }}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+              {% endfor %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

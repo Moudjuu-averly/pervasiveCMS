@@ -1,0 +1,102 @@
+{% extends 'pervasive/base.html' %}
+
+{% block body %}
+{% include 'pervasive/nav/header_nav.html' %}
+
+<br><br><br>
+<div class="login-page sidebar-collapse">
+
+
+  <div class="page-header header-filter" style="background-image: url('/media/img/city-profile.jpg'); background-size: cover; background-position: top center;">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 ml-auto mr-auto">
+            <form class="form" method="POST" enctype="multipart/form-data" action="">
+              {% csrf_token %}
+
+              <div class="card card-login card-hidden">
+                <div class="card-header card-header-primary text-center">
+                  <h4 class="card-title">Login</h4>
+                  <!-- <div class="social-line">
+                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </div> -->
+                </div>
+
+                  {{ crsf_token }}
+                  <div class="card-body ">
+                    <p class="card-description text-center">Be Classical</p>
+                    {% if form.errors %}
+                    {{ form.non_field_errors }}
+                    <!-- Tender Video -->
+                    <div data-notify="container" class="col-xs-11 col-sm-10 alert alert-danger alert-with-icon" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; top: 20px; left: 20px;">
+                      <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 50%; margin-top: -13px; z-index: 1062;"><i class="tim-icons icon-simple-remove"></i>
+                      </button>
+                      <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                       <span data-notify="title"></span> <span data-notify="message"><b>Warning</b>
+                         <ul style="list-style:none;">
+                           <li style="list-style:none;" class="alert-danger">{{ form.errors }} </li>
+                         </ul>
+                       </span>
+                       <a href="#" target="_blank" data-notify="url"></a>
+                    </div>
+                    {% endif %}
+                    <span class="bmd-form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="username" placeholder="username...">
+                      </div>
+                    </span>
+                    <span class="bmd-form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input type="password" class="form-control" name="password" placeholder="Password...">
+                      <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                    </span>
+                  </div>
+                  <!-- <div class="card-footer justify-content-center">
+                    <button type="submit" name="submit" class="btn btn-rose btn-link btn-lg">Lets Go</button>
+                    <hr><br>
+                  </div> -->
+                  <div class="card-footer justify-content-between">
+                  <div class="price">
+                    <a href="{% url 'accounts:reset_password' %}" class="btn btn-rose btn-link btn-lg">? Password</a>
+                  </div>
+                  <div class="stats">
+                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-primary" data-original-title="login">
+                      <button type="submit" name="submit" class="btn btn-primary btn-link btn-lg">Lets Go</button>
+                    </button>
+                  </div>
+                </div>
+
+
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+</div>
+
+
+{% endblock %}

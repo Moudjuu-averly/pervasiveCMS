@@ -1,0 +1,95 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+<!-- EDIT PROFILE PAGE -->
+
+<form class="" action="" method="POST">
+    {% csrf_token  %}
+
+      <div class="card-header text-center">
+        <button type="" onclick="window.history.back();" class="float-left btn btn-primary btn-sm btn-round">back</button>
+      <h3 class="description">Edit {{user}}'s display</h3>
+  </div>
+  {{ form.media }}
+  <div class="card-body">
+      <div class="row">
+        {{ form.non_field_errors }}
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              <label for="{{ form.company.id_for_label }}">Company Name</label>
+                {{ form.company_name.error }}
+                {{ form.official_business_name }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.business_type.error }}
+              <label for="{{ form.business_type.id_for_label }}">Business type </label>
+              {{ form.business_type }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="col-md-12 pr-md-1 text-center">Location and Business address</h4>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="fieldWrapper">
+                <label for="{{ form.country.id_for_label }}">Country </label>
+                {{ form.country_origin.error }}
+
+                <select name="country_origin" class="form-control valid" selected="" data-validation="required" id="id_country_origin">
+                    {% for country in form.country_origin %}
+                    {{ country }}
+                    {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="fieldWrapper">
+                <label for="{{ form.email_address.id_for_label }}"> City/ State/ Province</label>
+                {{ form.country_city.error }}
+                {{ form.country_city }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="fieldWrapper">
+                <label for="{{ form.address.id_for_label }}">Street address</label>
+                  {{ form.address.error }}
+                  {{ form.address }}
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row text-center">
+        <h4 class="col-md-12 pr-md-1">About</h4>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="{{ form.about.id_for_label }}"><i>Hint: write about, vision mission, yeah we got this.</i></label>
+            {{ form.about.error }}
+            {{ form.about }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="card-footer">
+    <button type="submit" name="submit" class="btn btn-fill btn-round btn-sm btn-primary pull-right">Save</button>
+  </div>
+</form>
+<!-- END EDIT PROFILE PAGE -->
+
+
+<!-- END EDIT PROFILE PAGE -->
+{% endblock %}

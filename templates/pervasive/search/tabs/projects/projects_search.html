@@ -1,0 +1,68 @@
+<div class="tab-pane" id="projects" aria-expanded="true">
+
+{% for profile in profile %}
+<div class="cd-section" id="blogs">
+  <!--     *********    PROJECTS      *********      -->
+  <div class="blogs-1" id="blogs-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 ml-auto mr-auto">
+        <!-- <h2 class="title">Latest Blogposts</h2> -->
+        <br>
+        <div class="card card-plain card-blog">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="card-header card-header-image">
+                {% if profile.projects_video %}
+                <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ profile.projects_video.url|safe }}" type="video/*"
+                  preload controls controlsList="nodownload" poster="" style="">
+
+                  <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                  <source type="video/mp4" allow="encrypted-media" src="{{ profile.projects_video.url|safe }}" class="img img-raised"></source>
+                  <!-- Adding support for under-powered mobile devices -->
+                  <source type="video/mp4" allow="encrypted-media" src="{{ profile.projects_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                </video>
+                {% else %}
+                <a href="#pablito">
+                  <img class="img" src="./assets/img/examples/card-blog4.jpg">
+                </a>
+                {% endif %}
+                {% if profile.project_video %}
+              <div class="colored-shadow" style="background-image: url({{ user.profile.projects_videoe.url }}); opacity: 1;"></div>
+              {% else %}
+              <div class="colored-shadow" style="background-image: url(&quot;./assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div>
+            {% endif %}
+          </div>
+
+          </div>
+            <div class="col-md-5">
+              <!-- project type -->
+              <h6 class="card-category text-info">{{ profile.get_business_type_display }}</h6>
+              <!-- project tittle -->
+              <h5 class="card-title">
+                <a href="#pablo">Autodesk looks to future of 3D printing with Project Escher</a>
+              </h5>
+              <p class="card-description">
+                <!-- project about -->
+                {{ profile.about }}…
+                <a href="#pablo"> Read More </a>
+              </p>
+              <p class="author">
+                by
+                <a href="#pablo">
+                  <b>Mike Butcher</b>
+                </a>, 2 days ago
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--     *********    END PROJECTS       *********      -->
+</div>
+{% endfor %}
+
+</div>

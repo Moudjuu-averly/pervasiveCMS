@@ -1,0 +1,120 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="">
+  <div class="content-center">
+    <div class="">
+      <br>
+        <form method='POST' id="post-job" action='' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="row">
+          <h4 class="container text-center">Add a new Job</h4>
+
+          {% if form.errors %}
+          {{ form.non_field_errors }}
+          <!-- Tender Video -->
+          <div class="alert">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+            <ul style="list-style:none;">
+              <li class="alert-danger"> <b> Warning - </b> {{ form.errors }} </li>
+            </ul>
+
+          </div>
+          {% endif %}
+          {{ form.media }}
+          <div class="col-md-12">
+            <label for="upload-video" class="" style="cursor: pointer;">
+                <i class="tim-icons icon-upload btn-sm"> upload</i>
+            </label>
+            <!-- <i name="job_video-clear" id="job_video-clear_id" class="tim-icons icon-trash-simple btn-sm float-right" style="cursor: pointer;"> clear</i> -->
+             <br>
+            <input type="file" name="job_video" id="upload-video" style="display:none;" accept="video/*" onchange="loadFile(event)">
+            <video id="output" data-play="hover" width="100%" height="auto" src="{{ job.job_video.url }}" type="video/*"
+              preload loop subtitles srclang="en" controls controlsList="nodownload" poster="">
+            </video>
+          </div>
+          <div class=" container">
+            <div class="row container">
+              <div class="col-md-12 px-md-1">
+                <div class="form-group">
+                  {{ form.job_tittle.error }}
+                  <label for="{{ form.job_tittle.id_for_label }}">Job Name</label>
+                    {{ form.job_tittle }}
+                </div>
+              </div>
+              <div class="col-md-6 px-md-1">
+                <div class="form-group">
+                  <div class="datepicker-container">
+                    <label for="{{ form.due_date.id_for_label }}">Due date </label>
+                    {{ form.due_date.error }}
+                    {{ form.due_date }}
+                  </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datepicker').datepicker({
+                                daysOfWeekDisabled: [0, 6]
+                            });
+                        });
+                    </script>
+                </div>
+              </div>
+              <div class="col-md-6 px-md-1">
+                <div class="form-group">
+                  <div class="field-job_type">
+                    <div>
+                      <label class="required" for="{{ form.job_type.id_for_label }}">Job type:</label>
+                          {{ form.job_type.error }}
+                          {{ form.job_type }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="col-md-6 px-md-1">
+                  <div class="form-group">
+                      <label for="{{ form.min_salary.id_for_label }}">Minimum salary </label>
+                      {{ form.min_salary.error }}
+                      {{ form.min_salary }}
+                  </div>
+                </div>
+                <div class="col-md-6 px-md-1">
+                  <div class="form-group">
+                      <label for="{{ form.max_salary.id_for_label }}">Maximun salary </label>
+                      {{ form.max_salary.error }}
+                      {{ form.max_salary }}
+                  </div>
+                </div>
+              <div class="col-md-12 px-md-1">
+                <div class="form-group">
+                  <div class="fieldWrapper text-center">
+                    <label for="{{ form.content.id_for_label }}">Full Description </label>
+                    {{ form.content }}
+                  </div>
+                </div>
+              </div>
+              <button type="submit" name="submit" class="btn btn-sm btn-round raised btn-primary pull-leeft">cancel</button>
+              <button type="submit" name="submit" onclick="demo.showNotification('top','center')" class="btn btn-sm btn-round raised btn-primary pull-right">post</button>
+
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      if (output.src == ''){
+        this.style.display = "none";
+      }
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
+{% endblock %}

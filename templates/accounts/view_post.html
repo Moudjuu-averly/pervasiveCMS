@@ -1,0 +1,34 @@
+<div class="boxs">
+
+              {% for post in post %}
+
+                <a href="#">
+                  <div class="box">
+                    <div class="img-area">
+                      {% if post.post_image %}
+                          <img class="media-object" src="{{ post.post_image.url }}" alt="status" >
+                          {% elif post.post_video %}
+                          <div class="html5-video-container col-md ml-auto">
+                            <video name='media-object'  controls  autobuffer width="auto" height="250" class="html5-video-container col-md ml-auto">
+                              <source name='media-object' src="{{ post.post_video.url }}" type="video/mp4"></source>
+                            </video>
+                          </div>
+                          {% else %}
+
+                          {% endif %}
+                          <div class="col-lg-9 description">
+
+                             <p class="btn-sm btn-link">{{ post.user.username.capitalize }} | {{ post.timestamp|timesince }} | {{ post.likes.count }} <i class="fa fa-heart"></i></p>
+
+                            <p class=""> {{ post.title|truncatechars:20 }}</p>
+                          </div>
+
+                    </div>
+
+
+
+                  </div>
+
+                </a>
+                {% endfor %}
+          </div>

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+  {% block body %}
+<body class="signup-page">
+
+  {% include 'navbar.html' %}
+
+  <div class="page-header header-filter" >
+
+                <div class="container">
+                  <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                          {% csrf_token %}
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Edit Profile</h4>
+                                    <p class="card-category">Complete your profile</p>
+                              </div>
+                                <div class="card-body">
+                                    <form method="post">
+                                      {% csrf_token %}
+
+                                      {{ form.as_p }}
+                                      <input type="submit" name="" value="update">
+                                    </form>
+                        </div>
+                        <!--rotating card-->
+
+
+                    </div>
+                </div>
+        </div>
+      </div>
+
+  </div>
+  </div>
+  {% include 'footer.html'%}
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

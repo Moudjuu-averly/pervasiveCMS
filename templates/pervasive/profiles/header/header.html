@@ -1,0 +1,43 @@
+{% for profile in profile %}
+{% if profile.cover_image %}
+<div class="page-header header-filter" data-parallax="true" style="background-image: url({{ profile.cover_image.url|safe }});">
+{% else %}
+<div class="page-header header-filter" data-parallax="true" style="background-image: url( );">
+{% endif %}
+{% endfor %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {% for profile in profile %}
+        <h3 class="title">{{ profile.official_business_name|capfirst|safe }}</h3>
+        <h4>{{ profile.about|safe|urlize|capfirst|truncatewords_html:19 }}
+        <a href="#pablo">More </a>
+         <div class="float-right"><br><span class="card-category  tittle">{{ profile.get_business_type_display }}</span></div>
+       </h4>
+       <br>
+        {% include 'pervasive/modals/login.html' %}
+        {% endfor %}
+      </div>
+
+      {% for profile in profile %}
+      <div class="col-md-5 ml-auto">
+        <div class="iframe-container">
+          {% if profile.about_video %}
+            <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ profile.about_video.url|safe }}" type="video/*"
+              preload controls controlsList="nodownload" poster="">
+
+              <!-- Adding Flash-free support for modern browers with open-source codecs -->
+              <source type="video/*" allow="encrypted-media" src="{{ profile.about_video.url|safe }}" class="img img-raised"></source>
+              <!-- Adding support for under-powered mobile devices -->
+              <source type="video/*" allow="encrypted-media" src="{{ profile.about_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+            </video>
+            {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<br>

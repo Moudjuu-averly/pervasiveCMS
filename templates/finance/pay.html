@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+
+  <body class="profile-page sidebar-collapse" >
+    {% include 'navbar.html' %}
+
+    <div class="wrapper">
+        <div class="page-header page-header-small" filter-color="orange">
+
+
+          <div class="pricing-4" id="pricing-4">
+              <div class="container">
+
+                  <div class="row">
+                      <div class="col-md-6 ml-auto mr-auto text-center">
+                          <h2 class="title">Pick the best plan for you</h2>
+                          <h5 class="description">You have Free Unlimited Updates and Premium Support on each package.</h5>
+                          <div class="section-space"></div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6">
+                          <div class="card card-pricing card-plain">
+                              <div class="card-body">
+                                  <h6 class="card-category">Starer</h6>
+                                  <h1 class="card-title">
+                                      <small>$</small>7.99
+                                  </h1>
+                                  <ul>
+                                      <li><i class="material-icons text-success">check</i> Sharing Tools</li>
+                                      <li><i class="material-icons text-danger">close</i> Design Tools</li>
+                                      <li><i class="material-icons text-danger">close</i> Dashboard</li>
+                                      <li><i class="material-icons text-danger">close</i> Personal Brand</li>
+                                  </ul>
+                              </div>
+                              <div class="card-footer justify-content-center">
+                                  <a href="" class="btn btn-danger btn-round">
+                                      Downgrade Plan
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="card card-pricing card-raised bg-success">
+                              <div class="card-body">
+                                  <h6 class="card-category">Regular</h6>
+                                  <h1 class="card-title">
+                                      <small>$</small>19</h1>
+                                  <ul>
+                                      <li><i class="material-icons text-success">check</i> Sharing Tools</li>
+                                      <li><i class="material-icons text-success">check</i> view on Flock</li>
+                                      <li><i class="material-icons text-danger">close</i> Private Messages</li>
+                                      <li><i class="material-icons text-danger">close</i> Business Videos</li>
+                                  </ul>
+                              </div>
+                              <div class="card-footer justify-content-center">
+                                  <a href="" class="btn btn-white btn-raised disabled btn-round">
+                                      Current Plan
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="card card-pricing card-plain">
+                              <div class="card-body">
+                                  <h6 class="card-category">Gold</h6>
+                                  <h1 class="card-title">
+                                      <small>$</small>49</h1>
+                                  <ul style="list-style:none;">
+                                      <li><i class="material-icons text-success">check</i> Sharing on FB</li>
+                                      <li><i class="material-icons text-success">check</i> Productivity</li>
+                                      <li><i class="material-icons text-success">check</i> Unlimited Posts</li>
+                                      <li><i class="material-icons text-danger">close</i> Personal Brand</li>
+                                  </ul>
+                              </div>
+                              <div class="card-footer justify-content-center">
+                                  <a href="" class="btn btn-success btn-round">
+                                      Upgrade Plan
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="card card-pricing card-plain">
+                              <div class="card-body ">
+                                  <h6 class="card-category">Platinum </h6>
+                                  <h1 class="card-title">
+                                      <small>$</small>125</h1>
+                                  <ul>
+                                      <li><i class="material-icons text-success">check</i> Sharing Tools</li>
+                                      <li><i class="material-icons text-success">check</i> Design Tools</li>
+                                      <li><i class="material-icons text-success">check</i> Private Messages</li>
+                                      <li><i class="material-icons text-success">check</i> Personal Brand</li>
+                                  </ul>
+                              </div>
+                              <div class="card-footer justify-content-center">
+                                  <a href="" class="btn btn-success btn-round">
+                                      Upgrade Plan
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+        </div>
+
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script type="text/javascript">
+    $().ready(function(){
+        $('[rel="tooltip"]').tooltip();
+
+    });
+
+    function rotateCard(btn){
+        var $card = $(btn).closest('.card-container');
+        console.log($card);
+        if($card.hasClass('hover')){
+            $card.removeClass('hover');
+        } else {
+            $card.addClass('hover');
+        }
+    }
+</script>
+
+  </body>
+{% endblock %}

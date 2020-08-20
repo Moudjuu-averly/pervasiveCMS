@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+<body class="signup-page sidebar-collapse">
+
+  {% include 'navbar.html' %}
+
+  <div class="page-header header-filter" filter-color="purple" style="background-image: url('../assets/img/bg7.jpg')">
+
+      <div class="container">
+          <div class="col-md-8">
+                <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label><h3>Say a Pervasive status</h3></label>
+                            <div class="form-group bmd-form-group">
+                                <label class="bmd-label-floating"> Lamborghini Mercy, Your bae is so thirsty, I'm in that two seat Lambo.</label>
+                                <textarea class="form-control" name="post" rows="5" value="" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-raised btn-round  pull-right">Post</button>
+                <div class="clearfix"></div>
+                </form>
+                  <h2>{{ text }}</h2>
+                    {% for post in posts %}
+                      <h6>{{ post.post }}</h6>
+                      <p>{{ post.user.username.capitalize }} | {{ post.created }}</p>
+                    {% endfor %}
+          </div>
+          <div class="col-md-4">
+              <h4>Other flockers</h4>
+              {% for user in users %}
+                <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+                    <h3>{{ user.username }}</h3>
+                </a>
+                {% if not user in friends %}
+                <a href="{% url 'flock:change_friends' operation='add' pk=user.pk %}">
+                  <button type="button" class="btn btn-success">Flock</button>
+                </a>
+                {% endif %}
+              {% endfor %}
+                <h4>Flocks</h4>
+                  {% for friend in friends %}
+                    <a href="{% url 'accounts:view_profile_with_pk' pk=friend.pk %}">
+                        <h3>{{ friend.username }}</h3>
+                      </a>
+                      <a href="{% url 'flock:change_friends' operation='remove' pk=friend.pk %}">
+                        <button type="submit" class="btn btn-primary btn-raised btn-round">Unflock</button>
+                        <div class="clearfix"></div>
+                      </a>
+                  {% endfor %}
+          </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Basecode-GT Globals
+              </a>
+            </li>
+            <li>
+              <a href="https://presentation.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="fa fa-heart"> favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Baecode-GT Visuals</a> for a better web.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Welcome to the team</h1>
+  </body>
+</html>

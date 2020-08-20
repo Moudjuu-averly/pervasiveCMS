@@ -1,0 +1,73 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+<!-- Jobs-->
+{% block content %}
+<div class="">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="">
+          {% include 'profiles/jobs/nav/nav.html' %}
+        <!-- <div class="card card-white"> -->
+          <div class="card-header">
+            <div class="col-sm-6 text-left">
+              <h5 class="card-category">Jobs</h5>
+              <h2 class="card-title">All {{ user }} jobs</h2>
+            </div>
+          </div>
+          <div class="">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- JOBS ON USER JOBS MAIN PAGE -->
+                      <!-- ALL JOBS VIEW -->
+                      <span class="current text-center container">
+                      <div class="text-muted">
+                        Page {{ job.number }} of {{ job.paginator.num_pages }}
+                      </div>
+                      </span>
+                      {% for job in job %}
+                        {% if job %}
+                          <div class="card card-chart">
+                            <div class="card-header">
+                              <h3 class="card-title title d-inline"><i class="tim-icons icon-badge text-primary"></i><a href="{% url 'flock:view_single_flock' job.pk %}">{{job.job_tittle|capfirst}}</a>-32 applicants</h3>
+                                <h5 class="card-category title"> <a href="{% url 'profiles:view_profile_with_pk' job.user_id %}">@{{ job.user }}</a><span class="badge description social-description">{{ job.created|timesince }}</span>
+                                <h5 class="card-category"><span class="badge"><a href="{% url 'flock:view_all_flocks'%}">flocks</a></span>
+                            </div>
+                            <div class="">
+                              <div class="content container">
+                                  <div class="social-description ">
+                                    {{ job.title }}
+                                    {{ job.description }}
+                                    {{ job.requirements }}
+                                    <h4 class="text-muted"><i class="tim-icons icon-watch-time"></i> <span class="badge">{{ flock.category }}</span> </h4>
+                                    <h4 class="card-category"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">2311</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 flock</span> <a href="{% url 'profiles:view_profile_with_pk' job.user_id %}">@{{ job.user }}</a></h4>
+                                  </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                          <!-- BOTTOM PAGINATION -->
+                          {% include 'jobs/pagination.html' %}
+                        <!-- END BOTTOM PAGINATION -->
+                      <!-- END ALL JOBS VIEW -->
+                    <div class="card-footer text-right">
+                      <button type="submit" class="btn btn-fill btn-sm btn-round btn-primary">load more...</button>
+                    </div>
+                    <div class="content-center">
+                      <div class="card-description">
+                        <h2 class="description">Flocking Pervasives</h2>
+                      </div>
+                    </div>
+                  <!-- END MAIN PAGE JOBS -->
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

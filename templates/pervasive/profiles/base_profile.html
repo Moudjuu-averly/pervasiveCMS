@@ -1,0 +1,58 @@
+{% extends 'pervasive/index.html' %}
+
+{% block body %}
+<body class=" landing-page sidebar-collapse">
+
+  {% include 'pervasive/nav/header_nav.html' %}
+
+  {% include 'pervasive/profiles/header/header.html' %}
+
+<div class="profile-page">
+  <div class="main main-raised">
+    <div class="profile-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+              <div class="avatar">
+                {% for profile in profile %}
+                {% if profile.profile_image %}
+                <a href="#profile">
+                  <img src="{{ profile.profile_image.url }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                </a>
+                {% else %}
+                <a href="#profile">
+                  <img src="" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                </a>
+                {% endif %}
+                {% endfor %}
+
+              </div>
+            </div>
+            <div class="follow">
+              <button class="btn btn-fab btn-primary btn-round" rel="tooltip" title="" data-original-title="Follow this user">
+                <i class="material-icons">add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- TAB LIST -->
+          {% include 'pervasive/profiles/tabs/nav.html' %}
+          <!-- END TAB LIST -->
+          {% include 'pervasive/profiles/subscribe.html' %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'pervasive/profiles/related_profiles.html' %}
+
+{% include 'pervasive/footer/footer.html' %}
+
+
+</body>
+
+{% endblock %}

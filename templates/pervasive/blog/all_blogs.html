@@ -1,0 +1,82 @@
+{% extends 'pervasive/index.html' %}
+
+{% block body %}
+<body class="landing-page sidebar-collapse">
+
+  {% include 'pervasive/nav/header_nav.html' %}
+
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('/media/media/img/bg5.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="title">Your Story Starts With Us.</h2>
+          <h4>“It is not your customer’s job to remember you. It is our obligation and responsibility to make sure they don’t have the chance to forget you.” <span class="float-right"><i><br> – Patricia Fripp</i></span></h4>
+          <br>
+        </div>
+
+        <div class="col-md-5 ml-auto">
+          <div class="iframe-container">
+            <iframe height="250" src="https://www.youtube.com/embed/IN6QnLpVEPI" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<div class="main main-raised">
+  <div class="container">
+    <div class="section text-center">
+      {% block content %}
+      <div class="row">
+      <div class="col-md-12">
+        <!-- <h2 class="title text-center">Similar Stories</h2>
+        <br> -->
+
+        <div class="row">
+          {% for blog in blogs %}
+          <div class="col-md-4">
+            <div class="card card-blog">
+              <div class="card-header card-header-image">
+                {% if blog.blog_image.url %}
+                <a href="{% url 'blog:single_blog' slug=blog.slug %}">
+                  <img class="img img-raised" src="{{ blog.blog_image.url }}">
+                </a>
+                {% endif %}
+              <div class="colored-shadow" style="background-image: url({{ blog.blog_image }}); opacity: 1;"></div></div>
+              <div class="card-body">
+                <h6 class="category text-info">{{ blog.get_blog_category_display }}</h6>
+                <h4 class="card-title">
+                  <a href="{% url 'blog:single_blog' slug=blog.slug %}">{{ blog.blog_tittle }}</a>
+                </h4>
+                <p class="card-description">
+                  {{ blog.content|safe|urlize|capfirst|truncatewords_html:11 }}
+                </p>
+              </div>
+              <!-- {% if blog.user.profile.profile_image %}
+              <div class="photo">
+                <a href="#">
+                <img class="pull-right" src="{{ blog.user.profile.profile_image.url }}" alt="..." class="avatar img-raised img-fluid" style="border-radius: 50%; padding: 5px;width :50px;">
+                </a>
+              </div>
+                {% endif %} -->
+                
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+
+      </div>
+      </div>
+      {% endblock %}
+    </div>
+
+
+  </div>
+
+
+  </div>
+
+  {% include 'pervasive/footer/footer.html' %}
+</body>
+
+{% endblock %}

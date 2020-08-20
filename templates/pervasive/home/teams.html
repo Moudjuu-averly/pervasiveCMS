@@ -1,0 +1,41 @@
+{% if profile %}
+{% for org in profile %}
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-header card-header-icon card-header-rose">
+      <div class="card-icon">
+        <!-- point to the job owner's profile -->
+        <a style="color:#ffffff;" href="{% url 'profiles:view_profile_visitor' slug=org.slug %}">{{ org.user|capfirst }} <span class="badge float-right">pro</span></a>
+      </div>
+    </div>
+    <br>
+    {% if org.about_video %}
+    <a href="{% url 'profiles:view_profile_visitor' slug=org.slug %}">
+      <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ org.about_video.url }}" type="video/*"
+        preload controlsList="nodownload" poster="">
+
+        <!-- Adding Flash-free support for modern browers with open-source codecs -->
+        <source type="video/mp4" src="{{ org.about_video.url }}"></source>
+        <!-- Adding support for under-powered mobile devices -->
+        <source type="video/mp4" src="{{ org.about_video.url }}" media="only screen and (min-device-width: 568px)"></source>
+
+      </video>
+    </a>
+    {% endif %}
+      <h5 class=""><!-- point to the job owner's profile -->
+        <a href="{% url 'profiles:view_profile_visitor' slug=org.slug %}">{{ org.user|capfirst }}
+        </a>
+        <!-- Show business type type,,, change to link and retreave same job type -->
+        - {{ org.get_business_type_display }}</h5>
+        <br>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="card-header card-header-icon card-header-rose">
+  <div class="card-icon">
+    <!-- point to the job owner's profile -->
+    <h1 class="title">No teams to show, make a turn later</h1>
+</div>
+</div>
+{% endif %}

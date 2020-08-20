@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+
+  <body class="profile-page sidebar-collapse" >
+    {% include 'navbar.html' %}
+
+    <main class="profile-page " data-parallax="true">
+
+      <section class="section-profile-cover section-shaped my-0 ">
+        {% if user.userprofile.profile_image %}
+        <div class="shape shape-style-1 shape-primary shape-skew alpha-4 img-fluid floating" style="background: url({{ user.userprofile.flock_cover.url }} ) no-repeat; background-size: 100%;">
+          {% else %}
+          <div class="shape shape-style-1 shape-primary shape-skew alpha-4">
+        {% endif %}
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+      <section class="section section-skew ">
+        <div class="container">
+          <div class="card card-profile shadow mt--300">
+            <div class="px-4">
+              <div class="row justify-content-center">
+                <div class="col-lg-3 order-lg-2">
+                  <div class="card-profile-image img-fluid floating">
+                    {% if user.userprofile.profile_image %}
+                    <a href="#">
+                      <img src="{{ user.userprofile.profile_image.url }}" class="rounded-circle">
+                    </a>
+                    {% else %}
+                      <a href="#">
+                        <img src="/media/media/images/defaults/placeholder.jpg" class="rounded-circle" />
+                      </a>
+                    {% endif %}
+                  </div>
+
+                </div>
+                <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                  <div class="card-profile-actions py-4 mt-lg-0">
+                    <a href="#" class="btn btn-sm btn-info mr-4">Flock</a>
+                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-4 order-lg-1 align-self-lg-center">
+                  <div class="card-profile-actions py-4 mt-lg-0">
+
+                    <div>
+                      <span class="heading">22</span>
+                      <span class="description">Friends</span>
+                    </div>
+
+                    <div>
+                      <span class="heading">10</span>
+                      <span class="description">Photos</span>
+                    </div>
+                    <div>
+                      <span class="heading">89</span>
+                      <span class="description">Comments</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="text-center mt-5">
+                <h3>{{ user.username.capitalize }}
+                </h3>
+                <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>{{ user.userprofile.address }} | {{ user.userprofile.city }} , {{ user.userprofile.country }}</div>
+                <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>{{ user.userprofile.occupation }} - {{ user.userprofile.company }}</div>
+
+                <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
+                <!-- social links -->
+                <div class="card-footer justify-content-center">
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i><div class="ripple-container"></div></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                </div>
+                </div>
+              <div class="mt-4 py-4 border-top text-center">
+                <div class="row justify-content-center">
+                  <div class="col-lg-9">
+                    <p>{{ user.userprofile.about }}.</p>
+                    <a href="#">Show more</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+    {% include 'modals.html' %}
+    {% include 'footer.html' %}
+  </body>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends 'pervasive/home/home.html' %}
+
+{% load i18n %}
+{% load product_n_services %}
+{% load humanize %}
+
+{% block content %}
+
+<div class='row title-row'>
+    <div class='col-12'>
+        <h3 class='h'>{{ object_list|length }} Products and Services</h3>
+    </div>
+</div>
+
+<!-- include 'pervasive/ps/tabs/nav.html'  -->
+<div class="row">
+{% for object in object_list %}
+    {% with object|product_n_services as klass %}
+      {% if klass == 'Product' %}
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+              <div class="card-icon">
+                <!-- point to the job owner's profile -->
+                <a style="color:#ffffff;" href="">{{ object.product_tittle|capfirst }}</a>
+                <span class="float-right" style="color:#ffffff;">Product</span>
+              </div>
+            </div>
+            <br>
+            {% if object.product_video %}
+            <a href="">
+              <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.product_video.url }}" type="video/*"
+                preload controlsList="nodownload" poster="">
+
+                <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                <source type="video/mp4" src="{{ object.product_video.url }}"></source>
+                <!-- Adding support for under-powered mobile devices -->
+                <source type="video/mp4" src="{{ object.product_video.url }}" media="only screen and (min-device-width: 568px)"></source>
+
+              </video>
+            </a>
+            {% endif %}
+              <h5 class=""><!-- point to the job owner's profile -->
+                <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">{{ object.user.profile.official_business_name|capfirst }}
+                </a>
+                <!-- Show business type type,,, change to link and retreave same job type -->
+                - {{ object.get_product_type_display }}</h5>
+
+
+          </div>
+        </div>
+
+        <br>
+    {% elif klass == 'Service' %}
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header card-header-icon card-header-rose">
+            <div class="card-icon">
+              <!-- point to the job owner's profile -->
+              <a style="color:#ffffff;" href="">{{ object.service_tittle|capfirst }}</a>
+              <span class="float-right" style="color:#ffffff;">Service</span>
+            </div>
+          </div>
+          <br>
+          {% if object.service_video %}
+          <a href="">
+            <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.service_video.url }}" type="video/*"
+              preload controlsList="nodownload" poster="">
+
+              <!-- Adding Flash-free support for modern browers with open-source codecs -->
+              <source type="video/mp4" src="{{ object.service_video.url }}"></source>
+              <!-- Adding support for under-powered mobile devices -->
+              <source type="video/mp4" src="{{ object.service_video.url }}" media="only screen and (min-device-width: 568px)"></source>
+
+            </video>
+          </a>
+          {% endif %}
+            <h5 class=""><!-- point to the job owner's profile -->
+              <a href="">{{ object.user.profile.official_business_name|capfirst }}
+              </a>
+              <!-- Show business type type,,, change to link and retreave same job type -->
+              - {{ object.get_service_type_display }}</h5>
+
+
+        </div>
+      </div>
+
+{% elif klass == 'Tender' %}
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+              <div class="card-icon">
+                <!-- point to the job owner's profile -->
+                <a style="color:#ffffff;" href="">{{ object.tender_tittle|capfirst }}</a>
+                <span class="float-right" style="color:#ffffff;">Tender</span>
+              </div>
+            </div>
+            <br>
+            {% if object.tender_video %}
+            <a href="">
+              <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.tender_video.url }}" type="video/*"
+                preload controlsList="nodownload" poster="">
+
+                <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                <source type="video/mp4" src="{{ object.tender_video.url }}"></source>
+                <!-- Adding support for under-powered mobile devices -->
+                <source type="video/mp4" src="{{ object.tender_video.url }}" media="only screen and (min-device-width: 568px)"></source>
+
+              </video>
+            </a>
+            {% endif %}
+              <h5 class=""><!-- point to the job owner's profile -->
+                <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">{{ object.user.profile.official_business_name|capfirst }}
+                </a>
+                <!-- Show business type type,,, change to link and retreave same job type -->
+                Due: {{ object.due_date }}</h5>
+
+
+          </div>
+        </div>
+
+{% else %}
+
+   <div class='col-12 col-lg-8 offset-lg-4'>
+      <a href='{{ object.get_absolute_url }}'>{{ object }} | {{ object|product_n_services }}</a>
+   </div>
+{% endif %}
+
+{% endwith %}
+
+{% empty %}
+<div class='row'>
+    <div class='col-12 col-md-6 mx-auto my-5 py-5'>
+    <form method='GET' class='' action='.'>
+
+        <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
+            <span class="input-group-addon cfe-nav" style='color:#000'>
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+        </div>
+
+    </form>
+
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}

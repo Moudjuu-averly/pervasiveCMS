@@ -1,0 +1,28 @@
+{% extends 'pervasive/base.html' %}
+
+{% block body %}
+<body class="landing-page sidebar-collapse">
+
+  {% include 'pervasive/nav/header_nav.html' %}
+
+<div class="main" style="background-image: url('/media/img/city.jpg');">
+  <!-- <div class="container"> -->
+  <div class="">
+    <div class="section text-center">
+
+
+      {% block content %}
+        <h2 class="title">Meet the greatest</h2>
+      {% endblock %}
+
+    </div>
+
+  </div>
+</div>
+
+{% include 'pervasive/footer/footer.html' %}
+
+
+</body>
+
+{% endblock %}

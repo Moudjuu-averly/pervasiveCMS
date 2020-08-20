@@ -1,0 +1,45 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="container">
+  <br>
+  <h5 class="card-category text-right">
+    {% with total=support.count %} {{ total }} Total complaint{{ total|pluralize }} {% endwith %}
+  </h5>
+  <h4 class=" text-center text-muted">All of {{ user }}'s DM's</h4>
+  <div class="row">
+    <div class="col-md-12">
+          <div class="dropdown float-right">
+            <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown" aria-expanded="false">
+              <i class="tim-icons icon-settings-gear-63"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-122px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+              <a class="dropdown-item" href="{% url 'support:contact_support' %}">New</a>
+              <a class="dropdown-item" href="">Sent DM's</a>
+            </div>
+          </div>
+          <br>
+    {% for support in support %}
+      <h4 class="text-muted card-title d-inline">
+         <a href="#">{{ support.support_tittle|title }}</a> - {{ support.get_support_type_display }}
+        <!-- {{ support.id }}. <a href="">{{ support.support_tittle|capfirst}}</a> - {{ support.get_support_type_display }} -->
+      </h4>
+      <div class="social-description ">
+        <h4 class="card-category text-muted"><i class="tim-icons icon-tap-02 text-success"></i><span class="badge">
+          {% if support.seen %} Read by {{ support.seen_by_us }} on {{ support.viewed_at }}
+          {% else %}
+          <i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">
+          {% endif %}
+        </span>Date sent: <span class="description"> {{ support.created }}</span>
+      </h4>
+      </div>
+    {% empty %}
+    <br><br>
+    <h5 class="card-category text-center">
+      You have not raise any concern yet, you can use this <a href="{% url 'support:contact_support' %}">form</a> to create one.
+    </h5><br><br>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% if announce %}
+<div class="card-container manual-flip">
+      <div class="card">
+          <div class="front">
+              {% if announce.announce_image %}
+              <img src="{{ announce.announce_image.url }}" class="card-img-top">
+              {% else  %}
+
+              {% endif %}
+          </div> <!-- end front panel -->
+          <div class="back">
+            <h4 class="card-title title d-inline">
+              <span class="float-left btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="back to all announces"> <a href="#" onclick="window.history.back();">Back to announces</a> </span>
+            </h4>
+              <div class="content container">
+                      <h4 class="text-center">{{ announce.announce_tittle|title }}</h4>
+                      {{ announce.content|safe|urlizetrunc:15|truncatewords_html:21 }}
+                      <!-- <a href="#" data-toggle="modal" data-target="#read-full-announce-modal">More</a> -->
+                      <div class="stats-container">
+                          <div class="stats">
+                            <h6 class="description" style="text-align:black;" >Date</h6>
+                              <p>
+                                  {{ announce.created }}
+                              </p>
+                          </div>
+                      </div>
+              </div>
+              <div class="footer">
+                  <button class="btn btn-primary btn-sm btn-round" rel="tooltip" title="" onclick="rotateCard(this)" data-original-title="Back to video">
+                       Back
+                  </button>
+                  <div class="social-links text-center">
+                      <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                      <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                      <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+  {% include 'profiles/adclass/general/read_full_announce_modal.html' %}
+{% else %}
+<div class="text-center container">
+  <h4> There are currently no announces, please make use of this<a href="{% url 'adclass:add_announce' %}"> form</a> to add a announce.</h4>
+</div>
+{% endif %}

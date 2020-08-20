@@ -1,0 +1,69 @@
+{% if service %}
+<div class="card-container manual-flip">
+      <div class="card">
+          <div class="front">
+              {% if service.service_video %}
+              <!--  include 'profiles/services/nav/nav.html'  -->
+                <video data-play="hover" muted="muted" width="100%" height="auto" src="{{ service.service_video.url }}" type="video/*"
+                  preload loop subtitles srclang="en" controls controlsList="nodownload" poster="">
+                </video>
+                    <div class="container float-left">
+                        <button class="btn btn-primary btn-sm btn-round" onclick="rotateCard(this)">
+                            read instead
+                        </button>
+                        <button class="btn btn-primary btn-sm btn-round float-right" onclick="rotateCard(this)">
+                          apply now
+                        </button>
+                    </div>
+              {% else %}
+              <video data-play="hover" muted="muted" width="100%" height="auto" src="" type="video/*"
+                preload loop subtitles srclang="en" controls controlsList="nodownload" poster=""> no video to show
+              </video>
+              {% endif %}
+          </div> <!-- end front panel -->
+          <div class="back">
+            <h4 class="card-title title d-inline">
+              <span class="float-left btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="back to all services"> <a href="#" onclick="window.history.back();">Back to services</a> </span>
+              <span class="float-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Edit Task"> <a href="{% url 'services:update_service' slug=service.slug %}" ><i class="tim-icons icon-pencil"></i></a> </span>
+            </h4>
+              <div class="content container">
+                      <h4 class="text-center">{{ service.service_tittle|capfirst }}</h4>
+                      {{ service.content|safe|urlizetrunc:15|truncatewords_html:21 }}<a href="#" data-toggle="modal" data-target="#read-full-service-modal">More</a>
+                      <div class="stats-container">
+                          <div class="stats">
+                            <h6 class="description" style="text-align:black;" >Date</h6>
+                              <p>
+                                  {{ service.created }}
+                              </p>
+                          </div>
+                          <div class="stats">
+                            <h6 description>Salary</h6>
+                              <p>
+                                  N$-{{ service.start_price_salary }}
+                              </p>
+                          </div>
+                          <div class="stats">
+                            <h6 description>Due date</h6>
+                              <p>
+                                {{ service.end_price_date }}
+                              </p>
+                          </div>
+                      </div>
+              </div>
+              <div class="footer">
+                  <button class="btn btn-primary btn-sm btn-round" rel="tooltip" title="" onclick="rotateCard(this)" data-original-title="Back to video">
+                       Back
+                  </button>
+                  <div class="social-links text-center">
+                      <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                      <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                      <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+  {% include 'profiles/adclass/services/read_full_service_modal.html' %}
+{% else %}
+<h2> There are currently no services, please make use of this<a href="{% url 'services:add_service' %}"> form</a> to add a service.</h2>
+{% endif %}

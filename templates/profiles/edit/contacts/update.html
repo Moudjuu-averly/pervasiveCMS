@@ -1,0 +1,83 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+<!-- EDIT PROFILE PAGE -->
+
+<form class="" action="" method="POST">
+    {% csrf_token  %}
+  <div class="card-header text-center">
+    <button type="" onclick="window.history.back();" class="float-left btn btn-primary btn-sm btn-round">back</button>
+  <h3 class="description">Edit {{user}}'s Contacts</h3>
+  </div>
+  <div class="card-body">
+    {% if form.errors %}
+    {{ form.non_field_errors }}
+    <!-- Tender Video -->
+    <div class="alert">
+      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="tim-icons icon-simple-remove"></i>
+      </button>
+      <ul style="list-style:none;">
+        <li class="alert-danger"> <b> Warning - </b> {{ form.errors }} </li>
+      </ul>
+
+    </div>
+    {% endif %}
+    <div class="row">
+      <h4 class="col-md-12">Business Contacts</h4>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ form.support_email.id_for_label }}">Support email </label>
+            {{ form.support_email.error }}
+            {{ form.support_email }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ form.email_address.id_for_label }}"> Business contact email</label>
+            {{ form.email_address.error }}
+            {{ form.email_address }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ form.office_phone.id_for_label }}">Office number</label>
+            {{ form.office_phone.error }}
+            {{ form.office_phone }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ form.contact_cell.id_for_label }}">Cell</label>
+            {{ form.contact_cell.error }}
+            {{ form.contact_cell }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ form.website.id_for_label }}">Website</label>
+            {{ form.website.error }}
+            {{ form.website }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ form.blog.id_for_label }}">Blog</label>
+            {{ form.blog.error }}
+            {{ form.blog }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" name="submit" class="btn btn-fill btn-round btn-sm btn-primary pull-right">Save</button>
+  </div>
+</form>
+<!-- END EDIT PROFILE PAGE -->
+
+
+<!-- END EDIT PROFILE PAGE -->
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+{% block content %}
+<div class="container">
+  <br>
+  <h5 class="card-category text-right">
+    {% with total=product.count %} {{ total }} Product{{ total|pluralize }} {% endwith %}
+  </h5>
+  <h3 class=" text-center text-muted">All of {{ user }}'s Products</h3>
+  <div class="row">
+    <div class="col-md-12">
+          <div class="dropdown float-right">
+            <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown" aria-expanded="false">
+              <i class="tim-icons icon-settings-gear-63"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-122px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+              <a class="dropdown-item" href="{% url 'products:add_product' %}">New</a>
+              <a class="dropdown-item" href="">Most viewed</a>
+              <a class="dropdown-item" href="#pablo">Most applied</a>
+              <a class="dropdown-item" href="#pablo">Oldest</a>
+              <a class="dropdown-item" href="#pablo">Most ordered</a>
+            </div>
+          </div>
+          <br>
+    {% for product in product %}
+      <hr>
+      <h4 class="text-muted card-title d-inline">
+        {{ product.id }}. <a href="{% url 'products:corp_single_product_view' slug=product.slug %}">{{ product.product_tittle|capfirst}}</a> - {{ product.get_product_type_display }}
+        <span class="description">{% if product.edited %}| edited on {{ product.edit_date }} {% endif %} </span>
+        <span class="float-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Delete {{ product.product_tittle|capfirst }}"><a href="#" data-toggle="modal" data-target="#delete-product-modal"><i class="tim-icons icon-trash-simple"></i></a> </span>
+        {% include 'profiles/adclass/products/delete_product_modal.html' %}
+        <span class="float-right text-right btn-link btn-primary btn-sm" rel="tooltip" title="" data-original-title="Edit {{ product.product_tittle|capfirst }}"> <a href="{% url 'products:update_product' slug=product.slug %}" ><i class="tim-icons icon-pencil"></i></a> </span>
+      </h4>
+      <div class="social-description ">
+        <h4 class="card-category text-muted"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">{{ product.views }} views</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 orderd</span> <span class="description">{{ product.created }}</span></h4>
+      </div>
+    {% empty %}
+    <h5 class="dscription">You have no products yet. use this <a href="{% url 'products:add_product' %}">form</a> to add new products.</h5>
+    {% endfor %}
+        <div class="content-center container">
+          <div class="card-description">
+            <h5 class="description">About Pervasive products</h5>
+          </div>
+        </div>
+      <!-- END MAIN PAGE products -->
+    </div>
+  </div>
+</div>
+{% endblock %}

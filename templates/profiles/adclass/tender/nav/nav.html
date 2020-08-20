@@ -1,0 +1,71 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" >
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle d-inline">
+        <button type="button" class="navbar-toggler">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <a class="navbar-brand" href=""><h5 class="card-category"></h5></a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="navbar-nav ml-auto">
+        <li class="dropdown nav-item">
+          <a href="{% url 'adclass:AdClassView' %}" class=" nav-link" data-toggle="">
+            <div class=" d-none d-lg-block d-xl-block"></div>
+            <i class="">All</i>
+            <p class="d-lg-none">
+              All
+            </p>
+          </a>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="/adclass/tender/add" class=" nav-link" data-toggle="">
+            <div class=" d-none d-lg-block d-xl-block"></div>
+            <i class="">Add</i>
+            <p class="d-lg-none">
+              Add new tender
+            </p>
+          </a>
+        </li>
+
+
+        <li class="dropdown nav-item">
+          <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <div class="d-none d-lg-block d-xl-block"></div>
+            <i class="tim-icons icon-align-center"></i>
+            <p class="d-lg-none">
+              settings
+            </p>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+            <li class="nav-link">
+              <a href="/jobs/all/view" class="nav-item dropdown-item">All</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">Active</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">Filter</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">Inactive</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="separator d-lg-none"></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- End Navbar -->

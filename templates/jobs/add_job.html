@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+  {% block body %}
+  {% load humanize %}
+  {% load i18n %}
+  <body class="profile-page sidebar-collapse">
+    {% include 'navbar.html' %}
+
+  {% if user.userprofile.flock_cover %}
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url({{ user.userprofile.flock_cover.url }});"></div>
+  {% else %}
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('/media/media/images/defaults/bg6.jpg'); transform: translate3d(0px, 0px, 0px); color:#fff;"></div>
+  {% endif %}
+
+  <div class="main main-raised">
+    <div class="profile-content">
+      <ul class="timeline">
+
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="bg-red">
+            10 Feb. 2014
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+
+    <!-- timeline item -->
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-envelope bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+            <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+
+            <div class="timeline-body">
+
+                ...
+              {% trans 'Content goes here' %}
+            </div>
+
+            <div class="timeline-footer">
+                <a class="btn btn-primary btn-xs">...</a>
+            </div>
+        </div>
+    </li>
+    <!-- END timeline item -->
+
+
+
+</ul>
+{% block content %}
+<div class="">
+  <div class="row">
+    <div class="col-md-6 ml-auto mr-auto">
+      <div class="profile-tabs">
+        <form method='POST' id="imageContainer" action='' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ form.as_p }}
+                <button type="submit" name="submit" class="btn btn-sm btn-round raised btn-primary pull-right">post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+      </div>
+    </div>
+  </div>
+  {% include 'modals.html' %}
+  {% include 'footer.html' %}
+  <!--   Core JS Files   -->
+
+</body>
+{% endblock %}

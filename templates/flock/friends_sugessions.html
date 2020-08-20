@@ -1,0 +1,87 @@
+<div class="col-md-5 mr-auto" id="owl-demo">
+      <!-- USERS LIST -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Latest Flockers<span class="badge badge-info">New Members</span>
+          </h5>
+
+          {% if not users in friends %}
+          {% with total=users.count %}
+
+              {{ total }} New Member{{ total|pluralize }}
+
+          {% endwith %}
+          {% endif %}
+
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          {% load static %}
+          <ul class="users-list clearfix">
+            {% for user in users %}
+              {% if not user in friends %}
+              <li>
+                {% if user.userprofile.profile_image %}
+                  <img src="{{ user.userprofile.profile_image.url }}" class="avatar img-raised">
+                {% else %}
+                <img src="/media/media/images/defaults/placeholder.jpg" class="avatar img-raised">
+                    <div class="ripple-container"></div>
+                {% endif %}
+                <a class="users-list-name" href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+                  {{ user.username.capitalize }}
+                </a>
+                <a href="{% url 'flock:change_friends' operation='add' pk=user.pk %}">
+                  <button type="button" class="btn btn-sm btn-primary btn-raised btn-round pull-right"><i class="material-icons"></i>Flock</button>
+                </a>
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <!-- /.users-list -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer text-center">
+          <a href="javascript::">View All Users</a>
+        </div>
+        <!-- /.card-footer -->
+        <div class="col-md mr-auto"><!-- /.Flockers -->
+          <div class="info info-horizontal">
+                <div class="icon icon-primary">
+
+                </div>
+                <div class="description">
+                    <h5 class="info-title">
+                      {% with total=friends.count %}
+                          Flock{{ total|pluralize }} {{ total }}
+                      {% endwith %}
+                    </h5>
+                    {% load static %}
+                    <ul class="users-list clearfix">
+                    {% for friend in friends %}
+                      {% if friend in friends %}
+                      <li>
+                        {% if friend.userprofile.profile_image %}
+                          <img src="{{ friend.userprofile.profile_image.url }}" class="avatar img-raised">
+                        {% else %}
+                          <img src="/media/media/images/defaults/placeholder.jpg" class="avatar img-raised">
+                        {% endif %}
+                        <br>
+                        <a class="users-list-name" href="{% url 'accounts:view_profile_with_pk' pk=friend.pk %}">
+                            {{ friend.username.capitalize }}
+                          </a>
+
+                        <a href="{% url 'flock:change_friends' operation='remove' pk=friend.pk %}">
+                          <button type="submit" class="btn btn-sm btn-primary btn-raised btn-round pull-right">Unflock</button>
+                          <div class="clearfix"></div>
+                        </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!--/.card -->
+    </div>

@@ -1,0 +1,323 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+{% block content %}
+<!-- EDIT PROFILE PAGE -->
+
+<!-- EDIT PROFILE PAGE -->
+
+<form class="" action="" method="POST">
+    {% csrf_token  %}
+
+      <div class="card-header text-center">
+    <h3 class="description">Edit {{user}}'s Profile
+      <a href="#"><span class="pull-right"><i class="tim-icons icon-bulb-63"></i></span> </a>
+    </h3>
+  </div>
+  <div class="card-body">
+      <div class="row">
+        <h4 class="col-md-12 pr-md-1">{{user}}'s Corporate Identity</h4>
+        {{ form.non_field_errors }}
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.company_name.error }}
+              <label for="{{ form.company.id_for_label }}">Company Name</label>
+                {{ form.company_name }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pl-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.other_names.error }}
+              <label for="{{ form.company_name.id_for_label }}"> Other Business names</label>
+              {{ form.other_names }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 px-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.business_type.error }}
+              <label for="{{ form.business_type.id_for_label }}">Business type </label>
+              {{ form.business_type }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="col-md-12 pr-md-1">Business Contacts</h4>
+        <div class="col-md-6 px-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              <label for="{{ form.support_email.id_for_label }}">Support email </label>
+              {{ form.support_email.error }}
+              {{ form.support_email }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pl-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              <label for="{{ form.email_address.id_for_label }}"> Business contact email</label>
+              {{ form.email_address.error }}
+              {{ form.email_address }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.office_phone.error }}
+              <label for="{{ form.office_phone.id_for_label }}">Office number</label>
+              {{ form.office_phone }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 px-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.contact_cell.error }}
+              <label for="{{ form.contact_cell.id_for_label }}">Cell</label>
+              {{ form.contact_cell }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="col-md-12 pr-md-1">{{user}} Location</h4>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <!-- <div class="fieldWrapper">
+              <label for="{{ form.country.id_for_label }}">Country of origin</label>
+              <select class="" name="{{ form.country}}">
+                <option value="{{ form.country.name}}">{{ form.country}}</option>
+              </select>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-6 pl-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.country_city.error }}
+              <label for="{{ form.country_city.id_for_label }}">City</label>
+              {{ form.country_city }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.address.error }}
+              <label for="{{ form.address.id_for_label }}">Residential address</label>
+              {{ form.address }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.location.error }}
+              <label for="{{ form.location.id_for_label }}">Office Location</label>
+              {{ form.location }}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4 pl-md-1">
+          <div class="form-group">
+            <label>Postal Code</label>
+            <input type="number" class="form-control" placeholder="ZIP Code">
+          </div>
+        </div> -->
+        <!-- <div class="col-md-4 px-md-1">
+          <div class="form-group">
+            <label for="id_location_overview_video">location video overview</label>
+            <input type="file" name="location_overview_video" id="id_location_overview_video" class="form-control" placeholder="" value="">
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <h4 class="col-md-12 pr-md-1">Other online PR's owned by {{user}}</h4>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.website.error }}
+              <label for="{{ form.website.id_for_label }}">Website</label>
+              {{ form.website }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.other_website.error }}
+              <label for="{{ form.other_website.id_for_other_label }}">{{ form.other_website.label }}</label>
+              {{ form.other_website }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="fieldWrapper">
+              {{ form.blog.error }}
+              <label for="{{ form.blog.id_for_label }}">Blog</label>
+              {{ form.blog }}
+            </div>
+
+          </div>
+        </div>
+        <!-- <div class="col-md-4 pl-md-1">
+          <div class="form-group">
+            <label>Postal Code</label>
+            <input type="number" class="form-control" placeholder="ZIP Code">
+          </div>
+        </div> -->
+        <!-- <div class="col-md-4 px-md-1">
+          <div class="form-group">
+            <label for="id_location_overview_video">location video overview</label>
+            <input type="file" name="location_overview_video" id="id_location_overview_video" class="form-control" placeholder="" value="">
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <h4 class="col-md-12 pr-md-1">About {{user}}</h4>
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="fieldWrapper">
+
+            </div>
+            <label for="{{ form.about.id_for_label }}">A short description</label>
+            {{ form.about.error }}
+            {{ form.about }}
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <h4 class="col-md-12 pr-md-1">Media and Graphics</h4>
+        <h4 class="col-md-12 pr-md-1">Images</h4>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <label for="id_profile_image">Profile Image</label>
+            {% if user.profile.profile_image %}
+            <div class="photo">
+              <img src="{{ user.profile.profile_image.url }}" alt="Profile Photo">
+            </div>
+            {% else %}
+            <div class="photo">
+              <img src="/media/images/profile_image/apple.jpg" alt="Profile Photo">
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            {% endif %}
+              <input class="hidden" type="file" name="profile_image" id="id_profile_image">
+              <input type="checkbox" name="profile_image-clear" id="profile_image-clear_id" /><label for="profile_image-clear_id">Clear</label>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" value="" checked="">
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <label for="id_cover_image">Cover Image</label>
+            {% if user.profile.cover_image %}
+            <div class="photo">
+              <img src="{{ user.profile.cover_image.url }}" alt="Profile Photo">
+            </div>
+            {% else %}
+            <div class="photo">
+              <img src="/media/images/profile_image/apple.jpg" alt="Profile Photo">
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            {% endif %}
+              <input class="hidden" type="file" name="cover_image" id="id_cover_image">
+              <input type="checkbox" name="cover_image-clear" id="cover_image-clear_id" /><label for="cover_image-clear_id">Clear</label>
+          </div>
+        </div>
+        <h6 class="col-md-12 pr-md-1">Videos</h6>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <label for="id_about_video">About Video</label>
+            {% if user.profile.about_video %}
+            <div class="photo">
+              <img src="{{ user.profile.about_video.url }}" alt="Profile Photo">
+            </div>
+            {% else %}
+            <div class="photo">
+              <img src="/media/images/profile_image/apple.jpg" alt="Profile Photo">
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            {% endif %}
+            <input class="hidden" type="file" name="about_video" id="id_profile_image">
+            <input type="checkbox" name="about_video-clear" id="about_video-clear_id" /><label for="about_video-clear_id">Clear</label>
+          </div>
+        </div>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <label for="id_who_we_are_video">Who we are Video</label>
+            {% if user.profile.who_we_are_video %}
+            <div class="photo">
+              <img src="{{ user.profile.who_we_are_video.url }}" alt="Profile Photo">
+            </div>
+            {% else %}
+            <div class="photo">
+              <img src="/media/images/profile_image/apple.jpg" alt="Profile Photo">
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            {% endif %}
+              <input class="hidden" type="file" name="who_we_are_video" id="id_who_we_are_video">
+              <input type="checkbox" name="who_we_are_video-clear" id="who_we_are_video-clear_id" /><label for="who_we_are_video-clear_id">Clear</label>
+          </div>
+        </div>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <label for="id_services_video">Services Video</label>
+            {% if user.profile.services_video %}
+            <div class="photo">
+              <img src="{{ user.profile.services_video.url }}" alt="Profile Photo">
+            </div>
+            {% else %}
+            <div class="photo">
+              <img src="/media/images/profile_image/apple.jpg" alt="Profile Photo">
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            {% endif %}
+
+              <input class="hidden" type="file" name="services_video" id="id_services_video">
+              <input type="checkbox" name="services_video-clear" id="services_video-clear_id" /><label for="services_video-clear_id">Clear</label>
+          </div>
+        </div>
+        <div class="col-md-6 pr-md-1">
+          <div class="form-group">
+            <label for="id_projects_video">Projects Video</label>
+            {% if user.profile.projects_video %}
+            <div class="photo">
+              <img src="{{ user.profile.projects_video.url }}" alt="Profile Photo">
+            </div>
+            {% else %}
+            <div class="photo">
+              <img src="/media/images/profile_image/apple.jpg" alt="Profile Photo">
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            {% endif %}
+
+              <input class="hidden" type="file" name="projects_video" id="id_projects_video">
+              <input type="checkbox" name="projects_video-clear" id="projects_video-clear_id" /><label for="projects_video-clear_id">Clear</label>
+          </div>
+        </div>
+      </div> -->
+  </div>
+  <div class="card-footer">
+    <button type="submit" name="submit" class="btn btn-fill btn-round btn-sm btn-primary pull-right">Save</button>
+  </div>
+</form>
+<!-- END EDIT PROFILE PAGE -->
+
+
+<!-- END EDIT PROFILE PAGE -->
+{% endblock %}

@@ -1,0 +1,56 @@
+{% load humanize %}
+
+<div class="tab-pane" id="blogpost">
+  <div class="row">
+    <div class="blogs-3">
+        <div class="container">
+          <div class="row">
+            {% for object in profile %}
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="card card-plain card-blog">
+                {% for post in object.user.post_set.all %}
+                <div class="row">
+                  {% if post.post_image %}
+                  <div class="col-md-4">
+                    <a href="{% url 'pervasive:single_post' slug=post.slug %}">
+                      <div class="card-header card-header-image">
+                        <img class="img img-raised" src="{{ post.post_image.url }}">
+                      <div class="colored-shadow" style="background-image: url({{ post.post_image.url }}); opacity: 1;"></div></div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-8">
+                    <h6 class="card-category text-info">{{ post.category|capfirst }}</h6>
+                    <h3 class="card-title">
+                      <a href="{% url 'pervasive:single_post' slug=post.slug %}">{{ post.title|title }}</a>
+                    </h3>
+                    <p class="card-description">
+                       {{ post.content|safe|urlize|capfirst|truncatewords_html:31 }}
+                      <a href="#pablo"> Read More </a>
+                    </p>
+                    <p class="author">
+                      by
+                      <a href="{% url 'pervasive:single_post' slug=post.slug %}">
+                        <b>{{ post.user|capfirst }}</b>
+                      </a>, {{ post.created|naturaltime }}
+                    </p>
+                  </div>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            {% empty %}
+            <div class="text-center">
+              <div class="content">
+                <h2 class="card-title">There are no blog posts from {{ post.user.profile.official_business_name }} yet</h2>
+
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

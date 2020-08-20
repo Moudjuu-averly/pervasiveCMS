@@ -1,0 +1,49 @@
+<div class="tab-pane ">
+  <div class="blogs-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-plain card-blog">
+            <div class="row">
+
+              <div class="col-md-4">
+                <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                  {% if object.about_video %}
+                    <video  id="video" class="img img-raised" muted="muted" width="100%" height="auto" src="{{ object.about_video.url|safe }}" type="video/*"
+                      preload controls controlsList="nodownload" poster="">
+
+                      <!-- Adding Flash-free support for modern browers with open-source codecs -->
+                      <source type="video/*" allow="encrypted-media" src="{{ object.about_video.url|safe }}" class="img img-raised"></source>
+                      <!-- Adding support for under-powered mobile devices -->
+                      <source type="video/*" allow="encrypted-media" src="{{ object.about_video.url|safe }}" media="only screen and (min-device-width: 568px)" class="img img-raised"></source>
+
+                    </video>
+
+                    {% else %}
+                    <!-- jobs default video/ima -->
+                    {% endif %}</a>
+
+              </div>
+
+              <div class="col-md-8">
+                <h6 class="card-category text-info">{{ object.get_job_type_display }}</h6>
+                <h4 class="card-title">
+                  <a href="#pablo">{{ object.job_tittle }}</a>
+                </h4>
+                <p class="card-description">
+                   {{ object.content|safe|urlize|capfirst|truncatewords_html:19 }}
+                  <a href="#pablo"> Read More </a>
+                </p>
+                <p class="author">
+                  <a href="{% url 'profiles:view_profile_visitor' slug=object.user.profile.slug %}">
+                    <b>{{ object.user.profile.official_business_name|capfirst }}</b>
+                  </a>,{{ object.created|timesince }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

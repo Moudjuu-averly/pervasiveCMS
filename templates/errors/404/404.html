@@ -1,0 +1,31 @@
+{% extends 'pervasive/base.html' %}
+
+{% block body %}
+<body class="landing-page sidebar-collapse">
+
+  {% include 'pervasive/nav/header_nav.html' %}
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('media/img/bg5.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title">404 Error.</h1>
+          <p>This page does not exist yet!, looking for... </p>          <br>
+          <button class="btn btn-round btn-success btn-raised btn-sm" data-toggle="modal" data-target="#loginModal">
+              something else<i class="material-icons">...</i>
+          </button>
+        </div>
+        <div class="col-md-5 ml-auto">
+          <div class="iframe-container">
+            <iframe height="250" src="https://www.youtube.com/embed/IN6QnLpVEPI" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% include 'pervasive/footer/footer.html' %}
+
+
+</body>
+
+{% endblock %}

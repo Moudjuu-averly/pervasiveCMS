@@ -1,0 +1,37 @@
+<div id="myCarousel" class="container carousel slide slider" data-ride="carousel">
+    <!-- <ol class="carousel-indicators">
+         {% for job in jobs%}
+            <li data-target="#myCarousel" data-slide-to="{{job.id}}" class="{% if forloop.first%}active{%endif%}"></li>
+        {%endfor%}
+    </ol> -->
+    <div class="carousel-inner container col-lg-8 auto" role="listbox">
+        {% for flock in flocks|slice:":11" %}
+          {% if forloop.first %}
+            <div class="active carousel-item">
+          {% else %}
+            <div class="carousel-item">
+          {% endif %}
+            <div class="">
+              <div class="card card-chart">
+                <div class="card-header">
+                  <h4 class="card-title title d-inline"><i class="tim-icons icon-badge text-primary"></i><a href="{% url 'flock:view_single_flock' flock.pk %}">{{flock.title}}</a></h4>
+                    <h5 class="card-category"><i class="tim-icons icon-tag"></i><span class="badge">{{ flock }} </span>
+                    <h5 class="card-category"><span class="badge">{{ flock }}, {{ flock }} <a href="{% url 'flock:view_all_flocks'%}">flocks</a></span>
+                </div>
+                <div class="">
+                  <div class="content container">
+                      <div class="social-description ">
+                        <h4 class="card-category"><i class="tim-icons icon-credit-card"></i> <span class="badge">{{ flock }}</span> </h4>
+                        <h4 class="text-muted"><i class="tim-icons icon-watch-time"></i> <span class="badge">{{ flock.timestamp|timesince }}</span> </h4>
+                        <h4 class="card-category"><i class="tim-icons icon-tap-02 text-primary"></i><span class="badge">2311</span> <i class="tim-icons icon-square-pin text-primary"></i><span class="badge">3 jobs</span> <a href="{{ flock.flock_owner }}">@{{ flock.user }}</a></h4>
+                      </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        {% endfor %}
+        </div>
+  </div>

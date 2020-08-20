@@ -1,0 +1,133 @@
+{% extends 'profiles/index/profile_index.html' %}
+
+
+  {% block content %}
+  {% load humanize %}
+  {% load i18n %}
+
+
+  <div class="row container">
+    <div class="col-md-12 ml-auto mr-auto">
+      <div class="profile-tabs">
+        <form method='POST' id="imageContainer" action='' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {% if form.errors %}
+        {{ form.non_field_errors }}
+        <!-- Tender Video -->
+        <div data-notify="container" class="col-xs-11 col-sm-10 alert alert-danger alert-with-icon" role="alert" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; top: 20px; left: 20px;">
+          <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 50%; margin-top: -13px; z-index: 1062;"><i class="tim-icons icon-simple-remove"></i>
+          </button>
+          <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+           <span data-notify="title"></span> <span data-notify="message"><b>Warning</b>
+             <ul style="list-style:none;">
+               <li style="list-style:none;" class="">{{ form.errors }} </li>
+             </ul>
+           </span>
+           <a href="#" target="_blank" data-notify="url"></a>
+        </div>
+        {% endif %}
+
+        <small class="card-img-top raised">
+          <img id="blah" src="" class="card-img-top raised" style=""/>
+        </small>
+        <div class="col-md-12">
+          <div class="form-group">
+              <div class="text-right">
+                <label for="upload-profile_image" class="" style="cursor: pointer;">
+                    <i class="fa fa-camera btn img btn-sm btn-round raised btn-primary"></i>
+                </label>
+                <input type="file" name="post_image" id="upload-profile_image" style="display:none;" accept="image/*" onchange="loadFile(event)">
+                <img id="output" width="100%" src="" type="image/*" style="width:auto;" />
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Title</label>
+              {{ form.title }}
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Blog Post Here</label>
+              {{ form.media }}
+              {{ form.content }}
+            </div>
+          </div>
+        </div>
+        <button type="submit" name="submit" class="btn btn-sm btn-round raised btn-primary pull-right" onclick="demo.showNotification('top','center')">post</button>
+        </form>
+        <script>
+          var loadFile = function(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+              var output = document.getElementById('output');
+              if (output.src == ''){
+                this.style.display = "none";
+              }
+              output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+          };
+        </script>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 ml-auto mr-auto">
+      <div class="profile-tabs">
+        {% for post in instance %}
+              {% if post.user.profile.profile_image %}
+              <div class="photo">
+                <a href="">
+                <img class="pull-left" src="{{ post.user.profile.profile_image.url }}" alt="..." class="avatar img-raised img-fluid" style="border-radius: 50%; padding: 5px;width :50px;">
+                </a>
+              </div>
+              {% else %}
+                <a href="">
+                  <img  src="/media/media/img/faces/kendall.jpg" class="avatar img-raised" style="border-radius: 50% ;width :50px;">
+                </a>
+                {% endif %}
+               <div class="dropdown nav-item pull-right" >
+                 <div href="" class="dropdown nav-link" data-toggle="dropdown" aria-expanded="false">
+                     <a href="">{{ post.user.username|upper }}&nbsp;&nbsp;</a><i class="fa fa-fw fa-ellipsis-v"></i>
+                     <div class="dropdown-menu dropdown">
+                       <a href="" class="dropdown-item">Hide Post</a>
+                       <a href=""  class="dropdown-item">Flock</a>
+                       <a href="" class="dropdown-item">unflock</a>
+
+                       <div class="dropdown-divider"></div>
+                       <!-- <a href="/account/profile/proffesional" class="dropdown-item">More</a> -->
+                       <a href="" class="dropdown-item">Block</a>
+                       <a href="" class="dropdown-item">Report</a>
+                     </div>
+                 <div class="ripple-container"></div>
+               </div>
+              </div>
+
+
+                <small >{% if post.post_image %}
+                <img src="{{ post.post_image.url }}" class="card-img-top">
+                {% elif post.post_video %}
+                  <video src="{{ post.post_video.url }}"  controls poster="" class="card-img-top">
+                  </video>
+                {% endif %}
+              </small>
+              <div class="container">
+                <p class="description">{{  post.title }}</p>
+                  <div class="pull-left"><a href='{{ post.get_api_like_url }}' class='like-btn btn-link ' data-href='{{ post.get_api_like_url }}' data-likes='{{ post.likes.count }}'  href='{{ post.get_like_url }}' rel="tooltip" data-original-title="like and flock this status">{{  post.likes.count  }} <i class="fa fa-heart"></i></a></div>
+                  {% if comments %}
+                      <div class="pull-right"> {{ comments.post.text }}</div>
+                  {% endif %}
+                <div class="pull-right"> {{ post.timestamp|naturaltime }}</div>
+              </div>
+
+              <br><hr>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
